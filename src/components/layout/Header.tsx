@@ -10,11 +10,11 @@ const Header = () => {
       <div className="flex items-center gap-4">
         <div className="flex items-center">
           <img 
-            src="https://www.soprasteria.com/images/librariesprovider29/sopra-steria-corporate/logotype/sopra-steria-logo-rgb-ld.png?sfvrsn=60bd59e_4" 
-            alt="Sopra Logo" 
-            className="h-8 mr-2"
+            src="/lovable-uploads/f8c95170-c1a8-4b8b-8fe7-0296afb53761.png" 
+            alt="Sopra HR Logo" 
+            className="h-10 mr-2"
           />
-          <h1 className="text-xl font-bold jira-logo text-jira-blue">TakeIt</h1>
+          <h1 className="text-xl font-bold jira-logo" style={{ color: '#E1052A' }}>TakeIt</h1>
         </div>
         <div className="flex items-center gap-1.5">
           <Button variant="ghost" className="text-jira-darkgray hover:bg-jira-lightgray rounded-md text-sm px-3 py-1.5 h-auto">
@@ -36,7 +36,7 @@ const Header = () => {
           <input
             type="text"
             placeholder="Rechercher"
-            className="h-8 w-64 pl-9 pr-4 rounded-md bg-jira-lightgray text-sm focus:outline-none focus:ring-2 focus:ring-jira-blue/30"
+            className="h-8 w-64 pl-9 pr-4 rounded-md bg-jira-lightgray text-sm focus:outline-none focus:ring-2 focus:ring-red-600/30"
           />
         </div>
         
@@ -54,7 +54,7 @@ const Header = () => {
         
         <Avatar className="h-8 w-8 cursor-pointer">
           <AvatarImage src="https://github.com/shadcn.png" alt="User" />
-          <AvatarFallback className="text-xs bg-jira-purple text-white">US</AvatarFallback>
+          <AvatarFallback className="text-xs bg-red-600 text-white">US</AvatarFallback>
         </Avatar>
       </div>
     </header>
