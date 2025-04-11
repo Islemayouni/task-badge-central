@@ -23,7 +23,7 @@ const Sidebar = () => {
   return (
     <aside className="w-64 border-r bg-white h-full">
       <div className="p-4">
-        <button className="bg-jira-blue hover:bg-blue-700 text-white w-full rounded-md py-2 text-sm font-medium flex items-center justify-center gap-2 transition-colors">
+        <button className="sopra-red-gradient hover:opacity-90 text-white w-full rounded-md py-2 text-sm font-medium flex items-center justify-center gap-2 transition-colors">
           <Plus size={16} />
           <span>Créer une tâche</span>
         </button>
@@ -104,7 +104,7 @@ const Sidebar = () => {
           <ul className="space-y-1">
             <li>
               <Link to="/starred" className="jira-sidebar-item">
-                <Star size={18} className="text-yellow-500" />
+                <Star size={18} className="text-secondary" />
                 <span>Tâches importantes</span>
               </Link>
             </li>

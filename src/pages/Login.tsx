@@ -34,23 +34,30 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-jira-lightgray px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-50 to-gray-100 px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold jira-logo text-jira-blue">TakeIt</h1>
-          <p className="text-jira-mediumgray mt-2">
+          <div className="flex items-center justify-center mb-3">
+            <img 
+              src="/lovable-uploads/f8c95170-c1a8-4b8b-8fe7-0296afb53761.png" 
+              alt="Sopra HR Logo" 
+              className="h-12"
+            />
+          </div>
+          <h1 className="text-3xl font-bold jira-logo" style={{ color: '#E1052A' }}>TakeIt</h1>
+          <p className="text-jira-darkgray mt-2">
             Plateforme de Gestion des Tâches et d'Attribution de Badges
           </p>
         </div>
         
-        <Card>
-          <CardHeader>
+        <Card className="border shadow-lg">
+          <CardHeader className="sopra-red-gradient text-white">
             <CardTitle className="text-xl font-medium">Se connecter</CardTitle>
-            <CardDescription>
+            <CardDescription className="text-white/90">
               Accédez à votre tableau de bord de gestion des tâches
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="pt-6">
             <form onSubmit={handleLogin} className="space-y-4">
               {error && (
                 <div className="p-3 bg-red-50 border border-red-100 rounded-md flex items-center gap-2 text-sm text-red-600">
@@ -80,7 +87,7 @@ const Login = () => {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <label htmlFor="password" className="text-sm font-medium">Mot de passe</label>
-                  <a href="#" className="text-xs text-jira-blue hover:underline">
+                  <a href="#" className="text-xs text-primary hover:underline">
                     Mot de passe oublié?
                   </a>
                 </div>
@@ -102,7 +109,7 @@ const Login = () => {
               
               <Button 
                 type="submit" 
-                className="w-full bg-jira-blue hover:bg-blue-700"
+                className="w-full sopra-red-gradient hover:opacity-90"
                 disabled={loading}
               >
                 {loading ? "Connexion..." : "Se connecter"}
@@ -111,7 +118,7 @@ const Login = () => {
           </CardContent>
           <CardFooter className="flex justify-center border-t p-4">
             <p className="text-sm text-jira-mediumgray">
-              Nouveau sur TakeIt? <a href="#" className="text-jira-blue hover:underline">Créer un compte</a>
+              Nouveau sur TakeIt? <a href="#" className="text-primary hover:underline">Créer un compte</a>
             </p>
           </CardFooter>
         </Card>
