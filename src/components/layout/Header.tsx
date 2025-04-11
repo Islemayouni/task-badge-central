@@ -8,7 +8,14 @@ const Header = () => {
   return (
     <header className="h-14 px-4 border-b flex items-center justify-between bg-white">
       <div className="flex items-center gap-4">
-        <h1 className="text-xl font-bold jira-logo text-jira-blue">TakeIt</h1>
+        <div className="flex items-center">
+          <img 
+            src="https://www.soprasteria.com/images/librariesprovider29/sopra-steria-corporate/logotype/sopra-steria-logo-rgb-ld.png?sfvrsn=60bd59e_4" 
+            alt="Sopra Logo" 
+            className="h-8 mr-2"
+          />
+          <h1 className="text-xl font-bold jira-logo text-jira-blue">TakeIt</h1>
+        </div>
         <div className="flex items-center gap-1.5">
           <Button variant="ghost" className="text-jira-darkgray hover:bg-jira-lightgray rounded-md text-sm px-3 py-1.5 h-auto">
             Tableau de bord
