@@ -28,6 +28,8 @@ const App = () => (
           <Route path="/team" element={<Dashboard />} />
           <Route path="/settings" element={<Dashboard />} />
           <Route path="/starred" element={<Dashboard />} />
+          <Route path="/knowledge" element={<Dashboard />} />
+          <Route path="/notifications" element={<Dashboard />} />
           {/* Catch-all route */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -87,7 +87,7 @@
   }
   
   .jira-sidebar-item {
-    @apply flex items-center gap-3 px-3 py-2 rounded-md text-sm text-jira-darkgray hover:bg-jira-lightgray transition-all;
+    @apply flex items-center gap-3 px-3 py-2 rounded-md text-sm text-jira-darkgray hover:bg-jira-lightgray transition-all relative;
   }
   
   .jira-sidebar-item.active {
@@ -102,4 +102,61 @@
   .sopra-orange-gradient {
     @apply bg-gradient-to-r from-[#F08200] to-[#E77918];
   }
+  
+  /* Animation classes */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+  
+  .animate-slide-in {
+    animation: slideIn 0.3s ease-out forwards;
+  }
+  
+  .animate-scale {
+    transition: transform 0.2s;
+  }
+  
+  .animate-scale:hover {
+    transform: scale(1.05);
+  }
+  
+  .hover-lift {
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideIn {
+    from { transform: translateX(-10px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  
+  /* Card styles */
+  .card-gradient {
+    @apply bg-gradient-to-br from-white to-gray-50;
+  }
+  
+  .card-highlight {
+    @apply border-l-4 border-primary;
+  }
+  
+  /* Badge styles */
+  .badge-glowing {
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(225, 5, 42, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(225, 5, 42, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(225, 5, 42, 0); }
+  }
 }
+
