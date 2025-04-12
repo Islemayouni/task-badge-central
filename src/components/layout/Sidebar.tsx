@@ -13,7 +13,8 @@ import {
   Star,
   BookOpen,
   Bell,
-  Briefcase
+  Briefcase,
+  Layout
 } from 'lucide-react';
 
 const Sidebar = () => {
@@ -55,6 +56,14 @@ const Sidebar = () => {
                 <Home size={18} />
                 <span>Tableau de bord</span>
                 {isActive('/dashboard') && <div className="absolute left-0 top-0 w-1 h-full bg-primary rounded-r-md"></div>}
+              </Link>
+            </li>
+            <li>
+              <Link to="/projects" className={`jira-sidebar-item ${isActive('/projects') ? 'active' : ''}`}>
+                <Layout size={18} />
+                <span>Projets</span>
+                {isActive('/projects') && <div className="absolute left-0 top-0 w-1 h-full bg-primary rounded-r-md"></div>}
+                <span className="ml-auto bg-primary/10 text-primary text-xs font-medium py-0.5 px-2 rounded-full">1</span>
               </Link>
             </li>
             <li>
