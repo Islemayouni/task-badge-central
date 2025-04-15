@@ -1,31 +1,13 @@
-
 import React, { useState } from 'react';
 import Header from '@/components/layout/Header';
 import Sidebar from '@/components/layout/Sidebar';
-import TaskCard from '@/components/tasks/TaskCard';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { 
-  Search, 
-  Plus, 
-  Filter, 
-  CheckCircle, 
-  Clock, 
-  CalendarDays,
-  AlertTriangle,
-  ArrowUpDown
-} from 'lucide-react';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import TaskHeader from '@/components/tasks/TaskHeader';
+import TaskSearch from '@/components/tasks/TaskSearch';
+import TaskGrid from '@/components/tasks/TaskGrid';
+import TaskStats from '@/components/tasks/TaskStats';
 
 const Tasks = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [sortBy, setSortBy] = useState('deadline');
 
   const tasks = [
@@ -80,76 +62,16 @@ const Tasks = () => {
         <Sidebar />
         
         <main className="flex-1 overflow-y-auto p-6">
-          <div className="flex justify-between items-center mb-6">
-            <div>
-              <h1 className="text-2xl font-semibold mb-1">Mes tâches</h1>
-              <p className="text-gray-500">
-                Gérez et suivez vos tâches en cours
-              </p>
-            </div>
-            <Button className="sopra-red-gradient text-white">
-              <Plus size={16} className="mr-2" />
-              Nouvelle tâche
-            </Button>
-          </div>
-          
-          <div className="flex flex-wrap gap-4 mb-6">
-            <div className="flex-1 min-w-[200px]">
-              <div className="relative">
-                <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
-                <Input 
-                  placeholder="Rechercher une tâche..." 
-                  className="pl-9"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div>
-            </div>
-            
-            <div className="flex gap-2">
-              <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Trier par" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="deadline">Date limite</SelectItem>
-                  <SelectItem value="priority">Priorité</SelectItem>
-                  <SelectItem value="status">Statut</SelectItem>
-                </SelectContent>
-              </Select>
-              
-              <Button variant="outline" size="icon">
-                <Filter size={18} />
-              </Button>
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filteredTasks.map(task => (
-              <TaskCard key={task.id} {...task} />
-            ))}
-            
-            <div className="border border-dashed rounded-lg p-6 flex flex-col items-center justify-center text-gray-500 hover:border-gray-400 transition-colors cursor-pointer">
-              <Plus size={24} className="mb-2" />
-              <span>Ajouter une nouvelle tâche</span>
-            </div>
-          </div>
-          
+          <TaskHeader />
+          <TaskSearch 
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            sortBy={sortBy}
+            setSortBy={setSortBy}
+          />
+          <TaskGrid tasks={filteredTasks} />
           <div className="mt-8">
-            <div className="flex items-center gap-8 text-sm text-gray-500 mb-4">
-              <div className="flex items-center gap-2">
-                <Clock size={16} />
-                <span>Date limite proche: 2</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <AlertTriangle size={16} />
-                <span>Haute priorité: 1</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle size={16} />
-                <span>Terminées cette semaine: 3</span>
-              </div>
-            </div>
+            <TaskStats />
           </div>
         </main>
       </div>
