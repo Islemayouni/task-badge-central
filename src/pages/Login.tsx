@@ -39,8 +39,8 @@ const Login = () => {
 
   return (
     <div className="flex h-screen">
-      {/* Welcome Section */}
-      <div className="w-1/2 bg-gradient-to-br from-[#0070AD] to-[#004F7C] flex flex-col justify-center items-center p-10 text-white">
+      {/* Welcome Section with new gradient */}
+      <div className="w-1/2 bg-gradient-to-br from-purple-700 via-pink-600 to-orange-500 flex flex-col justify-center items-center p-10 text-white">
         <div className="max-w-md text-center">
           <img 
             src="/placeholder.svg" 
@@ -48,7 +48,7 @@ const Login = () => {
             className="mx-auto mb-8 w-48 h-auto"
           />
           <h1 className="text-4xl font-bold mb-6">MyTasks4YOU</h1>
-          <p className="text-xl mb-8">La plateforme qui simplifie votre gestion de tâches et de projets</p>
+          <p className="text-xl mb-8">Restons en contact avec MyTasks4YOU</p>
           <div className="grid grid-cols-2 gap-6 mb-10">
             <div className="flex flex-col items-center">
               <ShieldCheck size={40} className="mb-2" />
@@ -67,6 +67,13 @@ const Login = () => {
               <p>Gestion des accès</p>
             </div>
           </div>
+          <Button 
+            variant="outline" 
+            className="bg-white text-purple-700 hover:bg-purple-50 mt-4"
+            onClick={() => window.location.href = '#newsletter'}
+          >
+            S'inscrire à la newsletter
+          </Button>
         </div>
       </div>
 
@@ -127,14 +134,14 @@ const Login = () => {
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 text-[#0070AD] rounded border-gray-300"
+                  className="h-4 w-4 text-purple-600 rounded border-gray-300"
                 />
                 <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
                   Se souvenir de moi
                 </label>
               </div>
               <div className="text-sm">
-                <a href="#" className="font-medium text-[#0070AD] hover:text-[#004F7C]">
+                <a href="#" className="font-medium text-purple-700 hover:text-purple-500">
                   Mot de passe oublié?
                 </a>
               </div>
@@ -143,7 +150,7 @@ const Login = () => {
             <div>
               <Button
                 type="submit"
-                className="w-full bg-[#0070AD] hover:bg-[#004F7C] text-white"
+                className="w-full bg-gradient-to-r from-purple-700 via-pink-600 to-orange-500 hover:opacity-90 text-white"
                 disabled={loading}
               >
                 {loading ? "Connexion en cours..." : "Se connecter"}
@@ -153,7 +160,7 @@ const Login = () => {
           
           <div className="mt-6 text-center text-sm">
             <span className="text-gray-600">Nouveau sur MyTasks4YOU? </span>
-            <a href="#" className="font-medium text-[#0070AD] hover:text-[#004F7C]">
+            <a href="#" className="font-medium text-purple-700 hover:text-purple-500">
               Créer un compte
             </a>
           </div>
