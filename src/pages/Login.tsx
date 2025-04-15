@@ -1,5 +1,5 @@
 
-import { AtSign, Lock, TriangleAlert, CheckCircle, Users, Award } from "lucide-react";
+import { AtSign, Lock, Users, Award, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
@@ -40,14 +40,19 @@ const Login = () => {
   return (
     <div className="flex h-screen">
       {/* Welcome Section */}
-      <div className="w-1/2 bg-gradient-to-br from-[#e20074] to-[#7e0c46] flex flex-col justify-center items-center p-10 text-white">
+      <div className="w-1/2 bg-gradient-to-br from-[#0070AD] to-[#004F7C] flex flex-col justify-center items-center p-10 text-white">
         <div className="max-w-md text-center">
-          <h1 className="text-4xl font-bold mb-6">Bienvenue sur MyTasks4YOU</h1>
+          <img 
+            src="/placeholder.svg" 
+            alt="Sopra Steria Logo" 
+            className="mx-auto mb-8 w-48 h-auto"
+          />
+          <h1 className="text-4xl font-bold mb-6">MyTasks4YOU</h1>
           <p className="text-xl mb-8">La plateforme qui simplifie votre gestion de tâches et de projets</p>
           <div className="grid grid-cols-2 gap-6 mb-10">
             <div className="flex flex-col items-center">
-              <CheckCircle size={40} className="mb-2" />
-              <p>Gestion de tâches simplifiée</p>
+              <ShieldCheck size={40} className="mb-2" />
+              <p>Gestion sécurisée</p>
             </div>
             <div className="flex flex-col items-center">
               <Users size={40} className="mb-2" />
@@ -55,11 +60,11 @@ const Login = () => {
             </div>
             <div className="flex flex-col items-center">
               <Award size={40} className="mb-2" />
-              <p>Système de badges motivant</p>
+              <p>Système de badges</p>
             </div>
             <div className="flex flex-col items-center">
-              <TriangleAlert size={40} className="mb-2" />
-              <p>Notifications intelligentes</p>
+              <Lock size={40} className="mb-2" />
+              <p>Gestion des accès</p>
             </div>
           </div>
         </div>
@@ -122,14 +127,14 @@ const Login = () => {
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 text-primary rounded border-gray-300"
+                  className="h-4 w-4 text-[#0070AD] rounded border-gray-300"
                 />
                 <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
                   Se souvenir de moi
                 </label>
               </div>
               <div className="text-sm">
-                <a href="#" className="font-medium text-primary hover:text-primary/80">
+                <a href="#" className="font-medium text-[#0070AD] hover:text-[#004F7C]">
                   Mot de passe oublié?
                 </a>
               </div>
@@ -138,7 +143,7 @@ const Login = () => {
             <div>
               <Button
                 type="submit"
-                className="w-full bg-primary hover:bg-primary/90"
+                className="w-full bg-[#0070AD] hover:bg-[#004F7C] text-white"
                 disabled={loading}
               >
                 {loading ? "Connexion en cours..." : "Se connecter"}
@@ -148,13 +153,9 @@ const Login = () => {
           
           <div className="mt-6 text-center text-sm">
             <span className="text-gray-600">Nouveau sur MyTasks4YOU? </span>
-            <a href="#" className="font-medium text-primary hover:text-primary/80">
+            <a href="#" className="font-medium text-[#0070AD] hover:text-[#004F7C]">
               Créer un compte
             </a>
-          </div>
-          
-          <div className="mt-4 text-xs text-center text-gray-500">
-            <p>Démo: demo@mytasks4you.com / password</p>
           </div>
         </div>
       </div>
