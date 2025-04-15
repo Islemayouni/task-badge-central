@@ -9,7 +9,14 @@ import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import Projects from "./pages/Projects";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 1
+    }
+  }
+});
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -22,7 +29,6 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/projects" element={<Projects />} />
-          {/* Ces routes seront implémentées ultérieurement */}
           <Route path="/tasks" element={<Dashboard />} />
           <Route path="/badges" element={<Dashboard />} />
           <Route path="/calendar" element={<Dashboard />} />
@@ -32,7 +38,6 @@ const App = () => (
           <Route path="/starred" element={<Dashboard />} />
           <Route path="/knowledge" element={<Dashboard />} />
           <Route path="/notifications" element={<Dashboard />} />
-          {/* Catch-all route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
