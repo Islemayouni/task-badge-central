@@ -26,7 +26,7 @@ const Login = () => {
           description: "Bienvenue sur MyTasks4YOU!",
           variant: "default",
         });
-        navigate("/dashboard");
+        navigate("/projects"); // Changé de /dashboard à /projects
       } else {
         toast({
           title: "Erreur de connexion",
