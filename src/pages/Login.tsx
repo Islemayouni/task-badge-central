@@ -1,4 +1,3 @@
-
 import { AtSign, Lock, Users, Award, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,23 +16,15 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     
-    // Simulate login process
+    // Connexion simplifiée - accepte n'importe quels identifiants
     setTimeout(() => {
       setLoading(false);
-      if (email === "demo@mytasks4you.com" && password === "password") {
-        toast({
-          title: "Connexion réussie",
-          description: "Bienvenue sur MyTasks4YOU!",
-          variant: "default",
-        });
-        navigate("/projects"); // Changé de /dashboard à /projects
-      } else {
-        toast({
-          title: "Erreur de connexion",
-          description: "Email ou mot de passe incorrect",
-          variant: "destructive",
-        });
-      }
+      toast({
+        title: "Connexion réussie",
+        description: "Bienvenue sur MyTasks4YOU!",
+        variant: "default",
+      });
+      navigate("/projects");
     }, 1000);
   };
 
