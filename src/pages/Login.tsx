@@ -1,3 +1,4 @@
+
 import { AtSign, Lock, Users, Award, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -33,6 +34,11 @@ const Login = () => {
       {/* Left Section with White Background and Logo */}
       <div className="w-1/2 bg-white flex flex-col items-start p-10">
         <div className="max-w-md">
+          <img 
+            src="/lovable-uploads/20c9b8cf-e6ff-41dc-af0d-d2f48cacd49e.png" 
+            alt="Sopra HR Software" 
+            className="h-12 mb-8"
+          />
           <h1 className="text-4xl font-bold mb-6 text-gray-800">MyTasks4YOU</h1>
           <p className="text-xl mb-8 text-gray-600">Restons en contact avec MyTasks4YOU</p>
           <div className="grid grid-cols-2 gap-6 mb-10">
