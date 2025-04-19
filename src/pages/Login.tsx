@@ -32,34 +32,34 @@ const Login = () => {
   return (
     <div className="flex h-screen animate-fade-in">
       {/* Left Section with Black Background and Logo */}
-      <div className="w-1/2 bg-gradient-to-br from-[#1A1F2C] via-[#6E59A5] to-[#9b87f5] flex flex-col justify-center items-center text-center p-10">
+      <div className="w-1/2 bg-black flex flex-col justify-center items-center text-center p-10">
         <div className="max-w-md text-center flex flex-col items-center space-y-6">
           <img 
             src="/lovable-uploads/316bfdd4-fad4-43eb-9161-d9d5b1d5430c.png" 
             alt="Sopra HR Software" 
-            className="h-48 w-auto mb-4 opacity-90 hover:opacity-100 transition-opacity" 
+            className="h-48 w-auto mb-4" 
           />
-          <h1 className="text-4xl font-bold mb-4 text-white tracking-wide uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#D6BCFA] to-[#7E69AB]">
+          <h1 className="text-4xl font-bold mb-4 text-white tracking-wide uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#9C27B0] to-[#FF9800]">
             MyTasks4YOU
           </h1>
-          <p className="text-xl mb-6 text-white/80 font-medium">Restons en contact avec MyTasks4YOU</p>
+          <p className="text-xl mb-6 text-gray-200 font-medium">Restons en contact avec MyTasks4YOU</p>
           
           <div className="grid grid-cols-2 gap-4 mb-8">
-            <div className="flex flex-col items-center bg-[#7E69AB]/20 hover:bg-[#7E69AB]/40 rounded-lg p-4 border border-[#9b87f5]/30 transition-all group">
-              <ShieldCheck size={40} className="mb-2 text-[#E5DEFF] group-hover:text-white" />
-              <p className="text-[#E5DEFF] font-light group-hover:text-white">Gestion sécurisée</p>
+            <div className="flex flex-col items-center bg-gray-900/80 rounded-lg p-4 border border-gray-800">
+              <ShieldCheck size={40} className="mb-2 text-white" />
+              <p className="text-gray-300 font-light">Gestion sécurisée</p>
             </div>
-            <div className="flex flex-col items-center bg-[#7E69AB]/20 hover:bg-[#7E69AB]/40 rounded-lg p-4 border border-[#9b87f5]/30 transition-all group">
-              <Users size={40} className="mb-2 text-[#E5DEFF] group-hover:text-white" />
-              <p className="text-[#E5DEFF] font-light group-hover:text-white">Collaboration d'équipe</p>
+            <div className="flex flex-col items-center bg-gray-900/80 rounded-lg p-4 border border-gray-800">
+              <Users size={40} className="mb-2 text-white" />
+              <p className="text-gray-300 font-light">Collaboration d'équipe</p>
             </div>
-            <div className="flex flex-col items-center bg-[#7E69AB]/20 hover:bg-[#7E69AB]/40 rounded-lg p-4 border border-[#9b87f5]/30 transition-all group">
-              <Award size={40} className="mb-2 text-[#E5DEFF] group-hover:text-white" />
-              <p className="text-[#E5DEFF] font-light group-hover:text-white">Système de badges</p>
+            <div className="flex flex-col items-center bg-gray-900/80 rounded-lg p-4 border border-gray-800">
+              <Award size={40} className="mb-2 text-white" />
+              <p className="text-gray-300 font-light">Système de badges</p>
             </div>
-            <div className="flex flex-col items-center bg-[#7E69AB]/20 hover:bg-[#7E69AB]/40 rounded-lg p-4 border border-[#9b87f5]/30 transition-all group">
-              <Lock size={40} className="mb-2 text-[#E5DEFF] group-hover:text-white" />
-              <p className="text-[#E5DEFF] font-light group-hover:text-white">Gestion des accès</p>
+            <div className="flex flex-col items-center bg-gray-900/80 rounded-lg p-4 border border-gray-800">
+              <Lock size={40} className="mb-2 text-white" />
+              <p className="text-gray-300 font-light">Gestion des accès</p>
             </div>
           </div>
         </div>
