@@ -58,13 +58,6 @@ const Login = () => {
               <p>Gestion des accès</p>
             </div>
           </div>
-          <Button 
-            variant="outline" 
-            className="bg-white text-purple-700 hover:bg-purple-50 mt-4"
-            onClick={() => window.location.href = '#newsletter'}
-          >
-            S'inscrire à la newsletter
-          </Button>
         </div>
       </div>
 
