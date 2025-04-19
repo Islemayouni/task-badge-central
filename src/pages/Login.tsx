@@ -1,3 +1,4 @@
+
 import { AtSign, Lock, Users, Award, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -30,30 +31,30 @@ const Login = () => {
 
   return (
     <div className="flex h-screen animate-fade-in">
-      {/* Welcome Section with new gradient */}
-      <div className="w-1/2 bg-gradient-to-br from-purple-700 via-pink-600 to-orange-500 flex flex-col justify-center items-center p-10 text-white animate-slide-in-right">
+      {/* Welcome Section with new gradient and black */}
+      <div className="w-1/2 bg-gradient-to-br from-black via-[#6B1B9A] to-[#9C27B0] flex flex-col justify-center items-center p-10 text-white animate-slide-in-right">
         <div className="max-w-md text-center">
           <img 
-            src="/placeholder.svg" 
-            alt="Sopra Steria Logo" 
+            src="/lovable-uploads/325a4c76-ff38-42fe-990e-6142bf6051bf.png"
+            alt="Sopra HR Logo" 
             className="mx-auto mb-8 w-48 h-auto"
           />
           <h1 className="text-4xl font-bold mb-6">MyTasks4YOU</h1>
           <p className="text-xl mb-8">Restons en contact avec MyTasks4YOU</p>
           <div className="grid grid-cols-2 gap-6 mb-10">
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center bg-black/20 backdrop-blur-sm rounded-lg p-4">
               <ShieldCheck size={40} className="mb-2" />
               <p>Gestion sécurisée</p>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center bg-black/20 backdrop-blur-sm rounded-lg p-4">
               <Users size={40} className="mb-2" />
               <p>Collaboration d'équipe</p>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center bg-black/20 backdrop-blur-sm rounded-lg p-4">
               <Award size={40} className="mb-2" />
               <p>Système de badges</p>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center bg-black/20 backdrop-blur-sm rounded-lg p-4">
               <Lock size={40} className="mb-2" />
               <p>Gestion des accès</p>
             </div>
@@ -61,11 +62,11 @@ const Login = () => {
         </div>
       </div>
 
-      {/* Login Form */}
+      {/* Login Form with new styling */}
       <div className="w-1/2 flex justify-center items-center bg-gray-50 animate-scale-in">
         <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-lg">
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold text-gray-900">Connectez-vous</h2>
+            <h2 className="text-3xl font-extrabold text-black">Connectez-vous</h2>
             <p className="mt-2 text-gray-600">Entrez vos identifiants pour accéder à votre compte</p>
           </div>
           
