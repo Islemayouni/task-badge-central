@@ -39,7 +39,9 @@ const Login = () => {
             alt="Sopra HR Software" 
             className="h-48 w-auto mb-8" 
           />
-          <h1 className="text-4xl font-bold mb-6 text-white">MyTasks4YOU</h1>
+          <h1 className="text-4xl font-extrabold mb-6 text-white tracking-tight uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#9C27B0] to-[#FF9800]">
+            MyTasks4YOU
+          </h1>
           <p className="text-xl mb-8 text-gray-300">Restons en contact avec MyTasks4YOU</p>
           
           <div className="grid grid-cols-2 gap-6 mb-10">
