@@ -37,7 +37,7 @@ const Login = () => {
           <img 
             src="/lovable-uploads/316bfdd4-fad4-43eb-9161-d9d5b1d5430c.png" 
             alt="Sopra HR Software" 
-            className="h-32 w-auto mb-8" 
+            className="h-48 w-auto mb-8" 
           />
           <h1 className="text-4xl font-bold mb-6 text-white">MyTasks4YOU</h1>
           <p className="text-xl mb-8 text-gray-300">Restons en contact avec MyTasks4YOU</p>
