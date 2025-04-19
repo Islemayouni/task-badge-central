@@ -1,4 +1,3 @@
-
 import { AtSign, Lock, Users, Award, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -66,84 +65,89 @@ const Login = () => {
       </div>
 
       {/* Right Section with Login Form and Gradient */}
-      <div className="w-1/2 bg-gradient-to-r from-[#6B1B9A] via-[#9C27B0] to-[#FF9800] flex justify-center items-center relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/40 to-transparent opacity-20"></div>
-        <div className="w-full max-w-md p-8 space-y-6 bg-[#000000]/60 backdrop-blur-sm rounded-lg text-white relative z-10">
-          <div className="text-center space-y-3">
-            <h2 className="text-3xl font-semibold tracking-wide">Connectez-vous</h2>
-            <p className="text-white/75 font-medium">Entrez vos identifiants pour accéder à votre compte</p>
+      <div className="w-1/2 relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-[#4A154B] to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#9C27B0] to-[#FF9800]" />
+        <div className="absolute inset-0 bg-black/30" />
+        
+        <div className="relative h-full flex justify-center items-center">
+          <div className="w-full max-w-md p-8 space-y-6 bg-[#000000]/60 backdrop-blur-sm rounded-lg text-white">
+            <div className="text-center space-y-3">
+              <h2 className="text-3xl font-semibold tracking-wide">Connectez-vous</h2>
+              <p className="text-white/75 font-medium">Entrez vos identifiants pour accéder à votre compte</p>
+            </div>
+            
+            <form onSubmit={handleLogin} className="mt-8 space-y-6">
+              <div className="space-y-4">
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium mb-1">
+                    Email
+                  </label>
+                  <div className="relative">
+                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-white/60">
+                      <AtSign size={18} />
+                    </span>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="votre@email.com"
+                      className="pl-10 bg-[#1A1F2C]/60 border-[#9C27B0]/20 text-white placeholder:text-white/60 font-light"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label htmlFor="password" className="block text-sm font-medium mb-1">
+                    Mot de passe
+                  </label>
+                  <div className="relative">
+                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-white/60">
+                      <Lock size={18} />
+                    </span>
+                    <Input
+                      id="password"
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="••••••••"
+                      className="pl-10 bg-[#1A1F2C]/60 border-[#9C27B0]/20 text-white placeholder:text-white/60 font-light"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <input
+                    id="remember-me"
+                    name="remember-me"
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-[#9C27B0]/20 bg-[#1A1F2C]/60"
+                  />
+                  <label htmlFor="remember-me" className="ml-2 block text-sm font-light">
+                    Se souvenir de moi
+                  </label>
+                </div>
+                <div className="text-sm">
+                  <a href="#" className="font-medium text-[#FF9800] hover:text-[#FF9800]/80">
+                    Mot de passe oublié?
+                  </a>
+                </div>
+              </div>
+
+              <Button
+                type="submit"
+                className="w-full bg-[#9C27B0] hover:bg-[#6B1B9A] text-white font-medium"
+                disabled={loading}
+              >
+                {loading ? "Connexion en cours..." : "Se connecter"}
+              </Button>
+            </form>
           </div>
-          
-          <form onSubmit={handleLogin} className="mt-8 space-y-6">
-            <div className="space-y-4">
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-1">
-                  Email
-                </label>
-                <div className="relative">
-                  <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-white/60">
-                    <AtSign size={18} />
-                  </span>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="votre@email.com"
-                    className="pl-10 bg-[#1A1F2C]/60 border-[#9C27B0]/20 text-white placeholder:text-white/60 font-light"
-                    required
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <label htmlFor="password" className="block text-sm font-medium mb-1">
-                  Mot de passe
-                </label>
-                <div className="relative">
-                  <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-white/60">
-                    <Lock size={18} />
-                  </span>
-                  <Input
-                    id="password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
-                    className="pl-10 bg-[#1A1F2C]/60 border-[#9C27B0]/20 text-white placeholder:text-white/60 font-light"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-[#9C27B0]/20 bg-[#1A1F2C]/60"
-                />
-                <label htmlFor="remember-me" className="ml-2 block text-sm font-light">
-                  Se souvenir de moi
-                </label>
-              </div>
-              <div className="text-sm">
-                <a href="#" className="font-medium text-[#FF9800] hover:text-[#FF9800]/80">
-                  Mot de passe oublié?
-                </a>
-              </div>
-            </div>
-
-            <Button
-              type="submit"
-              className="w-full bg-[#9C27B0] hover:bg-[#6B1B9A] text-white font-medium"
-              disabled={loading}
-            >
-              {loading ? "Connexion en cours..." : "Se connecter"}
-            </Button>
-          </form>
         </div>
       </div>
     </div>
