@@ -1,4 +1,3 @@
-
 import { AtSign, Lock, Users, Award, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -68,9 +67,9 @@ const Login = () => {
       {/* Right Section with Login Form and Gradient */}
       <div className="w-1/2 relative">
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4A154B]/40 to-[#4A154B]/60 transition-opacity duration-300" />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#9C27B0]/30 to-[#FF9800]/40 transition-opacity duration-300" />
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-[#FF9800]/20 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4A154B] to-[#4A154B] opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#9C27B0] to-[#FF9800] opacity-40" />
+        <div className="absolute inset-x-[45%] inset-y-0 bg-gradient-to-r from-black/80 via-transparent to-transparent transition-opacity duration-300" />
         
         <div className="relative h-full flex justify-center items-center">
           <div className="w-full max-w-md p-8 space-y-6 bg-[#000000]/60 backdrop-blur-sm rounded-lg text-white">
