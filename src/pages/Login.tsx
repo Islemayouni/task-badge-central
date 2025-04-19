@@ -32,12 +32,12 @@ const Login = () => {
   return (
     <div className="flex h-screen animate-fade-in">
       {/* Left Section with Black Background and Logo */}
-      <div className="w-1/2 bg-black flex flex-col justify-center items-start p-10">
-        <div className="max-w-md pl-4">
+      <div className="w-1/2 bg-black flex flex-col justify-center items-center p-10"> {/* Changé items-start en items-center */}
+        <div className="max-w-md text-center"> {/* Ajouté text-center */}
           <img 
-            src="/lovable-uploads/8046b1cd-63bb-4c70-a8ef-409a7b78b467.png" 
+            src="/lovable-uploads/c275d237-065d-4151-991f-58bc484d509b.png" 
             alt="Sopra HR Software" 
-            className="h-20 mb-8"
+            className="h-40 mb-8 mx-auto" {/* Augmenté h-20 à h-40, ajouté mx-auto */}
           />
           <h1 className="text-4xl font-bold mb-6 text-white">MyTasks4YOU</h1>
           <p className="text-xl mb-8 text-gray-300">Restons en contact avec MyTasks4YOU</p>
@@ -147,3 +147,4 @@ const Login = () => {
 };
 
 export default Login;
+
