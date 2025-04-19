@@ -1,4 +1,3 @@
-
 import { AtSign, Lock, Users, Award, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -39,10 +38,10 @@ const Login = () => {
             alt="Sopra HR Software" 
             className="h-48 w-auto mb-8" 
           />
-          <h1 className="text-4xl font-extrabold mb-6 text-white tracking-tight uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#9C27B0] to-[#FF9800]">
+          <h1 className="text-4xl font-bold mb-6 text-white tracking-normal uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#9C27B0] to-[#FF9800]">
             MyTasks4YOU
           </h1>
-          <p className="text-xl mb-8 text-gray-300 font-light">Restons en contact avec MyTasks4YOU</p>
+          <p className="text-xl mb-8 text-gray-300 font-normal">Restons en contact avec MyTasks4YOU</p>
           
           <div className="grid grid-cols-2 gap-6 mb-10">
             <div className="flex flex-col items-center bg-gray-900/80 rounded-lg p-4 border border-gray-800">
@@ -69,8 +68,8 @@ const Login = () => {
       <div className="w-1/2 bg-gradient-to-br from-[#6B1B9A] via-[#9C27B0] to-[#FF9800] flex justify-center items-center">
         <div className="w-full max-w-md p-8 space-y-8 bg-[#000000]/60 backdrop-blur-sm rounded-lg text-white">
           <div className="text-center">
-            <h2 className="text-3xl font-semibold tracking-tight">Connectez-vous</h2>
-            <p className="mt-2 text-white/80 font-light">Entrez vos identifiants pour accéder à votre compte</p>
+            <h2 className="text-3xl font-semibold tracking-normal">Connectez-vous</h2>
+            <p className="mt-2 text-white/80 font-normal">Entrez vos identifiants pour accéder à votre compte</p>
           </div>
           
           <form onSubmit={handleLogin} className="mt-8 space-y-6">
