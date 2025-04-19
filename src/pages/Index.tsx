@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -14,11 +15,6 @@ const Index = () => {
     <div className="flex h-screen">
       {/* Left Section with White Background */}
       <div className="w-1/2 bg-white flex flex-col items-start p-10">
-        <img 
-          src="/lovable-uploads/488db44b-e3e9-4505-afec-611b9123f2ba.png"
-          alt="Sopra HR Logo" 
-          className="w-48 mb-12"
-        />
         <div className="max-w-md">
           <h1 className="text-5xl font-bold mb-6 text-[#333333]">MyTasks4YOU</h1>
           <p className="text-xl mb-8 text-[#666666]">Restons en contact avec MyTasks4YOU</p>
