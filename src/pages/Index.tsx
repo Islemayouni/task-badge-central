@@ -20,25 +20,25 @@ const Index = () => {
           className="w-48 mb-12"
         />
         <div className="max-w-md">
-          <h1 className="text-5xl font-bold mb-6 text-[#1A1F2C]">MyTasks4YOU</h1>
-          <p className="text-xl mb-8 text-[#1A1F2C]">Restons en contact avec MyTasks4YOU</p>
+          <h1 className="text-5xl font-bold mb-6 text-[#333333]">MyTasks4YOU</h1>
+          <p className="text-xl mb-8 text-[#666666]">Restons en contact avec MyTasks4YOU</p>
           
           <div className="grid grid-cols-2 gap-6 mb-10">
             <div className="flex flex-col items-center bg-[#E5DEFF] p-4 rounded-lg border border-[#9b87f5]/20 hover:shadow-md transition-all">
               <ShieldCheck size={40} className="mb-2 text-[#6E59A5]" />
-              <p className="text-[#1A1F2C]">Gestion sécurisée</p>
+              <p className="text-[#333333]">Gestion sécurisée</p>
             </div>
             <div className="flex flex-col items-center bg-[#FDE1D3] p-4 rounded-lg border border-[#F97316]/20 hover:shadow-md transition-all">
               <Users size={40} className="mb-2 text-[#F97316]" />
-              <p className="text-[#1A1F2C]">Collaboration d'équipe</p>
+              <p className="text-[#333333]">Collaboration d'équipe</p>
             </div>
             <div className="flex flex-col items-center bg-[#F2FCE2] p-4 rounded-lg border border-[#36B37E]/20 hover:shadow-md transition-all">
               <Award size={40} className="mb-2 text-[#36B37E]" />
-              <p className="text-[#1A1F2C]">Système de badges</p>
+              <p className="text-[#333333]">Système de badges</p>
             </div>
             <div className="flex flex-col items-center bg-[#D3E4FD] p-4 rounded-lg border border-[#0EA5E9]/20 hover:shadow-md transition-all">
               <AtSign size={40} className="mb-2 text-[#0EA5E9]" />
-              <p className="text-[#1A1F2C]">Communication</p>
+              <p className="text-[#333333]">Communication</p>
             </div>
           </div>
           
