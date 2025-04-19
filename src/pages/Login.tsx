@@ -1,4 +1,3 @@
-
 import { AtSign, Lock, Users, Award, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -32,12 +31,12 @@ const Login = () => {
   return (
     <div className="flex h-screen animate-fade-in">
       {/* Left Section with Black Background and Logo */}
-      <div className="w-1/2 bg-black flex flex-col items-start p-10">
-        <div className="max-w-md">
+      <div className="w-1/2 bg-black flex flex-col justify-center items-start p-10">
+        <div className="max-w-md pl-4">
           <img 
-            src="/lovable-uploads/be4748c1-9a46-4e46-8375-eadde6ef67da.png" 
+            src="/lovable-uploads/0e7c407f-52ba-41cd-a2d9-d2def553033b.png" 
             alt="Sopra HR Software" 
-            className="h-16 mb-8"
+            className="h-20 mb-8"
           />
           <h1 className="text-4xl font-bold mb-6 text-white">MyTasks4YOU</h1>
           <p className="text-xl mb-8 text-gray-300">Restons en contact avec MyTasks4YOU</p>
