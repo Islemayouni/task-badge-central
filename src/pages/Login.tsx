@@ -32,18 +32,18 @@ const Login = () => {
     <div className="flex h-screen animate-fade-in">
       {/* Left Section with Black Background and Logo */}
       <div className="w-1/2 bg-black flex flex-col justify-center items-center text-center p-10">
-        <div className="max-w-md text-center flex flex-col items-center">
+        <div className="max-w-md text-center flex flex-col items-center space-y-6">
           <img 
             src="/lovable-uploads/316bfdd4-fad4-43eb-9161-d9d5b1d5430c.png" 
             alt="Sopra HR Software" 
-            className="h-48 w-auto mb-8" 
+            className="h-48 w-auto mb-4" 
           />
-          <h1 className="text-4xl font-bold mb-6 text-white tracking-normal uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#9C27B0] to-[#FF9800]">
+          <h1 className="text-4xl font-bold mb-4 text-white tracking-wide uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#9C27B0] to-[#FF9800]">
             MyTasks4YOU
           </h1>
-          <p className="text-xl mb-8 text-gray-300 font-normal">Restons en contact avec MyTasks4YOU</p>
+          <p className="text-xl mb-6 text-gray-200 font-medium">Restons en contact avec MyTasks4YOU</p>
           
-          <div className="grid grid-cols-2 gap-6 mb-10">
+          <div className="grid grid-cols-2 gap-4 mb-8">
             <div className="flex flex-col items-center bg-gray-900/80 rounded-lg p-4 border border-gray-800">
               <ShieldCheck size={40} className="mb-2 text-white" />
               <p className="text-gray-300 font-light">Gestion sécurisée</p>
@@ -66,10 +66,10 @@ const Login = () => {
 
       {/* Right Section with Login Form */}
       <div className="w-1/2 bg-gradient-to-br from-[#6B1B9A] via-[#9C27B0] to-[#FF9800] flex justify-center items-center">
-        <div className="w-full max-w-md p-8 space-y-8 bg-[#000000]/60 backdrop-blur-sm rounded-lg text-white">
-          <div className="text-center">
-            <h2 className="text-3xl font-semibold tracking-normal">Connectez-vous</h2>
-            <p className="mt-2 text-white/80 font-normal">Entrez vos identifiants pour accéder à votre compte</p>
+        <div className="w-full max-w-md p-8 space-y-6 bg-[#000000]/60 backdrop-blur-sm rounded-lg text-white">
+          <div className="text-center space-y-3">
+            <h2 className="text-3xl font-semibold tracking-wide">Connectez-vous</h2>
+            <p className="text-white/75 font-medium">Entrez vos identifiants pour accéder à votre compte</p>
           </div>
           
           <form onSubmit={handleLogin} className="mt-8 space-y-6">
