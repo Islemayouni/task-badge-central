@@ -1,4 +1,3 @@
-
 import { AtSign, Lock, Users, Award, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -32,15 +31,16 @@ const Login = () => {
   return (
     <div className="flex h-screen animate-fade-in">
       {/* Left Section with Black Background and Logo */}
-      <div className="w-1/2 bg-black flex flex-col justify-center items-center p-10"> {/* Changé items-start en items-center */}
-        <div className="max-w-md text-center"> {/* Ajouté text-center */}
+      <div className="w-1/2 bg-black flex flex-col justify-center items-start p-10">
+        <div className="max-w-md">
           <img 
             src="/lovable-uploads/c275d237-065d-4151-991f-58bc484d509b.png" 
             alt="Sopra HR Software" 
-            className="h-40 mb-8 mx-auto" {/* Augmenté h-20 à h-40, ajouté mx-auto */}
+            className="h-20 mb-8"
           />
-          <h1 className="text-4xl font-bold mb-6 text-white">MyTasks4YOU</h1>
-          <p className="text-xl mb-8 text-gray-300">Restons en contact avec MyTasks4YOU</p>
+          <h1 className="text-4xl font-bold mb-6 text-white">Sopra HR Software</h1>
+          <p className="text-xl mb-8 text-gray-300">Restons en contact avec Sopra HR Software</p>
+          
           <div className="grid grid-cols-2 gap-6 mb-10">
             <div className="flex flex-col items-center bg-gray-900/80 rounded-lg p-4 border border-gray-800">
               <ShieldCheck size={40} className="mb-2 text-white" />
@@ -147,4 +147,3 @@ const Login = () => {
 };
 
 export default Login;
-
