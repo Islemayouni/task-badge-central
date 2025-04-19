@@ -1,4 +1,3 @@
-
 import { AtSign, Lock, Users, Award, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -31,8 +30,8 @@ const Login = () => {
 
   return (
     <div className="flex h-screen animate-fade-in">
-      {/* Left Section with Black Background and Logo */}
-      <div className="w-1/2 bg-black flex flex-col justify-center items-center text-center p-10">
+      {/* Left Section with Gradient Background and Logo */}
+      <div className="w-1/2 bg-gradient-to-br from-black via-[#23004D] to-[#6A0DAD] flex flex-col justify-center items-center text-center p-10">
         <div className="max-w-md text-center flex flex-col items-center space-y-6">
           <img 
             src="/lovable-uploads/316bfdd4-fad4-43eb-9161-d9d5b1d5430c.png" 
@@ -150,4 +149,3 @@ const Login = () => {
 };
 
 export default Login;
-
