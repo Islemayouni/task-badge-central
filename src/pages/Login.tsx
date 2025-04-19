@@ -29,9 +29,9 @@ const Login = () => {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen animate-fade-in">
       {/* Welcome Section with new gradient */}
-      <div className="w-1/2 bg-gradient-to-br from-purple-700 via-pink-600 to-orange-500 flex flex-col justify-center items-center p-10 text-white">
+      <div className="w-1/2 bg-gradient-to-br from-purple-700 via-pink-600 to-orange-500 flex flex-col justify-center items-center p-10 text-white animate-slide-in-right">
         <div className="max-w-md text-center">
           <img 
             src="/placeholder.svg" 
@@ -69,7 +69,7 @@ const Login = () => {
       </div>
 
       {/* Login Form */}
-      <div className="w-1/2 flex justify-center items-center bg-gray-50">
+      <div className="w-1/2 flex justify-center items-center bg-gray-50 animate-scale-in">
         <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-lg">
           <div className="text-center">
             <h2 className="text-3xl font-extrabold text-gray-900">Connectez-vous</h2>
