@@ -35,8 +35,8 @@ const Login = () => {
         <div className="max-w-md text-center">
           <img 
             src="/lovable-uploads/c275d237-065d-4151-991f-58bc484d509b.png" 
-            alt="Sopra HR Software" 
-            className="h-40 mb-8 mx-auto"
+            alt="MyTasks4YOU" 
+            className="h-64 mb-8 mx-auto"
           />
           <h1 className="text-4xl font-bold mb-6 text-white">MyTasks4YOU</h1>
           <p className="text-xl mb-8 text-gray-300">Restons en contact avec MyTasks4YOU</p>
