@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Bell, ChevronDown, HelpCircle, Search, Settings } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -9,11 +8,6 @@ const Header = () => {
     <header className="h-14 px-4 border-b flex items-center justify-between bg-white">
       <div className="flex items-center gap-4">
         <div className="flex items-center">
-          <img 
-            src="/lovable-uploads/f8c95170-c1a8-4b8b-8fe7-0296afb53761.png" 
-            alt="Sopra HR Logo" 
-            className="h-10 mr-2"
-          />
           <h1 className="text-xl font-bold jira-logo" style={{ color: '#E1052A' }}>TakeIt</h1>
         </div>
         <div className="flex items-center gap-1.5">
