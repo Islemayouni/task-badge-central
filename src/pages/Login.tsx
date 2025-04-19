@@ -30,40 +30,40 @@ const Login = () => {
 
   return (
     <div className="flex h-screen animate-fade-in">
-      {/* Black Section with Logo */}
-      <div className="w-1/2 bg-black flex flex-col items-start p-10">
+      {/* Left Section with Gradient and Logo */}
+      <div className="w-1/2 bg-gradient-to-b from-[#221F26] to-[#1A1F2C] flex flex-col items-start p-10">
         <img 
           src="/lovable-uploads/325a4c76-ff38-42fe-990e-6142bf6051bf.png"
           alt="Sopra HR Logo" 
-          className="w-48 mb-12"
+          className="w-48 mb-12 brightness-200"
         />
         <div className="max-w-md text-white">
           <h1 className="text-4xl font-bold mb-6">MyTasks4YOU</h1>
-          <p className="text-xl mb-8">Restons en contact avec MyTasks4YOU</p>
+          <p className="text-xl mb-8 text-gray-300">Restons en contact avec MyTasks4YOU</p>
           <div className="grid grid-cols-2 gap-6 mb-10">
-            <div className="flex flex-col items-center bg-[#1A1F2C]/60 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
-              <ShieldCheck size={40} className="mb-2" />
-              <p>Gestion sécurisée</p>
+            <div className="flex flex-col items-center bg-[#000000]/40 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
+              <ShieldCheck size={40} className="mb-2 text-[#9C27B0]" />
+              <p className="text-gray-300">Gestion sécurisée</p>
             </div>
-            <div className="flex flex-col items-center bg-[#1A1F2C]/60 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
-              <Users size={40} className="mb-2" />
-              <p>Collaboration d'équipe</p>
+            <div className="flex flex-col items-center bg-[#000000]/40 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
+              <Users size={40} className="mb-2 text-[#9C27B0]" />
+              <p className="text-gray-300">Collaboration d'équipe</p>
             </div>
-            <div className="flex flex-col items-center bg-[#1A1F2C]/60 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
-              <Award size={40} className="mb-2" />
-              <p>Système de badges</p>
+            <div className="flex flex-col items-center bg-[#000000]/40 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
+              <Award size={40} className="mb-2 text-[#9C27B0]" />
+              <p className="text-gray-300">Système de badges</p>
             </div>
-            <div className="flex flex-col items-center bg-[#1A1F2C]/60 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
-              <Lock size={40} className="mb-2" />
-              <p>Gestion des accès</p>
+            <div className="flex flex-col items-center bg-[#000000]/40 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
+              <Lock size={40} className="mb-2 text-[#9C27B0]" />
+              <p className="text-gray-300">Gestion des accès</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Login Form with Purple Gradient */}
+      {/* Right Section with Login Form */}
       <div className="w-1/2 bg-gradient-to-br from-[#6B1B9A] via-[#9C27B0] to-[#FF9800] flex justify-center items-center animate-scale-in">
-        <div className="w-full max-w-md p-8 space-y-8 bg-[#1A1F2C]/60 backdrop-blur-sm rounded-lg text-white">
+        <div className="w-full max-w-md p-8 space-y-8 bg-[#000000]/60 backdrop-blur-sm rounded-lg text-white">
           <div className="text-center">
             <h2 className="text-3xl font-extrabold">Connectez-vous</h2>
             <p className="mt-2 text-white/80">Entrez vos identifiants pour accéder à votre compte</p>

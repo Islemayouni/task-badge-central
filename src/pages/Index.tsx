@@ -13,33 +13,33 @@ const Index = () => {
 
   return (
     <div className="flex h-screen">
-      {/* Black Section with Logo */}
-      <div className="w-1/2 bg-black flex flex-col items-start p-10 text-white">
+      {/* Left Section with Gradient and Logo */}
+      <div className="w-1/2 bg-gradient-to-b from-[#221F26] to-[#1A1F2C] flex flex-col items-start p-10 text-white">
         <img 
           src="/lovable-uploads/325a4c76-ff38-42fe-990e-6142bf6051bf.png"
           alt="Sopra HR Logo" 
-          className="w-48 mb-12"
+          className="w-48 mb-12 brightness-200"
         />
         <div className="max-w-md">
-          <h1 className="text-5xl font-bold mb-6">MyTasks4YOU</h1>
-          <p className="text-xl mb-8">Votre plateforme de gestion de projets collaborative</p>
+          <h1 className="text-5xl font-bold mb-6 text-white">MyTasks4YOU</h1>
+          <p className="text-xl mb-8 text-gray-300">Votre plateforme de gestion de projets collaborative</p>
           
           <div className="grid grid-cols-2 gap-6 mb-10">
-            <div className="flex flex-col items-center bg-[#1A1F2C]/60 backdrop-blur-sm p-4 rounded-lg border border-[#9C27B0]/20">
-              <ShieldCheck size={40} className="mb-2" />
-              <p>Gestion sécurisée</p>
+            <div className="flex flex-col items-center bg-[#000000]/40 backdrop-blur-sm p-4 rounded-lg border border-[#9C27B0]/20">
+              <ShieldCheck size={40} className="mb-2 text-[#9C27B0]" />
+              <p className="text-gray-300">Gestion sécurisée</p>
             </div>
-            <div className="flex flex-col items-center bg-[#1A1F2C]/60 backdrop-blur-sm p-4 rounded-lg border border-[#9C27B0]/20">
-              <Users size={40} className="mb-2" />
-              <p>Collaboration d'équipe</p>
+            <div className="flex flex-col items-center bg-[#000000]/40 backdrop-blur-sm p-4 rounded-lg border border-[#9C27B0]/20">
+              <Users size={40} className="mb-2 text-[#9C27B0]" />
+              <p className="text-gray-300">Collaboration d'équipe</p>
             </div>
-            <div className="flex flex-col items-center bg-[#1A1F2C]/60 backdrop-blur-sm p-4 rounded-lg border border-[#9C27B0]/20">
-              <Award size={40} className="mb-2" />
-              <p>Système de badges</p>
+            <div className="flex flex-col items-center bg-[#000000]/40 backdrop-blur-sm p-4 rounded-lg border border-[#9C27B0]/20">
+              <Award size={40} className="mb-2 text-[#9C27B0]" />
+              <p className="text-gray-300">Système de badges</p>
             </div>
-            <div className="flex flex-col items-center bg-[#1A1F2C]/60 backdrop-blur-sm p-4 rounded-lg border border-[#9C27B0]/20">
-              <AtSign size={40} className="mb-2" />
-              <p>Communication</p>
+            <div className="flex flex-col items-center bg-[#000000]/40 backdrop-blur-sm p-4 rounded-lg border border-[#9C27B0]/20">
+              <AtSign size={40} className="mb-2 text-[#9C27B0]" />
+              <p className="text-gray-300">Communication</p>
             </div>
           </div>
           
@@ -52,12 +52,12 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Purple Gradient Section */}
+      {/* Right Section */}
       <div className="w-1/2 bg-gradient-to-br from-[#6B1B9A] via-[#9C27B0] to-[#FF9800] flex justify-center items-center">
-        <div className="w-full max-w-md p-8 space-y-8 bg-[#1A1F2C]/60 backdrop-blur-sm rounded-lg text-white">
+        <div className="w-full max-w-md p-8 space-y-8 bg-[#000000]/60 backdrop-blur-sm rounded-lg text-white">
           <div className="text-center">
             <h2 className="text-3xl font-extrabold">Bienvenue sur MyTasks4YOU</h2>
-            <p className="mt-2 text-white/80">Une solution complète pour la gestion de projets</p>
+            <p className="mt-2 text-gray-200">Une solution complète pour la gestion de projets</p>
           </div>
           
           <div className="space-y-4">
@@ -65,7 +65,7 @@ const Index = () => {
               <AtSign size={24} className="text-[#FF9800]" />
               <div>
                 <h3 className="font-semibold">Communication efficace</h3>
-                <p className="text-sm text-white/80">Communiquez facilement avec vos équipes</p>
+                <p className="text-sm text-gray-200">Communiquez facilement avec vos équipes</p>
               </div>
             </div>
             
@@ -73,7 +73,7 @@ const Index = () => {
               <Users size={24} className="text-[#FF9800]" />
               <div>
                 <h3 className="font-semibold">Collaboration globale</h3>
-                <p className="text-sm text-white/80">Travaillez ensemble, peu importe la distance</p>
+                <p className="text-sm text-gray-200">Travaillez ensemble, peu importe la distance</p>
               </div>
             </div>
             
@@ -81,7 +81,7 @@ const Index = () => {
               <Award size={24} className="text-[#FF9800]" />
               <div>
                 <h3 className="font-semibold">Performance tracking</h3>
-                <p className="text-sm text-white/80">Suivez et améliorez vos performances</p>
+                <p className="text-sm text-gray-200">Suivez et améliorez vos performances</p>
               </div>
             </div>
           </div>
