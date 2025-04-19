@@ -53,35 +53,35 @@ const Index = () => {
       </div>
 
       {/* Right Section */}
-      <div className="w-1/2 bg-gradient-to-br from-[#6B1B9A] via-[#9C27B0] to-[#FF9800] flex justify-center items-center">
-        <div className="w-full max-w-md p-8 space-y-8 bg-[#000000]/60 backdrop-blur-sm rounded-lg text-white">
+      <div className="w-1/2 bg-white flex justify-center items-center">
+        <div className="w-full max-w-md p-8 space-y-8 bg-[#F1F1F1] rounded-lg shadow-lg">
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold">Bienvenue sur MyTasks4YOU</h2>
-            <p className="mt-2 text-gray-200">Une solution complète pour la gestion de projets</p>
+            <h2 className="text-3xl font-extrabold text-[#1A1F2C]">Bienvenue sur MyTasks4YOU</h2>
+            <p className="mt-2 text-gray-600">Une solution complète pour la gestion de projets</p>
           </div>
           
           <div className="space-y-4">
-            <div className="flex items-center gap-4 p-4 rounded-lg hover:bg-black/20 transition-colors">
-              <AtSign size={24} className="text-[#FF9800]" />
+            <div className="flex items-center gap-4 p-4 rounded-lg hover:bg-gray-200 transition-colors">
+              <AtSign size={24} className="text-[#0EA5E9]" />
               <div>
-                <h3 className="font-semibold">Communication efficace</h3>
-                <p className="text-sm text-gray-200">Communiquez facilement avec vos équipes</p>
+                <h3 className="font-semibold text-[#1A1F2C]">Communication efficace</h3>
+                <p className="text-sm text-gray-600">Communiquez facilement avec vos équipes</p>
               </div>
             </div>
             
-            <div className="flex items-center gap-4 p-4 rounded-lg hover:bg-black/20 transition-colors">
-              <Users size={24} className="text-[#FF9800]" />
+            <div className="flex items-center gap-4 p-4 rounded-lg hover:bg-gray-200 transition-colors">
+              <Users size={24} className="text-[#F97316]" />
               <div>
-                <h3 className="font-semibold">Collaboration globale</h3>
-                <p className="text-sm text-gray-200">Travaillez ensemble, peu importe la distance</p>
+                <h3 className="font-semibold text-[#1A1F2C]">Collaboration globale</h3>
+                <p className="text-sm text-gray-600">Travaillez ensemble, peu importe la distance</p>
               </div>
             </div>
             
-            <div className="flex items-center gap-4 p-4 rounded-lg hover:bg-black/20 transition-colors">
-              <Award size={24} className="text-[#FF9800]" />
+            <div className="flex items-center gap-4 p-4 rounded-lg hover:bg-gray-200 transition-colors">
+              <Award size={24} className="text-[#36B37E]" />
               <div>
-                <h3 className="font-semibold">Performance tracking</h3>
-                <p className="text-sm text-gray-200">Suivez et améliorez vos performances</p>
+                <h3 className="font-semibold text-[#1A1F2C]">Performance tracking</h3>
+                <p className="text-sm text-gray-600">Suivez et améliorez vos performances</p>
               </div>
             </div>
           </div>
