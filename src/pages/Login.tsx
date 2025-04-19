@@ -42,35 +42,35 @@ const Login = () => {
           <h1 className="text-4xl font-extrabold mb-6 text-white tracking-tight uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#9C27B0] to-[#FF9800]">
             MyTasks4YOU
           </h1>
-          <p className="text-xl mb-8 text-gray-300">Restons en contact avec MyTasks4YOU</p>
+          <p className="text-xl mb-8 text-gray-300 font-light">Restons en contact avec MyTasks4YOU</p>
           
           <div className="grid grid-cols-2 gap-6 mb-10">
             <div className="flex flex-col items-center bg-gray-900/80 rounded-lg p-4 border border-gray-800">
               <ShieldCheck size={40} className="mb-2 text-white" />
-              <p className="text-gray-300">Gestion sécurisée</p>
+              <p className="text-gray-300 font-light">Gestion sécurisée</p>
             </div>
             <div className="flex flex-col items-center bg-gray-900/80 rounded-lg p-4 border border-gray-800">
               <Users size={40} className="mb-2 text-white" />
-              <p className="text-gray-300">Collaboration d'équipe</p>
+              <p className="text-gray-300 font-light">Collaboration d'équipe</p>
             </div>
             <div className="flex flex-col items-center bg-gray-900/80 rounded-lg p-4 border border-gray-800">
               <Award size={40} className="mb-2 text-white" />
-              <p className="text-gray-300">Système de badges</p>
+              <p className="text-gray-300 font-light">Système de badges</p>
             </div>
             <div className="flex flex-col items-center bg-gray-900/80 rounded-lg p-4 border border-gray-800">
               <Lock size={40} className="mb-2 text-white" />
-              <p className="text-gray-300">Gestion des accès</p>
+              <p className="text-gray-300 font-light">Gestion des accès</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Right Section with Login Form */}
-      <div className="w-1/2 bg-gradient-to-br from-[#6B1B9A] via-[#9C27B0] to-[#FF9800] flex justify-center items-center animate-scale-in">
+      <div className="w-1/2 bg-gradient-to-br from-[#6B1B9A] via-[#9C27B0] to-[#FF9800] flex justify-center items-center">
         <div className="w-full max-w-md p-8 space-y-8 bg-[#000000]/60 backdrop-blur-sm rounded-lg text-white">
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold">Connectez-vous</h2>
-            <p className="mt-2 text-white/80">Entrez vos identifiants pour accéder à votre compte</p>
+            <h2 className="text-3xl font-semibold tracking-tight">Connectez-vous</h2>
+            <p className="mt-2 text-white/80 font-light">Entrez vos identifiants pour accéder à votre compte</p>
           </div>
           
           <form onSubmit={handleLogin} className="mt-8 space-y-6">
@@ -89,7 +89,7 @@ const Login = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="votre@email.com"
-                    className="pl-10 bg-[#1A1F2C]/60 border-[#9C27B0]/20 text-white placeholder:text-white/60"
+                    className="pl-10 bg-[#1A1F2C]/60 border-[#9C27B0]/20 text-white placeholder:text-white/60 font-light"
                     required
                   />
                 </div>
@@ -109,7 +109,7 @@ const Login = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="pl-10 bg-[#1A1F2C]/60 border-[#9C27B0]/20 text-white placeholder:text-white/60"
+                    className="pl-10 bg-[#1A1F2C]/60 border-[#9C27B0]/20 text-white placeholder:text-white/60 font-light"
                     required
                   />
                 </div>
@@ -124,7 +124,7 @@ const Login = () => {
                   type="checkbox"
                   className="h-4 w-4 rounded border-[#9C27B0]/20 bg-[#1A1F2C]/60"
                 />
-                <label htmlFor="remember-me" className="ml-2 block text-sm">
+                <label htmlFor="remember-me" className="ml-2 block text-sm font-light">
                   Se souvenir de moi
                 </label>
               </div>
@@ -137,7 +137,7 @@ const Login = () => {
 
             <Button
               type="submit"
-              className="w-full bg-[#9C27B0] hover:bg-[#6B1B9A] text-white"
+              className="w-full bg-[#9C27B0] hover:bg-[#6B1B9A] text-white font-medium"
               disabled={loading}
             >
               {loading ? "Connexion en cours..." : "Se connecter"}
