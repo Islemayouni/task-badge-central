@@ -1,3 +1,4 @@
+
 import { AtSign, Lock, Users, Award, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,7 +35,7 @@ const Login = () => {
       <div className="w-1/2 bg-black flex flex-col justify-center items-start p-10">
         <div className="max-w-md pl-4">
           <img 
-            src="/lovable-uploads/caebebe7-bf7b-4c65-87b5-35ce5afd41e9.png" 
+            src="/lovable-uploads/930b5cde-c295-4f49-872b-0efc0d540584.png" 
             alt="Sopra HR Software" 
             className="h-20 mb-8"
           />
