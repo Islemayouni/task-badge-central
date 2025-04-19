@@ -13,33 +13,33 @@ const Index = () => {
 
   return (
     <div className="flex h-screen">
-      {/* Left Section with Gradient and Logo */}
-      <div className="w-1/2 bg-gradient-to-b from-[#221F26] to-[#1A1F2C] flex flex-col items-start p-10 text-white">
+      {/* Left Section with White Background */}
+      <div className="w-1/2 bg-white flex flex-col items-start p-10">
         <img 
           src="/lovable-uploads/325a4c76-ff38-42fe-990e-6142bf6051bf.png"
           alt="Sopra HR Logo" 
-          className="w-48 mb-12 brightness-200"
+          className="w-48 mb-12"
         />
         <div className="max-w-md">
-          <h1 className="text-5xl font-bold mb-6 text-white">MyTasks4YOU</h1>
-          <p className="text-xl mb-8 text-gray-300">Votre plateforme de gestion de projets collaborative</p>
+          <h1 className="text-5xl font-bold mb-6 text-[#1A1F2C]">MyTasks4YOU</h1>
+          <p className="text-xl mb-8 text-gray-600">Votre plateforme de gestion de projets collaborative</p>
           
           <div className="grid grid-cols-2 gap-6 mb-10">
-            <div className="flex flex-col items-center bg-[#000000]/40 backdrop-blur-sm p-4 rounded-lg border border-[#9C27B0]/20">
-              <ShieldCheck size={40} className="mb-2 text-[#9C27B0]" />
-              <p className="text-gray-300">Gestion sécurisée</p>
+            <div className="flex flex-col items-center bg-[#E5DEFF] p-4 rounded-lg border border-[#9b87f5]/20 hover:shadow-md transition-all">
+              <ShieldCheck size={40} className="mb-2 text-[#6E59A5]" />
+              <p className="text-[#1A1F2C]">Gestion sécurisée</p>
             </div>
-            <div className="flex flex-col items-center bg-[#000000]/40 backdrop-blur-sm p-4 rounded-lg border border-[#9C27B0]/20">
-              <Users size={40} className="mb-2 text-[#9C27B0]" />
-              <p className="text-gray-300">Collaboration d'équipe</p>
+            <div className="flex flex-col items-center bg-[#FDE1D3] p-4 rounded-lg border border-[#F97316]/20 hover:shadow-md transition-all">
+              <Users size={40} className="mb-2 text-[#F97316]" />
+              <p className="text-[#1A1F2C]">Collaboration d'équipe</p>
             </div>
-            <div className="flex flex-col items-center bg-[#000000]/40 backdrop-blur-sm p-4 rounded-lg border border-[#9C27B0]/20">
-              <Award size={40} className="mb-2 text-[#9C27B0]" />
-              <p className="text-gray-300">Système de badges</p>
+            <div className="flex flex-col items-center bg-[#F2FCE2] p-4 rounded-lg border border-[#36B37E]/20 hover:shadow-md transition-all">
+              <Award size={40} className="mb-2 text-[#36B37E]" />
+              <p className="text-[#1A1F2C]">Système de badges</p>
             </div>
-            <div className="flex flex-col items-center bg-[#000000]/40 backdrop-blur-sm p-4 rounded-lg border border-[#9C27B0]/20">
-              <AtSign size={40} className="mb-2 text-[#9C27B0]" />
-              <p className="text-gray-300">Communication</p>
+            <div className="flex flex-col items-center bg-[#D3E4FD] p-4 rounded-lg border border-[#0EA5E9]/20 hover:shadow-md transition-all">
+              <AtSign size={40} className="mb-2 text-[#0EA5E9]" />
+              <p className="text-[#1A1F2C]">Communication</p>
             </div>
           </div>
           
