@@ -30,27 +30,27 @@ const Login = () => {
 
   return (
     <div className="flex h-screen animate-fade-in">
-      {/* Left Section with Gradient and Logo */}
-      <div className="w-1/2 bg-gradient-to-b from-[#221F26] to-[#1A1F2C] flex flex-col items-start p-10">
-        <div className="max-w-md text-white">
-          <h1 className="text-4xl font-bold mb-6">MyTasks4YOU</h1>
-          <p className="text-xl mb-8 text-gray-300">Restons en contact avec MyTasks4YOU</p>
+      {/* Left Section with White Background and Logo */}
+      <div className="w-1/2 bg-white flex flex-col items-start p-10">
+        <div className="max-w-md">
+          <h1 className="text-4xl font-bold mb-6 text-gray-800">MyTasks4YOU</h1>
+          <p className="text-xl mb-8 text-gray-600">Restons en contact avec MyTasks4YOU</p>
           <div className="grid grid-cols-2 gap-6 mb-10">
-            <div className="flex flex-col items-center bg-[#000000]/40 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
-              <ShieldCheck size={40} className="mb-2 text-[#9C27B0]" />
-              <p className="text-gray-300">Gestion sécurisée</p>
+            <div className="flex flex-col items-center bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <ShieldCheck size={40} className="mb-2 text-[#003DA5]" />
+              <p className="text-gray-600">Gestion sécurisée</p>
             </div>
-            <div className="flex flex-col items-center bg-[#000000]/40 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
-              <Users size={40} className="mb-2 text-[#9C27B0]" />
-              <p className="text-gray-300">Collaboration d'équipe</p>
+            <div className="flex flex-col items-center bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <Users size={40} className="mb-2 text-[#003DA5]" />
+              <p className="text-gray-600">Collaboration d'équipe</p>
             </div>
-            <div className="flex flex-col items-center bg-[#000000]/40 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
-              <Award size={40} className="mb-2 text-[#9C27B0]" />
-              <p className="text-gray-300">Système de badges</p>
+            <div className="flex flex-col items-center bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <Award size={40} className="mb-2 text-[#003DA5]" />
+              <p className="text-gray-600">Système de badges</p>
             </div>
-            <div className="flex flex-col items-center bg-[#000000]/40 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
-              <Lock size={40} className="mb-2 text-[#9C27B0]" />
-              <p className="text-gray-300">Gestion des accès</p>
+            <div className="flex flex-col items-center bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <Lock size={40} className="mb-2 text-[#003DA5]" />
+              <p className="text-gray-600">Gestion des accès</p>
             </div>
           </div>
         </div>
