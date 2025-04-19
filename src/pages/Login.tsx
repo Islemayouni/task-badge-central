@@ -31,32 +31,32 @@ const Login = () => {
 
   return (
     <div className="flex h-screen animate-fade-in">
-      {/* Left Section with White Background and Logo */}
-      <div className="w-1/2 bg-white flex flex-col items-start p-10">
+      {/* Left Section with Black Background and Logo */}
+      <div className="w-1/2 bg-black flex flex-col items-start p-10">
         <div className="max-w-md">
           <img 
-            src="/lovable-uploads/20c9b8cf-e6ff-41dc-af0d-d2f48cacd49e.png" 
+            src="/lovable-uploads/be4748c1-9a46-4e46-8375-eadde6ef67da.png" 
             alt="Sopra HR Software" 
-            className="h-12 mb-8"
+            className="h-16 mb-8"
           />
-          <h1 className="text-4xl font-bold mb-6 text-gray-800">MyTasks4YOU</h1>
-          <p className="text-xl mb-8 text-gray-600">Restons en contact avec MyTasks4YOU</p>
+          <h1 className="text-4xl font-bold mb-6 text-white">MyTasks4YOU</h1>
+          <p className="text-xl mb-8 text-gray-300">Restons en contact avec MyTasks4YOU</p>
           <div className="grid grid-cols-2 gap-6 mb-10">
-            <div className="flex flex-col items-center bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <ShieldCheck size={40} className="mb-2 text-[#003DA5]" />
-              <p className="text-gray-600">Gestion sécurisée</p>
+            <div className="flex flex-col items-center bg-gray-900/80 rounded-lg p-4 border border-gray-800">
+              <ShieldCheck size={40} className="mb-2 text-white" />
+              <p className="text-gray-300">Gestion sécurisée</p>
             </div>
-            <div className="flex flex-col items-center bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <Users size={40} className="mb-2 text-[#003DA5]" />
-              <p className="text-gray-600">Collaboration d'équipe</p>
+            <div className="flex flex-col items-center bg-gray-900/80 rounded-lg p-4 border border-gray-800">
+              <Users size={40} className="mb-2 text-white" />
+              <p className="text-gray-300">Collaboration d'équipe</p>
             </div>
-            <div className="flex flex-col items-center bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <Award size={40} className="mb-2 text-[#003DA5]" />
-              <p className="text-gray-600">Système de badges</p>
+            <div className="flex flex-col items-center bg-gray-900/80 rounded-lg p-4 border border-gray-800">
+              <Award size={40} className="mb-2 text-white" />
+              <p className="text-gray-300">Système de badges</p>
             </div>
-            <div className="flex flex-col items-center bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <Lock size={40} className="mb-2 text-[#003DA5]" />
-              <p className="text-gray-600">Gestion des accès</p>
+            <div className="flex flex-col items-center bg-gray-900/80 rounded-lg p-4 border border-gray-800">
+              <Lock size={40} className="mb-2 text-white" />
+              <p className="text-gray-300">Gestion des accès</p>
             </div>
           </div>
         </div>
