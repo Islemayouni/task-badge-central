@@ -1,3 +1,4 @@
+
 import { AtSign, Lock, Users, Award, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -32,11 +33,6 @@ const Login = () => {
     <div className="flex h-screen animate-fade-in">
       {/* Left Section with Gradient and Logo */}
       <div className="w-1/2 bg-gradient-to-b from-[#221F26] to-[#1A1F2C] flex flex-col items-start p-10">
-        <img 
-          src="/lovable-uploads/325a4c76-ff38-42fe-990e-6142bf6051bf.png"
-          alt="Sopra HR Logo" 
-          className="w-48 mb-12 brightness-200"
-        />
         <div className="max-w-md text-white">
           <h1 className="text-4xl font-bold mb-6">MyTasks4YOU</h1>
           <p className="text-xl mb-8 text-gray-300">Restons en contact avec MyTasks4YOU</p>
@@ -146,3 +142,4 @@ const Login = () => {
 };
 
 export default Login;
+
