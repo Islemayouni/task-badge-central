@@ -30,8 +30,8 @@ const Login = () => {
 
   return (
     <div className="flex h-screen animate-fade-in">
-      {/* Left Section with Gradient Background and Logo */}
-      <div className="w-1/2 bg-gradient-to-br from-black via-[#23004D] to-[#6A0DAD] flex flex-col justify-center items-center text-center p-10">
+      {/* Left Section with Black Background and Logo */}
+      <div className="w-1/2 bg-black flex flex-col justify-center items-center text-center p-10">
         <div className="max-w-md text-center flex flex-col items-center space-y-6">
           <img 
             src="/lovable-uploads/316bfdd4-fad4-43eb-9161-d9d5b1d5430c.png" 
@@ -64,9 +64,10 @@ const Login = () => {
         </div>
       </div>
 
-      {/* Right Section with Login Form */}
-      <div className="w-1/2 bg-gradient-to-br from-[#6B1B9A] via-[#9C27B0] to-[#FF9800] flex justify-center items-center">
-        <div className="w-full max-w-md p-8 space-y-6 bg-[#000000]/60 backdrop-blur-sm rounded-lg text-white">
+      {/* Right Section with Login Form and Gradient */}
+      <div className="w-1/2 bg-gradient-to-r from-[#6B1B9A] via-[#9C27B0] to-[#FF9800] flex justify-center items-center relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/40 to-transparent opacity-20"></div>
+        <div className="w-full max-w-md p-8 space-y-6 bg-[#000000]/60 backdrop-blur-sm rounded-lg text-white relative z-10">
           <div className="text-center space-y-3">
             <h2 className="text-3xl font-semibold tracking-wide">Connectez-vous</h2>
             <p className="text-white/75 font-medium">Entrez vos identifiants pour accéder à votre compte</p>
