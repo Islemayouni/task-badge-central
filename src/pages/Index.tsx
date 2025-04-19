@@ -52,7 +52,7 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Right Section */}
+      {/* Right Section with subtle gray background */}
       <div className="w-1/2 bg-white flex justify-center items-center">
         <div className="w-full max-w-md p-8 space-y-8 bg-[#F1F1F1] rounded-lg shadow-lg">
           <div className="text-center">
