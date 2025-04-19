@@ -67,10 +67,10 @@ const Login = () => {
 
       {/* Right Section with Login Form and Gradient */}
       <div className="w-1/2 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4A154B]/60 to-[#4A154B]/80" />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#9C27B0]/40 to-[#FF9800]/30" />
-        <div className="absolute inset-0 bg-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4A154B]/40 to-[#4A154B]/60 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#9C27B0]/30 to-[#FF9800]/40 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-[#FF9800]/20 transition-opacity duration-300" />
         
         <div className="relative h-full flex justify-center items-center">
           <div className="w-full max-w-md p-8 space-y-6 bg-[#000000]/60 backdrop-blur-sm rounded-lg text-white">
