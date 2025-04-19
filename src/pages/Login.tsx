@@ -34,7 +34,7 @@ const Login = () => {
       <div className="w-1/2 bg-black flex flex-col justify-center items-start p-10">
         <div className="max-w-md pl-4">
           <img 
-            src="/lovable-uploads/0e7c407f-52ba-41cd-a2d9-d2def553033b.png" 
+            src="/lovable-uploads/caebebe7-bf7b-4c65-87b5-35ce5afd41e9.png" 
             alt="Sopra HR Software" 
             className="h-20 mb-8"
           />
