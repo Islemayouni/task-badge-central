@@ -31,29 +31,29 @@ const Login = () => {
   return (
     <div className="flex h-screen animate-fade-in">
       {/* Black Section with Logo */}
-      <div className="w-1/2 bg-black flex flex-col justify-center items-center p-10 text-white animate-slide-in-right">
-        <div className="max-w-md text-center">
-          <img 
-            src="/lovable-uploads/325a4c76-ff38-42fe-990e-6142bf6051bf.png"
-            alt="Sopra HR Logo" 
-            className="mx-auto mb-8 w-48 h-auto"
-          />
+      <div className="w-1/2 bg-black flex flex-col items-start p-10">
+        <img 
+          src="/lovable-uploads/325a4c76-ff38-42fe-990e-6142bf6051bf.png"
+          alt="Sopra HR Logo" 
+          className="w-48 mb-12"
+        />
+        <div className="max-w-md text-white">
           <h1 className="text-4xl font-bold mb-6">MyTasks4YOU</h1>
           <p className="text-xl mb-8">Restons en contact avec MyTasks4YOU</p>
           <div className="grid grid-cols-2 gap-6 mb-10">
-            <div className="flex flex-col items-center bg-black/20 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
+            <div className="flex flex-col items-center bg-[#1A1F2C]/60 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
               <ShieldCheck size={40} className="mb-2" />
               <p>Gestion sécurisée</p>
             </div>
-            <div className="flex flex-col items-center bg-black/20 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
+            <div className="flex flex-col items-center bg-[#1A1F2C]/60 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
               <Users size={40} className="mb-2" />
               <p>Collaboration d'équipe</p>
             </div>
-            <div className="flex flex-col items-center bg-black/20 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
+            <div className="flex flex-col items-center bg-[#1A1F2C]/60 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
               <Award size={40} className="mb-2" />
               <p>Système de badges</p>
             </div>
-            <div className="flex flex-col items-center bg-black/20 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
+            <div className="flex flex-col items-center bg-[#1A1F2C]/60 backdrop-blur-sm rounded-lg p-4 border border-[#9C27B0]/20">
               <Lock size={40} className="mb-2" />
               <p>Gestion des accès</p>
             </div>
@@ -63,7 +63,7 @@ const Login = () => {
 
       {/* Login Form with Purple Gradient */}
       <div className="w-1/2 bg-gradient-to-br from-[#6B1B9A] via-[#9C27B0] to-[#FF9800] flex justify-center items-center animate-scale-in">
-        <div className="w-full max-w-md p-8 space-y-8 bg-black/40 backdrop-blur-sm rounded-lg text-white">
+        <div className="w-full max-w-md p-8 space-y-8 bg-[#1A1F2C]/60 backdrop-blur-sm rounded-lg text-white">
           <div className="text-center">
             <h2 className="text-3xl font-extrabold">Connectez-vous</h2>
             <p className="mt-2 text-white/80">Entrez vos identifiants pour accéder à votre compte</p>
@@ -85,7 +85,7 @@ const Login = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="votre@email.com"
-                    className="pl-10 bg-black/20 border-[#9C27B0]/20 text-white placeholder:text-white/60"
+                    className="pl-10 bg-[#1A1F2C]/60 border-[#9C27B0]/20 text-white placeholder:text-white/60"
                     required
                   />
                 </div>
@@ -105,7 +105,7 @@ const Login = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="pl-10 bg-black/20 border-[#9C27B0]/20 text-white placeholder:text-white/60"
+                    className="pl-10 bg-[#1A1F2C]/60 border-[#9C27B0]/20 text-white placeholder:text-white/60"
                     required
                   />
                 </div>
@@ -118,7 +118,7 @@ const Login = () => {
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 rounded border-[#9C27B0]/20 bg-black/20"
+                  className="h-4 w-4 rounded border-[#9C27B0]/20 bg-[#1A1F2C]/60"
                 />
                 <label htmlFor="remember-me" className="ml-2 block text-sm">
                   Se souvenir de moi
@@ -131,15 +131,13 @@ const Login = () => {
               </div>
             </div>
 
-            <div>
-              <Button
-                type="submit"
-                className="w-full bg-[#9C27B0] hover:bg-[#6B1B9A] text-white"
-                disabled={loading}
-              >
-                {loading ? "Connexion en cours..." : "Se connecter"}
-              </Button>
-            </div>
+            <Button
+              type="submit"
+              className="w-full bg-[#9C27B0] hover:bg-[#6B1B9A] text-white"
+              disabled={loading}
+            >
+              {loading ? "Connexion en cours..." : "Se connecter"}
+            </Button>
           </form>
         </div>
       </div>
