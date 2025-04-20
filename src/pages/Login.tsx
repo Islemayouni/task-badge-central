@@ -1,4 +1,3 @@
-
 import { AtSign, Lock, Users, Award, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,7 +25,6 @@ const Login = () => {
         variant: "default",
       });
       
-      // Navigation handled automatically in the auth provider
       navigate("/dashboard");
     } catch (error) {
       console.error("Erreur de connexion:", error);
@@ -40,7 +38,6 @@ const Login = () => {
 
   return (
     <div className="flex h-screen animate-fade-in">
-      {/* Left Section with Black Background and Logo */}
       <div className="w-1/2 bg-black flex flex-col justify-center items-center text-center p-10">
         <div className="max-w-md text-center flex flex-col items-center space-y-6">
           <img 
@@ -74,7 +71,6 @@ const Login = () => {
         </div>
       </div>
 
-      {/* Right Section with Login Form and Gradient */}
       <div className="w-1/2 relative">
         <div className="absolute inset-0 bg-gradient-to-r from-[#000000] via-[#9C27B0] to-[#FF9800]" />
         
@@ -83,9 +79,6 @@ const Login = () => {
             <div className="text-center space-y-3">
               <h2 className="text-3xl font-semibold tracking-wide">Connectez-vous</h2>
               <p className="text-white/75">Entrez vos identifiants pour accéder à votre compte</p>
-              <p className="text-white/60 text-sm">
-                <strong>Indice :</strong> Utilisez "manager@example.com" pour accéder à l'interface manager
-              </p>
             </div>
             
             <form onSubmit={handleLogin} className="mt-8 space-y-6">
