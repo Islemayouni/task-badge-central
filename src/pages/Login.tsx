@@ -1,106 +1,152 @@
-
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { AtSign, Lock, Users, Award, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { AtSign, Lock } from "lucide-react";
-import { useToast } from "@/components/ui/use-toast";
-import { useAuth } from '../context/AuthContext';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 const Login = () => {
+  const [email, setEmail] = useState("nom@entreprise.com");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { login, error } = useAuth();
-  const [email, setEmail] = useState('manager@entreprise.com');
-  const [password, setPassword] = useState('password');
-  const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
+    setLoading(true);
     
-    try {
-      await login(email, password);
+    // Connexion simplifiée - accepte n'importe quels identifiants
+    setTimeout(() => {
+      setLoading(false);
       toast({
         title: "Connexion réussie",
-        description: "Vous êtes connecté avec succès.",
-        duration: 3000,
+        description: "Bienvenue sur MyTasks4YOU!",
+        variant: "default",
       });
-      navigate('/dashboard');
-    } catch (err) {
-      toast({
-        title: "Échec de la connexion",
-        description: error || "Veuillez vérifier vos identifiants.",
-        variant: "destructive",
-        duration: 3000,
-      });
-    } finally {
-      setIsLoading(false);
-    }
+      navigate("/dashboard");
+    }, 1000);
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#1A1F2C] to-[#121212]">
-      <div className="w-full max-w-md p-8">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-transparent bg-clip-text sopra-gradient">TakeIt</h1>
-          <p className="text-gray-400 mt-2">Connectez-vous pour accéder à la plateforme</p>
+    <div className="flex h-screen animate-fade-in">
+      {/* Left Section with Black Background and Logo */}
+      <div className="w-1/2 bg-black flex flex-col justify-center items-center text-center p-10">
+        <div className="max-w-md text-center flex flex-col items-center space-y-6">
+          <img 
+            src="/lovable-uploads/316bfdd4-fad4-43eb-9161-d9d5b1d5430c.png" 
+            alt="Sopra HR Software" 
+            className="h-48 w-auto mb-4" 
+          />
+          <h1 className="text-4xl font-bold mb-4 text-white tracking-wide uppercase">
+            MyTasks4YOU
+          </h1>
+          <p className="text-xl mb-6 text-gray-200 font-medium">Restons en contact avec MyTasks4YOU</p>
+          
+          <div className="grid grid-cols-2 gap-4 mb-8">
+            <div className="flex flex-col items-center bg-[#1A1F2C]/60 rounded-lg p-4">
+              <ShieldCheck size={40} className="mb-2 text-white" />
+              <p className="text-gray-300 font-light">Gestion sécurisée</p>
+            </div>
+            <div className="flex flex-col items-center bg-[#1A1F2C]/60 rounded-lg p-4">
+              <Users size={40} className="mb-2 text-white" />
+              <p className="text-gray-300 font-light">Collaboration d'équipe</p>
+            </div>
+            <div className="flex flex-col items-center bg-[#1A1F2C]/60 rounded-lg p-4">
+              <Award size={40} className="mb-2 text-white" />
+              <p className="text-gray-300 font-light">Système de badges</p>
+            </div>
+            <div className="flex flex-col items-center bg-[#1A1F2C]/60 rounded-lg p-4">
+              <Lock size={40} className="mb-2 text-white" />
+              <p className="text-gray-300 font-light">Gestion des accès</p>
+            </div>
+          </div>
         </div>
+      </div>
+
+      {/* Right Section with Login Form and Gradient */}
+      <div className="w-1/2 relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#000000] via-[#9C27B0] to-[#FF9800]" />
         
-        <Card className="border-[#9C27B0]/20 bg-[#1A1F2C]/80 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="text-xl text-white">Connectez-vous</CardTitle>
-            <CardDescription className="text-gray-400">
-              Entrez vos identifiants pour vous connecter
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleLogin} className="space-y-4">
-              <div className="space-y-2">
-                <div className="relative">
-                  <AtSign className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                  <Input
-                    type="email"
-                    placeholder="Email"
-                    className="pl-10 bg-[#12151D] border-[#9C27B0]/20"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
+        <div className="relative h-full flex justify-center items-center">
+          <div className="w-full max-w-md p-8 space-y-6 bg-[#1A1F2C]/80 backdrop-blur-sm rounded-lg text-white">
+            <div className="text-center space-y-3">
+              <h2 className="text-3xl font-semibold tracking-wide">Connectez-vous</h2>
+              <p className="text-white/75">Entrez vos identifiants pour accéder à votre compte</p>
+            </div>
+            
+            <form onSubmit={handleLogin} className="mt-8 space-y-6">
+              <div className="space-y-4">
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium mb-1">
+                    Email
+                  </label>
+                  <div className="relative">
+                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-white/60">
+                      <AtSign size={18} />
+                    </span>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="nom@entreprise.com"
+                      className="pl-10 bg-[#1A1F2C]/60 border-purple-500/20 text-white placeholder:text-white/60"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label htmlFor="password" className="block text-sm font-medium mb-1">
+                    Mot de passe
+                  </label>
+                  <div className="relative">
+                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-white/60">
+                      <Lock size={18} />
+                    </span>
+                    <Input
+                      id="password"
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="••••••••"
+                      className="pl-10 bg-[#1A1F2C]/60 border-purple-500/20 text-white placeholder:text-white/60"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="space-y-2">
-                <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                  <Input
-                    type="password"
-                    placeholder="Mot de passe"
-                    className="pl-10 bg-[#12151D] border-[#9C27B0]/20"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <input
+                    id="remember-me"
+                    name="remember-me"
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-purple-500/20 bg-[#1A1F2C]/60"
                   />
+                  <label htmlFor="remember-me" className="ml-2 block text-sm">
+                    Se souvenir de moi
+                  </label>
+                </div>
+                <div className="text-sm">
+                  <a href="#" className="font-medium text-[#FF9800] hover:text-[#FF9800]/80">
+                    Mot de passe oublié?
+                  </a>
                 </div>
               </div>
+
               <Button
                 type="submit"
-                className="w-full sopra-gradient text-white"
-                disabled={isLoading}
+                className="w-full bg-[#9C27B0] hover:bg-[#9C27B0]/80 text-white"
+                disabled={loading}
               >
-                {isLoading ? "Connexion..." : "Se connecter"}
+                {loading ? "Connexion en cours..." : "Se connecter"}
               </Button>
             </form>
-          </CardContent>
-          <CardFooter className="flex justify-between">
-            <p className="text-xs text-gray-500">Connexion par défaut :</p>
-            <div className="text-xs text-gray-500">
-              <div>Manager: manager@entreprise.com</div>
-              <div>Employé: employee@entreprise.com</div>
-              <div>Mot de passe: password (pour les deux)</div>
-            </div>
-          </CardFooter>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   );
