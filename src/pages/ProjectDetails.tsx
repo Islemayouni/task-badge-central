@@ -196,7 +196,7 @@ const ProjectDetailsPage = () => {
   const handleTaskStatusChange = (taskId: string, newStatus: string) => {
     // Mettre à jour le statut de la tâche localement
     const updatedTasks = tasks.map(task => 
-      task.id === taskId ? { ...task, status: newStatus } : task
+      task.id === taskId ? { ...task, status: newStatus as "à faire" | "en cours" | "fini" } : task
     );
     
     setTasks(updatedTasks);
