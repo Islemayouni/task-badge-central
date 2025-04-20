@@ -81,6 +81,7 @@ export function CreateProjectForm({ open, onOpenChange, onProjectCreated }: Crea
     }
   };
 
+  // Assurez-vous que le Dialog est affiché quand open est true
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[525px]">

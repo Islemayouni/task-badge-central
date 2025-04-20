@@ -172,6 +172,11 @@ const Projects = () => {
     setProjects(prev => [...prev, newProject]);
   };
 
+  const handleOpenCreateProject = () => {
+    console.log("Ouverture du formulaire de création de projet");
+    setIsCreateProjectOpen(true);
+  };
+
   return (
     <div className="flex h-screen bg-[#1A1F2C]">
       <Sidebar />
@@ -192,7 +197,7 @@ const Projects = () => {
               {userIsManager && (
                 <Button 
                   className="sopra-purple-gradient text-white"
-                  onClick={() => setIsCreateProjectOpen(true)}
+                  onClick={handleOpenCreateProject}
                 >
                   <Plus size={16} className="mr-2" />
                   Nouveau projet
