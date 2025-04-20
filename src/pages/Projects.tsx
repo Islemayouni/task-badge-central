@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { Search } from 'lucide-react';
 import Header from '@/components/layout/Header';
 import Sidebar from '@/components/layout/Sidebar';
 import { ProjectCard } from '@/components/projects/ProjectCard';
@@ -162,15 +163,15 @@ const Projects = () => {
   });
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex h-screen bg-[#1A1F2C]">
       <Sidebar />
       <div className="flex-1 flex flex-col">
         <Header />
-        <main className="flex-1 overflow-auto p-6 bg-[#F8F9FA]">
+        <main className="flex-1 overflow-auto p-6">
           <div className="max-w-7xl mx-auto">
             <div className="mb-6">
-              <h1 className="text-2xl font-bold mb-2 text-[#1A1F2C]">Projets</h1>
-              <p className="text-muted-foreground">
+              <h1 className="text-2xl font-bold mb-2 text-white">Projets</h1>
+              <p className="text-gray-400">
                 Gérez et suivez tous vos projets au même endroit
               </p>
             </div>
@@ -188,12 +189,12 @@ const Projects = () => {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-16">
-                <div className="mx-auto w-16 h-16 mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+              <div className="text-center py-16 bg-[#1A1F2C]/60 rounded-lg border border-gray-800">
+                <div className="mx-auto w-16 h-16 mb-4 bg-gray-800 rounded-full flex items-center justify-center">
                   <Search size={32} className="text-gray-400" />
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-1">Aucun projet trouvé</h3>
-                <p className="text-gray-500">
+                <h3 className="text-lg font-medium text-white mb-1">Aucun projet trouvé</h3>
+                <p className="text-gray-400">
                   Aucun projet ne correspond à vos critères de recherche.
                 </p>
               </div>
