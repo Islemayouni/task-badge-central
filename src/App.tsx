@@ -14,6 +14,7 @@ import DashboardEmployee from "./pages/DashboardEmployee";
 import Tasks from "./pages/Tasks";
 import NotFound from "./pages/NotFound";
 import Projects from "./pages/Projects";
+import ProjectDetails from "./pages/ProjectDetails";
 import Badges from "./pages/Badges";
 import Calendar from "./pages/Calendar";
 import Reports from "./pages/Reports";
@@ -97,8 +98,13 @@ const App = () => {
               </ProtectedRoute>
             } />
             <Route path="/projects" element={
-              <ProtectedRoute user={user} requiredRole="manager">
+              <ProtectedRoute user={user}>
                 <Projects />
+              </ProtectedRoute>
+            } />
+            <Route path="/projects/:projectId" element={
+              <ProtectedRoute user={user}>
+                <ProjectDetails />
               </ProtectedRoute>
             } />
 

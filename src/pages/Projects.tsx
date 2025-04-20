@@ -1,11 +1,14 @@
 
 import { useState } from 'react';
-import { Search } from 'lucide-react';
+import { Search, Plus, Filter } from 'lucide-react';
 import Header from '@/components/layout/Header';
 import Sidebar from '@/components/layout/Sidebar';
 import { ProjectCard } from '@/components/projects/ProjectCard';
 import { ProjectFilters, FilterOptions } from '@/components/projects/ProjectFilters';
 import { Project } from '@/types/project';
+import { Button } from '@/components/ui/button';
+import { useAuth } from '@/hooks/useAuth';
+import { isManager } from '@/types/user';
 
 const Projects = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -14,6 +17,42 @@ const Projects = () => {
     statuses: [],
     chefDeProjet: []
   });
+  const { user } = useAuth();
+  const userIsManager = user ? isManager(user.role) : false;
+
+  // Exemple de données de tâches
+  const mockTasks = [
+    {
+      id: "T001",
+      title: "Implémenter l'authentification OAuth",
+      description: "Mettre en place l'authentification avec Google et GitHub",
+      status: "à faire" as const,
+      priority: "high" as const,
+      assignee: {
+        name: "Thomas Durand",
+        id: "U001"
+      },
+      createdDate: "2024-03-15",
+      dueDate: "2024-05-20",
+      source: "internal" as const,
+      projectId: "P001"
+    },
+    {
+      id: "T002",
+      title: "Design de l'interface utilisateur",
+      description: "Créer des maquettes pour l'application mobile",
+      status: "en cours" as const,
+      priority: "medium" as const,
+      assignee: {
+        name: "Sophie Martin",
+        id: "U002"
+      },
+      createdDate: "2024-04-01",
+      dueDate: "2024-05-15",
+      source: "internal" as const,
+      projectId: "P001"
+    }
+  ];
 
   // Exemple de données de projets
   const projects: Project[] = [
@@ -54,7 +93,8 @@ const Projects = () => {
       },
       droitAcces: [],
       archive: false,
-      urlProjet: "/projects/P001"
+      urlProjet: "/projects/P001",
+      tasks: mockTasks
     },
     {
       id: "P002",
@@ -136,8 +176,15 @@ const Projects = () => {
     }
   ];
 
-  // Appliquer les filtres
-  const filteredProjects = projects.filter(project => {
+  // Pour un employé, filtrer les projets auxquels il est associé
+  const filteredProjectsByUser = userIsManager
+    ? projects
+    : projects.filter(project => 
+        user && project.utilisateursAssocies.some(u => u.id === user.id)
+      );
+
+  // Appliquer les filtres de recherche et de catégories
+  const filteredProjects = filteredProjectsByUser.filter(project => {
     // Filtrer par texte de recherche (nom ou clé du projet)
     const matchesSearch = 
       project.nom.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -169,11 +216,22 @@ const Projects = () => {
         <Header />
         <main className="flex-1 overflow-auto p-6">
           <div className="max-w-7xl mx-auto">
-            <div className="mb-6">
-              <h1 className="text-2xl font-bold mb-2 text-white">Projets</h1>
-              <p className="text-gray-400">
-                Gérez et suivez tous vos projets au même endroit
-              </p>
+            <div className="mb-6 flex justify-between items-center">
+              <div>
+                <h1 className="text-2xl font-bold mb-2 text-white">Projets</h1>
+                <p className="text-gray-400">
+                  {userIsManager 
+                    ? "Gérez et suivez tous les projets au même endroit" 
+                    : "Consultez les projets auxquels vous êtes associé"}
+                </p>
+              </div>
+              
+              {userIsManager && (
+                <Button className="sopra-purple-gradient text-white">
+                  <Plus size={16} className="mr-2" />
+                  Nouveau projet
+                </Button>
+              )}
             </div>
             
             <ProjectFilters 
@@ -185,7 +243,11 @@ const Projects = () => {
             {filteredProjects.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredProjects.map((project) => (
-                  <ProjectCard key={project.id} project={project} />
+                  <ProjectCard 
+                    key={project.id} 
+                    project={project} 
+                    isManager={userIsManager}
+                  />
                 ))}
               </div>
             ) : (
@@ -195,7 +257,9 @@ const Projects = () => {
                 </div>
                 <h3 className="text-lg font-medium text-white mb-1">Aucun projet trouvé</h3>
                 <p className="text-gray-400">
-                  Aucun projet ne correspond à vos critères de recherche.
+                  {userIsManager 
+                    ? "Aucun projet ne correspond à vos critères de recherche." 
+                    : "Vous n'êtes associé à aucun projet correspondant à ces critères."}
                 </p>
               </div>
             )}

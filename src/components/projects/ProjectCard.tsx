@@ -1,14 +1,24 @@
+
 import { Project } from "@/types/project";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Calendar, Users } from "lucide-react";
+import { Calendar, Users, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 interface ProjectCardProps {
   project: Project;
+  isManager?: boolean;
 }
 
-export const ProjectCard = ({ project }: ProjectCardProps) => {
+export const ProjectCard = ({ project, isManager = false }: ProjectCardProps) => {
+  // Calculer les statistiques du projet
+  const tasks = project.tasks || [];
+  const totalTasks = tasks.length;
+  const completedTasks = tasks.filter(t => t.status === 'fini').length;
+  const progress = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+
   return (
     <Card className="bg-[#1A1F2C] border-[#9C27B0]/20 hover:shadow-lg transition-shadow">
       <CardHeader className="pb-3">
@@ -47,6 +57,21 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               <span>Mis à jour le {new Date(project.dateDerniereModif).toLocaleDateString('fr-FR')}</span>
             </div>
           </div>
+          
+          {tasks.length > 0 && (
+            <div className="space-y-2">
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-400">Progression</span>
+                <span className="font-medium text-white">{progress}%</span>
+              </div>
+              <Progress value={progress} className="h-1.5" />
+              <div className="flex justify-between text-xs text-gray-400">
+                <span>{completedTasks} terminées</span>
+                <span>{totalTasks} total</span>
+              </div>
+            </div>
+          )}
+          
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-gray-400">Chef de projet</span>
@@ -65,9 +90,12 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
       <CardFooter className="border-t border-gray-800 pt-4">
         <div className="w-full flex justify-between items-center text-sm">
           <span className="text-gray-400">Version {project.versionLogiciel}</span>
-          <span className="text-[#9b87f5] hover:underline cursor-pointer">
-            Voir les détails
-          </span>
+          <Button variant="link" className="text-[#9b87f5] p-0" asChild>
+            <Link to={`/projects/${project.id}`} className="flex items-center">
+              Voir les détails
+              <ArrowRight size={14} className="ml-1" />
+            </Link>
+          </Button>
         </div>
       </CardFooter>
     </Card>

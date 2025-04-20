@@ -1,5 +1,6 @@
 
 import { LucideIcon } from 'lucide-react';
+import { Task } from './task';
 
 export interface Project {
   id: string;
@@ -22,6 +23,7 @@ export interface Project {
   droitAcces: DroitAcces[];
   archive: boolean;
   urlProjet: string;
+  tasks?: Task[]; // Liste des tâches associées au projet
 }
 
 export interface User {
