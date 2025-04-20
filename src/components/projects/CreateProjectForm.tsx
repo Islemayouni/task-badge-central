@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/components/ui/use-toast";
 
 interface CreateProjectFormProps {
@@ -17,6 +18,7 @@ interface CreateProjectFormProps {
 
 const categories = ["Développement", "Ressources Humaines", "Finance", "Marketing"];
 const types = ["Application", "Web", "Backend", "Mobile"];
+const etats = ["actif", "en_pause", "terminé", "annulé"];
 
 export function CreateProjectForm({ open, onOpenChange, onProjectCreated }: CreateProjectFormProps) {
   const { toast } = useToast();
@@ -27,6 +29,10 @@ export function CreateProjectForm({ open, onOpenChange, onProjectCreated }: Crea
       description: "",
       categorie: "",
       typeProjet: "",
+      etat: "actif",
+      versionLogiciel: "1.0.0",
+      archive: false,
+      tags: "",
     },
   });
 
@@ -35,7 +41,7 @@ export function CreateProjectForm({ open, onOpenChange, onProjectCreated }: Crea
       const newProject = {
         id: `P${Math.floor(Math.random() * 1000)}`,
         ...data,
-        etat: "actif",
+        tags: data.tags.split(',').map((tag: string) => tag.trim()).filter((tag: string) => tag !== ''),
         dateCreation: new Date().toISOString(),
         dateDerniereModif: new Date().toISOString(),
         iconeUrl: "/lovable-uploads/20c9b8cf-e6ff-41dc-af0d-d2f48cacd49e.png",
@@ -50,14 +56,11 @@ export function CreateProjectForm({ open, onOpenChange, onProjectCreated }: Crea
         },
         personneAssigneeParDefaut: null,
         roles: [],
-        versionLogiciel: "1.0.0",
-        tags: [],
         configWorkflow: {
           etapes: [],
           transitions: []
         },
         droitAcces: [],
-        archive: false,
         urlProjet: `/projects/${data.cleProjet}`
       };
 
@@ -134,23 +137,76 @@ export function CreateProjectForm({ open, onOpenChange, onProjectCreated }: Crea
               )}
             />
 
+            <div className="grid grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="categorie"
+                rules={{ required: "La catégorie est requise" }}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Catégorie</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Sélectionnez une catégorie" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {categories.map((category) => (
+                          <SelectItem key={category} value={category}>
+                            {category}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="typeProjet"
+                rules={{ required: "Le type de projet est requis" }}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Type de projet</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Sélectionnez un type" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {types.map((type) => (
+                          <SelectItem key={type} value={type}>
+                            {type}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
             <FormField
               control={form.control}
-              name="categorie"
-              rules={{ required: "La catégorie est requise" }}
+              name="etat"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Catégorie</FormLabel>
+                  <FormLabel>État du projet</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Sélectionnez une catégorie" />
+                        <SelectValue placeholder="Sélectionnez un état" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {categories.map((category) => (
-                        <SelectItem key={category} value={category}>
-                          {category}
+                      {etats.map((etat) => (
+                        <SelectItem key={etat} value={etat}>
+                          {etat}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -162,26 +218,49 @@ export function CreateProjectForm({ open, onOpenChange, onProjectCreated }: Crea
 
             <FormField
               control={form.control}
-              name="typeProjet"
-              rules={{ required: "Le type de projet est requis" }}
+              name="versionLogiciel"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Type de projet</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Sélectionnez un type" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {types.map((type) => (
-                        <SelectItem key={type} value={type}>
-                          {type}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <FormLabel>Version du logiciel</FormLabel>
+                  <FormControl>
+                    <Input placeholder="1.0.0" {...field} />
+                  </FormControl>
                   <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="tags"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Tags (séparés par des virgules)</FormLabel>
+                  <FormControl>
+                    <Input placeholder="React, API, Mobile" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="archive"
+              render={({ field }) => (
+                <FormItem className="flex items-center justify-between space-y-0 rounded-md border p-3">
+                  <div className="space-y-0.5">
+                    <FormLabel>Archiver</FormLabel>
+                    <FormDescription>
+                      Archiver ce projet dès sa création
+                    </FormDescription>
+                  </div>
+                  <FormControl>
+                    <Switch
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
                 </FormItem>
               )}
             />
