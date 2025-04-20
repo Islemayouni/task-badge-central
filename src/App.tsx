@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Tasks from "./pages/Tasks";
@@ -16,6 +17,7 @@ import Team from "./pages/Team";
 import Settings from "./pages/Settings";
 import Knowledge from "./pages/Knowledge";
 import Notifications from "./pages/Notifications";
+import { useAuth } from "./hooks/useAuth";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,48 +28,81 @@ const queryClient = new QueryClient({
   }
 });
 
-// Function to check if user is a manager (to be implemented with your auth system)
-const isManager = () => {
-  // This is where you'll implement the actual role check
-  // For now, it returns true for testing
-  return localStorage.getItem('userRole') === 'manager';
-};
+const App = () => {
+  const { user } = useAuth();
 
-const ManagerRoute = ({ children }: { children: React.ReactNode }) => {
-  return isManager() ? <>{children}</> : <Navigate to="/dashboard" replace />;
-};
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Navigate to="/login" replace />} />
+            <Route path="/login" element={<Login />} />
+            
+            {/* Routes protégées pour tous les utilisateurs */}
+            <Route path="/dashboard" element={
+              <ProtectedRoute user={user}>
+                <Dashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/tasks" element={
+              <ProtectedRoute user={user}>
+                <Tasks />
+              </ProtectedRoute>
+            } />
+            <Route path="/calendar" element={
+              <ProtectedRoute user={user}>
+                <Calendar />
+              </ProtectedRoute>
+            } />
+            <Route path="/notifications" element={
+              <ProtectedRoute user={user}>
+                <Notifications />
+              </ProtectedRoute>
+            } />
+            <Route path="/settings" element={
+              <ProtectedRoute user={user}>
+                <Settings />
+              </ProtectedRoute>
+            } />
+            <Route path="/knowledge" element={
+              <ProtectedRoute user={user}>
+                <Knowledge />
+              </ProtectedRoute>
+            } />
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/tasks" element={<Tasks />} />
-          <Route path="/badges" element={<Badges />} />
-          <Route path="/calendar" element={<Calendar />} />
-          <Route path="/reports" element={<Reports />} />
-          <Route 
-            path="/team" 
-            element={
-              <ManagerRoute>
+            {/* Routes spécifiques aux employés */}
+            <Route path="/badges" element={
+              <ProtectedRoute user={user} requiredRole="employee">
+                <Badges />
+              </ProtectedRoute>
+            } />
+
+            {/* Routes spécifiques aux managers */}
+            <Route path="/team" element={
+              <ProtectedRoute user={user} requiredRole="manager">
                 <Team />
-              </ManagerRoute>
-            } 
-          />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/knowledge" element={<Knowledge />} />
-          <Route path="/notifications" element={<Notifications />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+              </ProtectedRoute>
+            } />
+            <Route path="/reports" element={
+              <ProtectedRoute user={user} requiredRole="manager">
+                <Reports />
+              </ProtectedRoute>
+            } />
+            <Route path="/projects" element={
+              <ProtectedRoute user={user} requiredRole="manager">
+                <Projects />
+              </ProtectedRoute>
+            } />
+
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

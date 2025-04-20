@@ -1,15 +1,14 @@
-
 import React from 'react';
 import { Bell, ChevronDown, HelpCircle, Search, Settings } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 
-interface HeaderProps {
-  userRole?: 'manager' | 'employee';
-}
-
-const Header = ({ userRole = 'employee' }: HeaderProps) => {
+const Header = () => {
+  const { user } = useAuth();
+  const userRole = user?.role || 'employee';
+  
   return (
     <header className="h-14 px-4 border-b border-[#9C27B0]/20 bg-[#1A1F2C] flex items-center justify-between">
       <div className="flex items-center gap-4">
@@ -26,18 +25,20 @@ const Header = ({ userRole = 'employee' }: HeaderProps) => {
             <Link to="/tasks">Tâches</Link>
           </Button>
           {userRole === 'manager' ? (
-            <Button variant="ghost" asChild className="text-gray-300 hover:bg-gray-800/50 rounded-md text-sm px-3 py-1.5 h-auto">
-              <Link to="/team">
-                Équipe
-                <ChevronDown size={14} className="ml-1" />
-              </Link>
-            </Button>
+            <>
+              <Button variant="ghost" asChild className="text-gray-300 hover:bg-gray-800/50 rounded-md text-sm px-3 py-1.5 h-auto">
+                <Link to="/team">Équipe</Link>
+              </Button>
+              <Button variant="ghost" asChild className="text-gray-300 hover:bg-gray-800/50 rounded-md text-sm px-3 py-1.5 h-auto">
+                <Link to="/projects">Projets</Link>
+              </Button>
+              <Button variant="ghost" asChild className="text-gray-300 hover:bg-gray-800/50 rounded-md text-sm px-3 py-1.5 h-auto">
+                <Link to="/reports">Rapports</Link>
+              </Button>
+            </>
           ) : (
             <Button variant="ghost" asChild className="text-gray-300 hover:bg-gray-800/50 rounded-md text-sm px-3 py-1.5 h-auto">
-              <Link to="/badges">
-                Badges
-                <ChevronDown size={14} className="ml-1" />
-              </Link>
+              <Link to="/badges">Badges</Link>
             </Button>
           )}
         </div>
