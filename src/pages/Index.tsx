@@ -8,7 +8,7 @@ const Index = () => {
   const navigate = useNavigate();
 
   const handleGetStarted = () => {
-    navigate("/login");
+    navigate("/dashboard");
   };
 
   return (
