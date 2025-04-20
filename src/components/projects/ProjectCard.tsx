@@ -54,7 +54,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             </div>
             <div className="flex flex-wrap gap-2">
               {project.tags.map((tag) => (
-                <Badge key={tag} variant="secondary" className="bg-[#9b87f5]/10 text-[#9b87f5] text-xs">
+                <Badge key={tag} variant="secondary" className="sopra-purple-gradient text-white text-xs">
                   {tag}
                 </Badge>
               ))}
