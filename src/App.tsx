@@ -10,6 +10,12 @@ import Tasks from "./pages/Tasks";
 import NotFound from "./pages/NotFound";
 import Projects from "./pages/Projects";
 import Badges from "./pages/Badges";
+import Calendar from "./pages/Calendar";
+import Reports from "./pages/Reports";
+import Team from "./pages/Team";
+import Settings from "./pages/Settings";
+import Knowledge from "./pages/Knowledge";
+import Notifications from "./pages/Notifications";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,13 +39,12 @@ const App = () => (
           <Route path="/projects" element={<Projects />} />
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/badges" element={<Badges />} />
-          <Route path="/calendar" element={<Dashboard />} />
-          <Route path="/reports" element={<Dashboard />} />
-          <Route path="/team" element={<Dashboard />} />
-          <Route path="/settings" element={<Dashboard />} />
-          <Route path="/starred" element={<Dashboard />} />
-          <Route path="/knowledge" element={<Dashboard />} />
-          <Route path="/notifications" element={<Dashboard />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/reports" element={<Reports />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/knowledge" element={<Knowledge />} />
+          <Route path="/notifications" element={<Notifications />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
