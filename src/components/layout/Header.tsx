@@ -5,7 +5,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+interface HeaderProps {
+  userRole?: 'manager' | 'employee';
+}
+
+const Header = ({ userRole = 'employee' }: HeaderProps) => {
   return (
     <header className="h-14 px-4 border-b border-[#9C27B0]/20 bg-[#1A1F2C] flex items-center justify-between">
       <div className="flex items-center gap-4">
@@ -21,12 +25,21 @@ const Header = () => {
           <Button variant="ghost" asChild className="text-gray-300 hover:bg-gray-800/50 rounded-md text-sm px-3 py-1.5 h-auto">
             <Link to="/tasks">Tâches</Link>
           </Button>
-          <Button variant="ghost" asChild className="text-gray-300 hover:bg-gray-800/50 rounded-md text-sm px-3 py-1.5 h-auto">
-            <Link to="/badges">
-              Badges
-              <ChevronDown size={14} className="ml-1" />
-            </Link>
-          </Button>
+          {userRole === 'manager' ? (
+            <Button variant="ghost" asChild className="text-gray-300 hover:bg-gray-800/50 rounded-md text-sm px-3 py-1.5 h-auto">
+              <Link to="/team">
+                Équipe
+                <ChevronDown size={14} className="ml-1" />
+              </Link>
+            </Button>
+          ) : (
+            <Button variant="ghost" asChild className="text-gray-300 hover:bg-gray-800/50 rounded-md text-sm px-3 py-1.5 h-auto">
+              <Link to="/badges">
+                Badges
+                <ChevronDown size={14} className="ml-1" />
+              </Link>
+            </Button>
+          )}
         </div>
       </div>
       

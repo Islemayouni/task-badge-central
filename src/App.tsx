@@ -26,6 +26,17 @@ const queryClient = new QueryClient({
   }
 });
 
+// Function to check if user is a manager (to be implemented with your auth system)
+const isManager = () => {
+  // This is where you'll implement the actual role check
+  // For now, it returns true for testing
+  return localStorage.getItem('userRole') === 'manager';
+};
+
+const ManagerRoute = ({ children }: { children: React.ReactNode }) => {
+  return isManager() ? <>{children}</> : <Navigate to="/dashboard" replace />;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -41,7 +52,14 @@ const App = () => (
           <Route path="/badges" element={<Badges />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/reports" element={<Reports />} />
-          <Route path="/team" element={<Team />} />
+          <Route 
+            path="/team" 
+            element={
+              <ManagerRoute>
+                <Team />
+              </ManagerRoute>
+            } 
+          />
           <Route path="/settings" element={<Settings />} />
           <Route path="/knowledge" element={<Knowledge />} />
           <Route path="/notifications" element={<Notifications />} />
