@@ -32,7 +32,6 @@ export function CreateProjectForm({ open, onOpenChange, onProjectCreated }: Crea
 
   const onSubmit = async (data: any) => {
     try {
-      // Simulate project creation
       const newProject = {
         id: `P${Math.floor(Math.random() * 1000)}`,
         ...data,
@@ -42,6 +41,24 @@ export function CreateProjectForm({ open, onOpenChange, onProjectCreated }: Crea
         iconeUrl: "/lovable-uploads/20c9b8cf-e6ff-41dc-af0d-d2f48cacd49e.png",
         utilisateursAssocies: [],
         tasks: [],
+        chefDeProjet: {
+          id: "U001",
+          nom: "Durand",
+          prenom: "Thomas",
+          email: "thomas.durand@entreprise.com",
+          role: "Chef de projet"
+        },
+        personneAssigneeParDefaut: null,
+        roles: [],
+        versionLogiciel: "1.0.0",
+        tags: [],
+        configWorkflow: {
+          etapes: [],
+          transitions: []
+        },
+        droitAcces: [],
+        archive: false,
+        urlProjet: `/projects/${data.cleProjet}`
       };
 
       onProjectCreated(newProject);

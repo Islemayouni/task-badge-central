@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, Plus, Filter } from 'lucide-react';
+import { Search, Plus } from 'lucide-react';
 import Header from '@/components/layout/Header';
 import Sidebar from '@/components/layout/Sidebar';
 import { ProjectCard } from '@/components/projects/ProjectCard';
