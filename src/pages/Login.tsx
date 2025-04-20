@@ -70,6 +70,11 @@ const Login = () => {
         
         <div className="relative h-full flex justify-center items-center">
           <div className="w-full max-w-md p-8 space-y-6 bg-[#1A1F2C]/80 backdrop-blur-sm rounded-lg text-white">
+            <div className="text-center space-y-3">
+              <h2 className="text-3xl font-semibold tracking-wide">Connectez-vous</h2>
+              <p className="text-white/75">Entrez vos identifiants pour accéder à votre compte</p>
+            </div>
+            
             <form onSubmit={handleLogin} className="mt-8 space-y-6">
               <div className="space-y-4">
                 <div>
@@ -85,7 +90,7 @@ const Login = () => {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="nom@soprahr.com"
+                      placeholder="nom@entreprise.com"
                       className="pl-10 bg-[#1A1F2C]/60 border-purple-500/20 text-white placeholder:text-white/60"
                       required
                     />
