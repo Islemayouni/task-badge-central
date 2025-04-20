@@ -25,9 +25,9 @@ const Sidebar = () => {
   };
   
   return (
-    <aside className="w-64 border-r bg-gradient-to-b from-white to-gray-50 h-full shadow-sm">
+    <aside className="w-64 border-r border-gray-800 bg-[#1A1F2C] h-full">
       <div className="p-4">
-        <button className="sopra-red-gradient hover:opacity-90 text-white w-full rounded-md py-2 text-sm font-medium flex items-center justify-center gap-2 transition-colors shadow-md">
+        <button className="bg-[#9C27B0] hover:bg-[#7B1FA2] text-white w-full rounded-md py-2 text-sm font-medium flex items-center justify-center gap-2 transition-colors">
           <Plus size={16} />
           <span>Créer une tâche</span>
         </button>
@@ -38,7 +38,7 @@ const Sidebar = () => {
           <input 
             type="text" 
             placeholder="Rechercher..." 
-            className="w-full px-3 py-2 rounded-md border border-gray-200 text-sm focus:outline-none focus:ring-1 focus:ring-primary pl-9"
+            className="w-full px-3 py-2 rounded-md bg-gray-800/50 border border-gray-700 text-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#9C27B0]/30 pl-9"
           />
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
         </div>
@@ -163,10 +163,10 @@ const Sidebar = () => {
       </nav>
       
       <div className="absolute bottom-0 left-0 right-0 p-4">
-        <div className="flex items-center p-3 bg-gray-50 rounded-md border border-gray-200">
-          <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-medium text-sm">TD</div>
+        <div className="flex items-center p-3 bg-gray-800/30 rounded-md border border-gray-700">
+          <div className="w-8 h-8 bg-gradient-to-br from-[#9C27B0] to-[#E1052A] rounded-full flex items-center justify-center text-white font-medium text-sm">TD</div>
           <div className="ml-2 truncate">
-            <div className="text-sm font-medium">Thomas Durand</div>
+            <div className="text-sm font-medium text-gray-300">Thomas Durand</div>
             <div className="text-xs text-gray-500">Chef de projet</div>
           </div>
         </div>
