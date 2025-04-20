@@ -2,14 +2,22 @@
 import React from 'react';
 import Header from '@/components/layout/Header';
 import Sidebar from '@/components/layout/Sidebar';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
+import { CheckCircle, Clock, Award, Star } from 'lucide-react';
+import StatCard from '@/components/dashboard/StatCard';
+import PerformanceChart from '@/components/dashboard/PerformanceChart';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import BadgeCard from '@/components/badges/BadgeCard';
-import { CheckCircle, Award, BarChart2 } from 'lucide-react';
+import { Badge } from "@/components/ui/badge";
 
 const DashboardEmployee = () => {
+  const performanceData = [
+    { name: 'Jan', completed: 12, inProgress: 5 },
+    { name: 'Fév', completed: 15, inProgress: 3 },
+    { name: 'Mar', completed: 8, inProgress: 7 },
+    { name: 'Avr', completed: 18, inProgress: 4 },
+  ];
+
   const badges = [
     { 
       id: "1", 
@@ -34,7 +42,7 @@ const DashboardEmployee = () => {
   ];
 
   return (
-    <div className="flex flex-col h-screen bg-gray-50">
+    <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">
       <Header />
       
       <div className="flex flex-1 overflow-hidden">
@@ -43,79 +51,64 @@ const DashboardEmployee = () => {
         <main className="flex-1 overflow-y-auto p-6">
           <div className="flex justify-between items-center mb-6">
             <div>
-              <h1 className="text-2xl font-semibold mb-1">Mon Dashboard</h1>
-              <p className="text-gray-500">Suivez vos performances et votre progression</p>
+              <h1 className="text-2xl font-bold mb-1">Mon Dashboard</h1>
+              <p className="text-muted-foreground">
+                Suivez vos performances et votre progression
+              </p>
             </div>
           </div>
 
           <Tabs defaultValue="performance" className="space-y-4">
-            <TabsList>
-              <TabsTrigger value="performance">Mes Performances</TabsTrigger>
-              <TabsTrigger value="badges">Mes Badges</TabsTrigger>
-              <TabsTrigger value="comparison">Comparaison</TabsTrigger>
+            <TabsList className="bg-white dark:bg-gray-800 p-1 rounded-xl">
+              <TabsTrigger value="performance" className="rounded-lg">
+                Mes Performances
+              </TabsTrigger>
+              <TabsTrigger value="badges" className="rounded-lg">
+                Mes Badges
+              </TabsTrigger>
+              <TabsTrigger value="comparison" className="rounded-lg">
+                Comparaison
+              </TabsTrigger>
             </TabsList>
             
-            <TabsContent value="performance" className="space-y-4">
+            <TabsContent value="performance" className="space-y-4 mt-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardDescription>Tâches Complétées</CardDescription>
-                    <CardTitle className="text-2xl">42</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-xs text-muted-foreground">
-                      <span className="text-green-500 font-medium">+8</span> ce mois
-                    </div>
-                  </CardContent>
-                </Card>
+                <StatCard
+                  title="Tâches Complétées"
+                  value="42"
+                  icon={CheckCircle}
+                  trend={{ value: "+8", positive: true }}
+                  description="ce mois"
+                />
                 
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardDescription>Tâches en Cours</CardDescription>
-                    <CardTitle className="text-2xl">7</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <Progress value={45} className="h-2" />
-                    <div className="text-xs text-muted-foreground mt-2">
-                      45% de complétion moyenne
-                    </div>
-                  </CardContent>
-                </Card>
+                <StatCard
+                  title="Tâches en Cours"
+                  value="7"
+                  icon={Clock}
+                  progress={45}
+                />
                 
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardDescription>Badges Obtenus</CardDescription>
-                    <CardTitle className="text-2xl">8</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center text-xs text-muted-foreground">
-                      <Award className="h-4 w-4 mr-1 text-primary" />
-                      Niveau 3 atteint
-                    </div>
-                  </CardContent>
-                </Card>
+                <StatCard
+                  title="Badges Obtenus"
+                  value="8"
+                  icon={Award}
+                  trend={{ value: "Niveau 3", positive: true }}
+                />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Progression Mensuelle</CardTitle>
-                    <CardDescription>Nombre de tâches complétées par mois</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="h-[300px] flex items-center justify-center">
-                      <div className="text-center text-gray-500">
-                        <BarChart2 size={64} className="mx-auto mb-4 opacity-50" />
-                        <p>Graphique de progression</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                <PerformanceChart
+                  data={performanceData}
+                  title="Progression Mensuelle"
+                  description="Nombre de tâches complétées par mois"
+                />
 
                 <Card>
                   <CardHeader>
-                    <CardTitle>Derniers Badges</CardTitle>
-                    <CardDescription>Vos badges récemment obtenus</CardDescription>
+                    <CardTitle className="flex items-center gap-2">
+                      <Award className="h-5 w-5 text-primary" />
+                      Derniers Badges
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
@@ -126,7 +119,8 @@ const DashboardEmployee = () => {
                           </div>
                           <div className="flex-1">
                             <h3 className="font-medium">{badge.name}</h3>
-                            <p className="text-sm text-gray-500">{badge.description}</p>
+                            <p className="text-sm text-muted-foreground">{badge.description}</p>
+                            <Progress value={badge.progress} className="h-1.5 mt-2" />
                           </div>
                           <Badge variant="secondary">
                             Niveau {badge.level}/{badge.maxLevel}
