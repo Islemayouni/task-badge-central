@@ -1,4 +1,3 @@
-
 export interface Project {
   id: string;
   nom: string;
@@ -59,4 +58,26 @@ export interface WorkflowTransition {
   de: string;
   vers: string;
   roles: string[];
+}
+
+export interface ProjectStats {
+  totalTasks: number;
+  completedTasks: number;
+  inProgressTasks: number;
+  assignedUsers: number;
+  badgesAwarded: number;
+}
+
+export interface ProjectFilters {
+  status: string[];
+  category: string[];
+  projectLead: string[];
+  dateRange?: [Date, Date];
+}
+
+export interface ProjectAction {
+  type: 'edit' | 'delete' | 'assign' | 'view';
+  icon: LucideIcon;
+  label: string;
+  onClick: (project: Project) => void;
 }
