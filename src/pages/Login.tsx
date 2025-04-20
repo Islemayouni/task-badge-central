@@ -1,31 +1,41 @@
+
 import { AtSign, Lock, Users, Award, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
 
 const Login = () => {
   const [email, setEmail] = useState("nom@entreprise.com");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+  const { login, isLoading } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     
-    // Connexion simplifiée - accepte n'importe quels identifiants
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      await login(email, password);
+      
       toast({
         title: "Connexion réussie",
         description: "Bienvenue sur MyTasks4YOU!",
         variant: "default",
       });
+      
+      // Navigation handled automatically in the auth provider
       navigate("/dashboard");
-    }, 1000);
+    } catch (error) {
+      console.error("Erreur de connexion:", error);
+      toast({
+        title: "Erreur de connexion",
+        description: "Vérifiez vos identifiants et réessayez.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -73,6 +83,9 @@ const Login = () => {
             <div className="text-center space-y-3">
               <h2 className="text-3xl font-semibold tracking-wide">Connectez-vous</h2>
               <p className="text-white/75">Entrez vos identifiants pour accéder à votre compte</p>
+              <p className="text-white/60 text-sm">
+                <strong>Indice :</strong> Utilisez "manager@example.com" pour accéder à l'interface manager
+              </p>
             </div>
             
             <form onSubmit={handleLogin} className="mt-8 space-y-6">
@@ -140,9 +153,9 @@ const Login = () => {
               <Button
                 type="submit"
                 className="w-full bg-[#9C27B0] hover:bg-[#9C27B0]/80 text-white"
-                disabled={loading}
+                disabled={isLoading}
               >
-                {loading ? "Connexion en cours..." : "Se connecter"}
+                {isLoading ? "Connexion en cours..." : "Se connecter"}
               </Button>
             </form>
           </div>
