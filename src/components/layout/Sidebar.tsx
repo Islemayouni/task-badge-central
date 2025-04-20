@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
@@ -16,9 +17,11 @@ import {
   Layout,
   Search 
 } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 
 const Sidebar = () => {
   const location = useLocation();
+  const { currentUser, isManager } = useAuth();
   
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -97,13 +100,17 @@ const Sidebar = () => {
                 {isActive('/calendar') && <div className="absolute left-0 top-0 w-1 h-full bg-primary rounded-r-md"></div>}
               </Link>
             </li>
-            <li>
-              <Link to="/reports" className={`jira-sidebar-item ${isActive('/reports') ? 'active' : ''}`}>
-                <BarChart2 size={18} />
-                <span>Rapports</span>
-                {isActive('/reports') && <div className="absolute left-0 top-0 w-1 h-full bg-primary rounded-r-md"></div>}
-              </Link>
-            </li>
+            
+            {isManager() && (
+              <li>
+                <Link to="/reports" className={`jira-sidebar-item ${isActive('/reports') ? 'active' : ''}`}>
+                  <BarChart2 size={18} />
+                  <span>Rapports</span>
+                  {isActive('/reports') && <div className="absolute left-0 top-0 w-1 h-full bg-primary rounded-r-md"></div>}
+                </Link>
+              </li>
+            )}
+            
             <li>
               <Link to="/knowledge" className={`jira-sidebar-item ${isActive('/knowledge') ? 'active' : ''}`}>
                 <BookOpen size={18} />
@@ -114,36 +121,38 @@ const Sidebar = () => {
           </ul>
         </div>
         
-        <div className="mb-6">
-          <p className="text-xs uppercase text-gray-400 font-medium px-3 mb-2 flex items-center">
-            <Users className="h-3 w-3 mr-1.5 text-[#9b87f5]" />
-            Management
-          </p>
-          <ul className="space-y-1">
-            <li>
-              <Link to="/team" className={`jira-sidebar-item ${isActive('/team') ? 'active' : ''}`}>
-                <Users size={18} />
-                <span>Équipe</span>
-                {isActive('/team') && <div className="absolute left-0 top-0 w-1 h-full bg-primary rounded-r-md"></div>}
-              </Link>
-            </li>
-            <li>
-              <Link to="/notifications" className={`jira-sidebar-item ${isActive('/notifications') ? 'active' : ''}`}>
-                <Bell size={18} />
-                <span>Notifications</span>
-                {isActive('/notifications') && <div className="absolute left-0 top-0 w-1 h-full bg-primary rounded-r-md"></div>}
-                <span className="ml-auto bg-primary/10 text-primary text-xs font-medium py-0.5 px-2 rounded-full">3</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/settings" className={`jira-sidebar-item ${isActive('/settings') ? 'active' : ''}`}>
-                <Settings size={18} />
-                <span>Paramètres</span>
-                {isActive('/settings') && <div className="absolute left-0 top-0 w-1 h-full bg-primary rounded-r-md"></div>}
-              </Link>
-            </li>
-          </ul>
-        </div>
+        {isManager() && (
+          <div className="mb-6">
+            <p className="text-xs uppercase text-gray-400 font-medium px-3 mb-2 flex items-center">
+              <Users className="h-3 w-3 mr-1.5 text-[#9b87f5]" />
+              Management
+            </p>
+            <ul className="space-y-1">
+              <li>
+                <Link to="/team" className={`jira-sidebar-item ${isActive('/team') ? 'active' : ''}`}>
+                  <Users size={18} />
+                  <span>Équipe</span>
+                  {isActive('/team') && <div className="absolute left-0 top-0 w-1 h-full bg-primary rounded-r-md"></div>}
+                </Link>
+              </li>
+              <li>
+                <Link to="/notifications" className={`jira-sidebar-item ${isActive('/notifications') ? 'active' : ''}`}>
+                  <Bell size={18} />
+                  <span>Notifications</span>
+                  {isActive('/notifications') && <div className="absolute left-0 top-0 w-1 h-full bg-primary rounded-r-md"></div>}
+                  <span className="ml-auto bg-primary/10 text-primary text-xs font-medium py-0.5 px-2 rounded-full">3</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/settings" className={`jira-sidebar-item ${isActive('/settings') ? 'active' : ''}`}>
+                  <Settings size={18} />
+                  <span>Paramètres</span>
+                  {isActive('/settings') && <div className="absolute left-0 top-0 w-1 h-full bg-primary rounded-r-md"></div>}
+                </Link>
+              </li>
+            </ul>
+          </div>
+        )}
         
         <div className="mt-8">
           <p className="text-xs uppercase text-gray-400 font-medium px-3 mb-2 flex items-center">
@@ -162,15 +171,19 @@ const Sidebar = () => {
         </div>
       </nav>
       
-      <div className="absolute bottom-0 left-0 right-0 p-4">
-        <div className="flex items-center p-3 bg-black/20 rounded-md border border-[#9C27B0]/20">
-          <div className="w-8 h-8 bg-gradient-to-br from-[#9C27B0] to-[#FF9800] rounded-full flex items-center justify-center text-white font-medium text-sm">TD</div>
-          <div className="ml-2 truncate">
-            <div className="text-sm font-medium text-gray-300">Thomas Durand</div>
-            <div className="text-xs text-gray-500">Chef de projet</div>
+      {currentUser && (
+        <div className="absolute bottom-0 left-0 right-0 p-4">
+          <div className="flex items-center p-3 bg-black/20 rounded-md border border-[#9C27B0]/20">
+            <div className="w-8 h-8 bg-gradient-to-br from-[#9C27B0] to-[#FF9800] rounded-full flex items-center justify-center text-white font-medium text-sm">
+              {currentUser.firstName.charAt(0)}{currentUser.lastName.charAt(0)}
+            </div>
+            <div className="ml-2 truncate">
+              <div className="text-sm font-medium text-gray-300">{currentUser.firstName} {currentUser.lastName}</div>
+              <div className="text-xs text-gray-500 capitalize">{currentUser.role} {currentUser.managerLevel && `(${currentUser.managerLevel})`}</div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </aside>
   );
 };
