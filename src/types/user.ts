@@ -1,5 +1,12 @@
 
-export type UserRole = 'manager' | 'employee';
+// Définition plus précise des rôles utilisateur
+export type UserRole = 'n1' | 'n2' | 'employee';
+
+export type UserLevel = {
+  current: number;
+  total: number;
+  progress: number;
+};
 
 export interface User {
   id: string;
@@ -7,6 +14,9 @@ export interface User {
   role: UserRole;
   nom?: string;
   prenom?: string;
+  level?: UserLevel;
+  department?: string;
+  managerId?: string; // ID du manager responsable
 }
 
 export interface AuthState {
@@ -14,3 +24,5 @@ export interface AuthState {
   isAuthenticated: boolean;
   isLoading: boolean;
 }
+
+export const isManager = (role: UserRole) => role === 'n1' || role === 'n2';

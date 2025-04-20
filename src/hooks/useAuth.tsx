@@ -1,6 +1,6 @@
 
 import { createContext, useContext, useState } from 'react';
-import { User, AuthState } from '@/types/user';
+import { User, AuthState, UserRole } from '@/types/user';
 
 interface AuthContextType extends AuthState {
   login: (email: string, password: string) => Promise<void>;
@@ -19,14 +19,28 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async (email: string, password: string) => {
     setState(prev => ({ ...prev, isLoading: true }));
     try {
-      // Simulation de l'authentification - À remplacer par votre logique d'auth
-      const isManager = email.includes('manager');
+      // Simulation de l'authentification avec différents rôles
+      let role: UserRole;
+      if (email.includes('n1')) {
+        role = 'n1';
+      } else if (email.includes('n2')) {
+        role = 'n2';
+      } else {
+        role = 'employee';
+      }
+
       const user: User = {
         id: '1',
         email,
-        role: isManager ? 'manager' : 'employee',
-        nom: isManager ? 'Durand' : 'Martin',
-        prenom: isManager ? 'Thomas' : 'Sophie'
+        role,
+        nom: role === 'n1' ? 'Durand' : role === 'n2' ? 'Martin' : 'Bernard',
+        prenom: role === 'n1' ? 'Thomas' : role === 'n2' ? 'Sophie' : 'Julie',
+        level: {
+          current: 2,
+          total: 5,
+          progress: 45
+        },
+        department: role === 'employee' ? 'Développement' : 'Management'
       };
       
       setState({
