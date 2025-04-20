@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Search, Plus, Filter } from 'lucide-react';
 import Header from '@/components/layout/Header';
@@ -9,6 +8,7 @@ import { Project } from '@/types/project';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
 import { isManager } from '@/types/user';
+import { CreateProjectForm } from '@/components/projects/CreateProjectForm';
 
 const Projects = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -17,45 +17,7 @@ const Projects = () => {
     statuses: [],
     chefDeProjet: []
   });
-  const { user } = useAuth();
-  const userIsManager = user ? isManager(user.role) : false;
-
-  // Exemple de données de tâches
-  const mockTasks = [
-    {
-      id: "T001",
-      title: "Implémenter l'authentification OAuth",
-      description: "Mettre en place l'authentification avec Google et GitHub",
-      status: "à faire" as const,
-      priority: "high" as const,
-      assignee: {
-        name: "Thomas Durand",
-        id: "U001"
-      },
-      createdDate: "2024-03-15",
-      dueDate: "2024-05-20",
-      source: "internal" as const,
-      projectId: "P001"
-    },
-    {
-      id: "T002",
-      title: "Design de l'interface utilisateur",
-      description: "Créer des maquettes pour l'application mobile",
-      status: "en cours" as const,
-      priority: "medium" as const,
-      assignee: {
-        name: "Sophie Martin",
-        id: "U002"
-      },
-      createdDate: "2024-04-01",
-      dueDate: "2024-05-15",
-      source: "internal" as const,
-      projectId: "P001"
-    }
-  ];
-
-  // Exemple de données de projets
-  const projects: Project[] = [
+  const [projects, setProjects] = useState<Project[]>([
     {
       id: "P001",
       nom: "Refonte Application Mobile",
@@ -94,7 +56,7 @@ const Projects = () => {
       droitAcces: [],
       archive: false,
       urlProjet: "/projects/P001",
-      tasks: mockTasks
+      tasks: []
     },
     {
       id: "P002",
@@ -174,33 +136,30 @@ const Projects = () => {
       archive: false,
       urlProjet: "/projects/P003"
     }
-  ];
+  ]);
+  const [isCreateProjectOpen, setIsCreateProjectOpen] = useState(false);
+  const { user } = useAuth();
+  const userIsManager = user ? isManager(user.role) : false;
 
-  // Pour un employé, filtrer les projets auxquels il est associé
   const filteredProjectsByUser = userIsManager
     ? projects
     : projects.filter(project => 
         user && project.utilisateursAssocies.some(u => u.id === user.id)
       );
 
-  // Appliquer les filtres de recherche et de catégories
   const filteredProjects = filteredProjectsByUser.filter(project => {
-    // Filtrer par texte de recherche (nom ou clé du projet)
     const matchesSearch = 
       project.nom.toLowerCase().includes(searchQuery.toLowerCase()) ||
       project.cleProjet.toLowerCase().includes(searchQuery.toLowerCase());
     
-    // Filtrer par catégorie si des filtres sont sélectionnés
     const matchesCategory = 
       filters.categories.length === 0 || 
       filters.categories.includes(project.categorie);
     
-    // Filtrer par statut si des filtres sont sélectionnés
     const matchesStatus = 
       filters.statuses.length === 0 || 
       filters.statuses.includes(project.etat);
     
-    // Filtrer par chef de projet si des filtres sont sélectionnés
     const chefNomComplet = `${project.chefDeProjet.prenom} ${project.chefDeProjet.nom}`;
     const matchesChef = 
       filters.chefDeProjet.length === 0 || 
@@ -208,6 +167,10 @@ const Projects = () => {
     
     return matchesSearch && matchesCategory && matchesStatus && matchesChef;
   });
+
+  const handleProjectCreated = (newProject: Project) => {
+    setProjects(prev => [...prev, newProject]);
+  };
 
   return (
     <div className="flex h-screen bg-[#1A1F2C]">
@@ -227,7 +190,10 @@ const Projects = () => {
               </div>
               
               {userIsManager && (
-                <Button className="sopra-purple-gradient text-white">
+                <Button 
+                  className="sopra-purple-gradient text-white"
+                  onClick={() => setIsCreateProjectOpen(true)}
+                >
                   <Plus size={16} className="mr-2" />
                   Nouveau projet
                 </Button>
@@ -266,6 +232,12 @@ const Projects = () => {
           </div>
         </main>
       </div>
+
+      <CreateProjectForm 
+        open={isCreateProjectOpen}
+        onOpenChange={setIsCreateProjectOpen}
+        onProjectCreated={handleProjectCreated}
+      />
     </div>
   );
 };
