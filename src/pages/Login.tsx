@@ -1,4 +1,3 @@
-
 import { AtSign, Lock, Users, Award, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -91,8 +90,8 @@ const Login = () => {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="nom@entreprise.com"
-                      className="pl-10 bg-[#1A1F2C]/60 border-purple-500/20 text-white placeholder:text-white/60"
+                      placeholder="Votre email"
+                      className="pl-10 bg-[#1A1F2C]/60 border-purple-500/20 text-white placeholder:text-white/20"
                       required
                     />
                   </div>
