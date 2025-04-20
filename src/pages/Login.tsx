@@ -38,25 +38,25 @@ const Login = () => {
             alt="Sopra HR Software" 
             className="h-48 w-auto mb-4" 
           />
-          <h1 className="text-4xl font-bold mb-4 text-white tracking-wide uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#9C27B0] to-[#FF9800]">
+          <h1 className="text-4xl font-bold mb-4 text-white tracking-wide uppercase">
             MyTasks4YOU
           </h1>
           <p className="text-xl mb-6 text-gray-200 font-medium">Restons en contact avec MyTasks4YOU</p>
           
           <div className="grid grid-cols-2 gap-4 mb-8">
-            <div className="flex flex-col items-center bg-gray-900/80 rounded-lg p-4 border border-gray-800">
+            <div className="flex flex-col items-center bg-[#1A1F2C]/60 rounded-lg p-4">
               <ShieldCheck size={40} className="mb-2 text-white" />
               <p className="text-gray-300 font-light">Gestion sécurisée</p>
             </div>
-            <div className="flex flex-col items-center bg-gray-900/80 rounded-lg p-4 border border-gray-800">
+            <div className="flex flex-col items-center bg-[#1A1F2C]/60 rounded-lg p-4">
               <Users size={40} className="mb-2 text-white" />
               <p className="text-gray-300 font-light">Collaboration d'équipe</p>
             </div>
-            <div className="flex flex-col items-center bg-gray-900/80 rounded-lg p-4 border border-gray-800">
+            <div className="flex flex-col items-center bg-[#1A1F2C]/60 rounded-lg p-4">
               <Award size={40} className="mb-2 text-white" />
               <p className="text-gray-300 font-light">Système de badges</p>
             </div>
-            <div className="flex flex-col items-center bg-gray-900/80 rounded-lg p-4 border border-gray-800">
+            <div className="flex flex-col items-center bg-[#1A1F2C]/60 rounded-lg p-4">
               <Lock size={40} className="mb-2 text-white" />
               <p className="text-gray-300 font-light">Gestion des accès</p>
             </div>
@@ -66,16 +66,13 @@ const Login = () => {
 
       {/* Right Section with Login Form and Gradient */}
       <div className="w-1/2 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4A154B] to-[#4A154B] opacity-60" />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#9C27B0] to-[#FF9800] opacity-40" />
-        <div className="absolute inset-x-[45%] inset-y-0 bg-gradient-to-r from-black/80 via-transparent to-transparent transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#000000] via-[#9C27B0] to-[#FF9800]" />
         
         <div className="relative h-full flex justify-center items-center">
-          <div className="w-full max-w-md p-8 space-y-6 bg-[#000000]/60 backdrop-blur-sm rounded-lg text-white">
+          <div className="w-full max-w-md p-8 space-y-6 bg-[#1A1F2C]/80 backdrop-blur-sm rounded-lg text-white">
             <div className="text-center space-y-3">
               <h2 className="text-3xl font-semibold tracking-wide">Connectez-vous</h2>
-              <p className="text-white/75 font-medium">Entrez vos identifiants pour accéder à votre compte</p>
+              <p className="text-white/75">Entrez vos identifiants pour accéder à votre compte</p>
             </div>
             
             <form onSubmit={handleLogin} className="mt-8 space-y-6">
@@ -94,7 +91,7 @@ const Login = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="votre@email.com"
-                      className="pl-10 bg-[#1A1F2C]/60 border-[#9C27B0]/20 text-white placeholder:text-white/60 font-light"
+                      className="pl-10 bg-[#1A1F2C]/60 border-purple-500/20 text-white placeholder:text-white/60"
                       required
                     />
                   </div>
@@ -114,7 +111,7 @@ const Login = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="••••••••"
-                      className="pl-10 bg-[#1A1F2C]/60 border-[#9C27B0]/20 text-white placeholder:text-white/60 font-light"
+                      className="pl-10 bg-[#1A1F2C]/60 border-purple-500/20 text-white placeholder:text-white/60"
                       required
                     />
                   </div>
@@ -127,9 +124,9 @@ const Login = () => {
                     id="remember-me"
                     name="remember-me"
                     type="checkbox"
-                    className="h-4 w-4 rounded border-[#9C27B0]/20 bg-[#1A1F2C]/60"
+                    className="h-4 w-4 rounded border-purple-500/20 bg-[#1A1F2C]/60"
                   />
-                  <label htmlFor="remember-me" className="ml-2 block text-sm font-light">
+                  <label htmlFor="remember-me" className="ml-2 block text-sm">
                     Se souvenir de moi
                   </label>
                 </div>
@@ -142,7 +139,7 @@ const Login = () => {
 
               <Button
                 type="submit"
-                className="w-full bg-[#9C27B0] hover:bg-[#6B1B9A] text-white font-medium"
+                className="w-full bg-[#9C27B0] hover:bg-[#9C27B0]/80 text-white"
                 disabled={loading}
               >
                 {loading ? "Connexion en cours..." : "Se connecter"}
