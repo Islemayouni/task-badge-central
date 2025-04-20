@@ -1,9 +1,11 @@
+
 import React from 'react';
 import { Bell, ChevronDown, HelpCircle, Search, Settings } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { isManager } from "@/types/user";
 
 const Header = () => {
   const { user } = useAuth();
@@ -24,7 +26,7 @@ const Header = () => {
           <Button variant="ghost" asChild className="text-gray-300 hover:bg-gray-800/50 rounded-md text-sm px-3 py-1.5 h-auto">
             <Link to="/tasks">Tâches</Link>
           </Button>
-          {userRole === 'manager' ? (
+          {isManager(userRole) ? (
             <>
               <Button variant="ghost" asChild className="text-gray-300 hover:bg-gray-800/50 rounded-md text-sm px-3 py-1.5 h-auto">
                 <Link to="/team">Équipe</Link>

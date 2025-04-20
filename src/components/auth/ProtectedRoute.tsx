@@ -1,6 +1,6 @@
 
 import { Navigate } from 'react-router-dom';
-import { User } from '@/types/user';
+import { User, isManager } from '@/types/user';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -13,7 +13,11 @@ const ProtectedRoute = ({ children, requiredRole, user }: ProtectedRouteProps) =
     return <Navigate to="/login" replace />;
   }
 
-  if (requiredRole && user.role !== requiredRole) {
+  if (requiredRole === 'manager' && !isManager(user.role)) {
+    return <Navigate to="/dashboard" replace />;
+  }
+
+  if (requiredRole === 'employee' && isManager(user.role)) {
     return <Navigate to="/dashboard" replace />;
   }
 
