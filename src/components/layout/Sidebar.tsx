@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
@@ -13,7 +14,8 @@ import {
   BookOpen,
   Bell,
   Briefcase,
-  Layout
+  Layout,
+  Search  // Added Search icon import
 } from 'lucide-react';
 
 const Sidebar = () => {
@@ -175,3 +177,4 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
