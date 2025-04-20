@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
@@ -15,7 +14,7 @@ import {
   Bell,
   Briefcase,
   Layout,
-  Search  // Added Search icon import
+  Search 
 } from 'lucide-react';
 
 const Sidebar = () => {
@@ -26,9 +25,9 @@ const Sidebar = () => {
   };
   
   return (
-    <aside className="w-64 border-r border-gray-800 bg-[#1A1F2C] h-full">
+    <aside className="w-64 border-r border-[#9C27B0]/20 bg-[#1A1F2C] h-full">
       <div className="p-4">
-        <button className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white w-full rounded-md py-2 text-sm font-medium flex items-center justify-center gap-2 transition-colors">
+        <button className="bg-gradient-to-r from-[#9C27B0] to-[#FF9800] text-white w-full rounded-md py-2 text-sm font-medium flex items-center justify-center gap-2 transition-all hover:opacity-90">
           <Plus size={16} />
           <span>Créer une tâche</span>
         </button>
@@ -164,8 +163,8 @@ const Sidebar = () => {
       </nav>
       
       <div className="absolute bottom-0 left-0 right-0 p-4">
-        <div className="flex items-center p-3 bg-gray-800/30 rounded-md border border-gray-700">
-          <div className="w-8 h-8 bg-gradient-to-br from-[#9b87f5] to-[#7b67d5] rounded-full flex items-center justify-center text-white font-medium text-sm">TD</div>
+        <div className="flex items-center p-3 bg-black/20 rounded-md border border-[#9C27B0]/20">
+          <div className="w-8 h-8 bg-gradient-to-br from-[#9C27B0] to-[#FF9800] rounded-full flex items-center justify-center text-white font-medium text-sm">TD</div>
           <div className="ml-2 truncate">
             <div className="text-sm font-medium text-gray-300">Thomas Durand</div>
             <div className="text-xs text-gray-500">Chef de projet</div>
@@ -177,4 +176,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-

@@ -1,4 +1,3 @@
-
 import { Project } from "@/types/project";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -11,7 +10,7 @@ interface ProjectCardProps {
 
 export const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
-    <Card className="bg-[#1A1F2C] border-gray-800 hover:shadow-lg transition-shadow">
+    <Card className="bg-[#1A1F2C] border-[#9C27B0]/20 hover:shadow-lg transition-shadow">
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
@@ -26,8 +25,8 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             </div>
           </div>
           <Badge className={
-            project.etat === 'actif' ? 'bg-[#9b87f5]/20 text-[#9b87f5]' :
-            project.etat === 'en_pause' ? 'bg-yellow-500/20 text-yellow-500' :
+            project.etat === 'actif' ? 'bg-[#9C27B0]/20 text-[#9C27B0]' :
+            project.etat === 'en_pause' ? 'bg-[#FF9800]/20 text-[#FF9800]' :
             project.etat === 'terminé' ? 'bg-green-500/20 text-green-500' :
             'bg-gray-500/20 text-gray-500'
           }>

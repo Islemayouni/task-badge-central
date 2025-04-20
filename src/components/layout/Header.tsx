@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Bell, ChevronDown, HelpCircle, Search, Settings } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -6,10 +5,10 @@ import { Button } from "@/components/ui/button";
 
 const Header = () => {
   return (
-    <header className="h-14 px-4 border-b border-gray-800 flex items-center justify-between bg-[#1A1F2C]">
+    <header className="h-14 px-4 border-b border-[#9C27B0]/20 bg-[#1A1F2C] flex items-center justify-between">
       <div className="flex items-center gap-4">
         <div className="flex items-center">
-          <h1 className="text-xl font-bold jira-logo text-[#9b87f5]">TakeIt</h1>
+          <h1 className="text-xl font-bold jira-logo text-transparent bg-clip-text bg-gradient-to-r from-[#9C27B0] to-[#FF9800]">TakeIt</h1>
         </div>
         <div className="flex items-center gap-1.5">
           <Button variant="ghost" className="text-gray-300 hover:bg-gray-800/50 rounded-md text-sm px-3 py-1.5 h-auto">
