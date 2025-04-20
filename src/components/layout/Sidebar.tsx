@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
@@ -27,7 +26,7 @@ const Sidebar = () => {
   return (
     <aside className="w-64 border-r border-gray-800 bg-[#1A1F2C] h-full">
       <div className="p-4">
-        <button className="bg-[#9C27B0] hover:bg-[#7B1FA2] text-white w-full rounded-md py-2 text-sm font-medium flex items-center justify-center gap-2 transition-colors">
+        <button className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white w-full rounded-md py-2 text-sm font-medium flex items-center justify-center gap-2 transition-colors">
           <Plus size={16} />
           <span>Créer une tâche</span>
         </button>
@@ -38,7 +37,7 @@ const Sidebar = () => {
           <input 
             type="text" 
             placeholder="Rechercher..." 
-            className="w-full px-3 py-2 rounded-md bg-gray-800/50 border border-gray-700 text-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#9C27B0]/30 pl-9"
+            className="w-full px-3 py-2 rounded-md bg-gray-800/50 border border-gray-700 text-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#9b87f5]/30 pl-9"
           />
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
         </div>
@@ -46,8 +45,8 @@ const Sidebar = () => {
       
       <nav className="px-2 py-2">
         <div className="mb-6">
-          <p className="text-xs uppercase text-jira-mediumgray font-medium px-3 mb-2 flex items-center">
-            <Briefcase className="h-3 w-3 mr-1.5 text-primary/70" />
+          <p className="text-xs uppercase text-gray-400 font-medium px-3 mb-2 flex items-center">
+            <Briefcase className="h-3 w-3 mr-1.5 text-[#9b87f5]" />
             Général
           </p>
           <ul className="space-y-1">
@@ -85,8 +84,8 @@ const Sidebar = () => {
         </div>
         
         <div className="mb-6">
-          <p className="text-xs uppercase text-jira-mediumgray font-medium px-3 mb-2 flex items-center">
-            <Clock className="h-3 w-3 mr-1.5 text-secondary/70" />
+          <p className="text-xs uppercase text-gray-400 font-medium px-3 mb-2 flex items-center">
+            <Clock className="h-3 w-3 mr-1.5 text-[#9b87f5]" />
             Planification
           </p>
           <ul className="space-y-1">
@@ -115,8 +114,8 @@ const Sidebar = () => {
         </div>
         
         <div className="mb-6">
-          <p className="text-xs uppercase text-jira-mediumgray font-medium px-3 mb-2 flex items-center">
-            <Users className="h-3 w-3 mr-1.5 text-jira-purple/70" />
+          <p className="text-xs uppercase text-gray-400 font-medium px-3 mb-2 flex items-center">
+            <Users className="h-3 w-3 mr-1.5 text-[#9b87f5]" />
             Management
           </p>
           <ul className="space-y-1">
@@ -146,8 +145,8 @@ const Sidebar = () => {
         </div>
         
         <div className="mt-8">
-          <p className="text-xs uppercase text-jira-mediumgray font-medium px-3 mb-2 flex items-center">
-            <Star className="h-3 w-3 mr-1.5 text-secondary/70" />
+          <p className="text-xs uppercase text-gray-400 font-medium px-3 mb-2 flex items-center">
+            <Star className="h-3 w-3 mr-1.5 text-[#9b87f5]" />
             Favoris
           </p>
           <ul className="space-y-1">
@@ -164,7 +163,7 @@ const Sidebar = () => {
       
       <div className="absolute bottom-0 left-0 right-0 p-4">
         <div className="flex items-center p-3 bg-gray-800/30 rounded-md border border-gray-700">
-          <div className="w-8 h-8 bg-gradient-to-br from-[#9C27B0] to-[#E1052A] rounded-full flex items-center justify-center text-white font-medium text-sm">TD</div>
+          <div className="w-8 h-8 bg-gradient-to-br from-[#9b87f5] to-[#7b67d5] rounded-full flex items-center justify-center text-white font-medium text-sm">TD</div>
           <div className="ml-2 truncate">
             <div className="text-sm font-medium text-gray-300">Thomas Durand</div>
             <div className="text-xs text-gray-500">Chef de projet</div>
@@ -174,25 +173,5 @@ const Sidebar = () => {
     </aside>
   );
 };
-
-// Composant Search importé de lucide-react
-const Search = ({ className, ...props }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-    {...props}
-  >
-    <circle cx="11" cy="11" r="8" />
-    <path d="m21 21-4.3-4.3" />
-  </svg>
-);
 
 export default Sidebar;

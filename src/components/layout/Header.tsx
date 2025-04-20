@@ -9,7 +9,7 @@ const Header = () => {
     <header className="h-14 px-4 border-b border-gray-800 flex items-center justify-between bg-[#1A1F2C]">
       <div className="flex items-center gap-4">
         <div className="flex items-center">
-          <h1 className="text-xl font-bold jira-logo text-[#E1052A]">TakeIt</h1>
+          <h1 className="text-xl font-bold jira-logo text-[#9b87f5]">TakeIt</h1>
         </div>
         <div className="flex items-center gap-1.5">
           <Button variant="ghost" className="text-gray-300 hover:bg-gray-800/50 rounded-md text-sm px-3 py-1.5 h-auto">
@@ -31,7 +31,7 @@ const Header = () => {
           <input
             type="text"
             placeholder="Rechercher"
-            className="h-8 w-64 pl-9 pr-4 rounded-md bg-gray-800/50 text-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#9C27B0]/30 border border-gray-700"
+            className="h-8 w-64 pl-9 pr-4 rounded-md bg-gray-800/50 text-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#9b87f5]/30 border border-gray-700"
           />
         </div>
         
@@ -49,7 +49,7 @@ const Header = () => {
         
         <Avatar className="h-8 w-8 cursor-pointer">
           <AvatarImage src="https://github.com/shadcn.png" alt="User" />
-          <AvatarFallback className="text-xs bg-[#9C27B0] text-white">US</AvatarFallback>
+          <AvatarFallback className="text-xs bg-[#9b87f5] text-white">US</AvatarFallback>
         </Avatar>
       </div>
     </header>

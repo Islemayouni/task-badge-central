@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -38,7 +37,6 @@ export const ProjectFilters = ({ onSearch, onFilter, projects }: ProjectFiltersP
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
   const [selectedChefs, setSelectedChefs] = useState<string[]>([]);
 
-  // Extraire les valeurs uniques des projets
   const uniqueCategories = [...new Set(projects.map(project => project.categorie))];
   const uniqueStatuses = [...new Set(projects.map(project => project.etat))];
   const uniqueChefs = [...new Set(projects.map(project => `${project.chefDeProjet.prenom} ${project.chefDeProjet.nom}`))];
@@ -56,7 +54,6 @@ export const ProjectFilters = ({ onSearch, onFilter, projects }: ProjectFiltersP
     });
   };
 
-  // Appliquer les filtres quand ils changent
   useEffect(() => {
     handleFilterChange();
   }, [selectedCategories, selectedStatuses, selectedChefs]);
@@ -78,7 +75,7 @@ export const ProjectFilters = ({ onSearch, onFilter, projects }: ProjectFiltersP
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
         <Input 
           placeholder="Rechercher un projet..." 
-          className="pl-10 bg-[#1A1F2C]/60 border-[#9C27B0]/20 text-white placeholder:text-gray-400"
+          className="pl-10 bg-[#1A1F2C]/60 border-[#9b87f5]/20 text-white placeholder:text-gray-400"
           value={searchValue}
           onChange={(e) => handleSearchChange(e.target.value)}
         />
@@ -88,23 +85,22 @@ export const ProjectFilters = ({ onSearch, onFilter, projects }: ProjectFiltersP
           <PopoverTrigger asChild>
             <Button 
               variant="outline" 
-              className="flex items-center gap-2 bg-[#1A1F2C]/60 border-[#9C27B0]/20 text-white"
+              className="flex items-center gap-2 bg-[#1A1F2C]/60 border-[#9b87f5]/20 text-white"
             >
               <Filter size={18} />
               Filtres
               {getActiveFiltersCount() > 0 && (
-                <span className="ml-1 bg-[#9C27B0] text-white text-xs font-medium py-0.5 px-2 rounded-full">
+                <span className="ml-1 bg-[#9b87f5] text-white text-xs font-medium py-0.5 px-2 rounded-full">
                   {getActiveFiltersCount()}
                 </span>
               )}
               <ChevronDown size={16} className="ml-1" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-80 p-4 bg-[#1A1F2C] border-[#9C27B0]/20" align="end">
+          <PopoverContent className="w-80 p-4 bg-[#1A1F2C] border-[#9b87f5]/20" align="end">
             <div className="space-y-4">
-              {/* Categories */}
               <div>
-                <h3 className="font-medium mb-2 text-[#9C27B0]">Catégorie</h3>
+                <h3 className="font-medium mb-2 text-[#9b87f5]">Catégorie</h3>
                 <div className="space-y-2 max-h-32 overflow-y-auto">
                   {uniqueCategories.map((category) => (
                     <div key={category} className="flex items-center space-x-2">
@@ -118,7 +114,7 @@ export const ProjectFilters = ({ onSearch, onFilter, projects }: ProjectFiltersP
                             setSelectedCategories(selectedCategories.filter(c => c !== category));
                           }
                         }}
-                        className="border-[#9C27B0]/40 data-[state=checked]:bg-[#9C27B0]"
+                        className="border-[#9b87f5]/40 data-[state=checked]:bg-[#9b87f5]"
                       />
                       <Label htmlFor={`category-${category}`} className="cursor-pointer text-white">
                         {category}
@@ -128,9 +124,8 @@ export const ProjectFilters = ({ onSearch, onFilter, projects }: ProjectFiltersP
                 </div>
               </div>
 
-              {/* Status */}
               <div>
-                <h3 className="font-medium mb-2 text-[#9C27B0]">État</h3>
+                <h3 className="font-medium mb-2 text-[#9b87f5]">État</h3>
                 <div className="space-y-2">
                   {uniqueStatuses.map((status) => (
                     <div key={status} className="flex items-center space-x-2">
@@ -144,7 +139,7 @@ export const ProjectFilters = ({ onSearch, onFilter, projects }: ProjectFiltersP
                             setSelectedStatuses(selectedStatuses.filter(s => s !== status));
                           }
                         }}
-                        className="border-[#9C27B0]/40 data-[state=checked]:bg-[#9C27B0]"
+                        className="border-[#9b87f5]/40 data-[state=checked]:bg-[#9b87f5]"
                       />
                       <Label htmlFor={`status-${status}`} className="cursor-pointer text-white">
                         {status === 'actif' ? 'Actif' : 
@@ -157,9 +152,8 @@ export const ProjectFilters = ({ onSearch, onFilter, projects }: ProjectFiltersP
                 </div>
               </div>
 
-              {/* Project Manager */}
               <div>
-                <h3 className="font-medium mb-2 text-[#9C27B0]">Chef de projet</h3>
+                <h3 className="font-medium mb-2 text-[#9b87f5]">Chef de projet</h3>
                 <div className="space-y-2 max-h-32 overflow-y-auto">
                   {uniqueChefs.map((chef) => (
                     <div key={chef} className="flex items-center space-x-2">
@@ -173,7 +167,7 @@ export const ProjectFilters = ({ onSearch, onFilter, projects }: ProjectFiltersP
                             setSelectedChefs(selectedChefs.filter(c => c !== chef));
                           }
                         }}
-                        className="border-[#9C27B0]/40 data-[state=checked]:bg-[#9C27B0]"
+                        className="border-[#9b87f5]/40 data-[state=checked]:bg-[#9b87f5]"
                       />
                       <Label htmlFor={`chef-${chef}`} className="cursor-pointer text-white">
                         {chef}
@@ -183,11 +177,11 @@ export const ProjectFilters = ({ onSearch, onFilter, projects }: ProjectFiltersP
                 </div>
               </div>
 
-              <div className="flex justify-between pt-2 border-t border-[#9C27B0]/20">
+              <div className="flex justify-between pt-2 border-t border-[#9b87f5]/20">
                 <Button 
                   variant="outline" 
                   onClick={handleClearFilters}
-                  className="text-gray-300 hover:text-white hover:bg-[#9C27B0]/20"
+                  className="text-gray-300 hover:text-white hover:bg-[#9b87f5]/20"
                 >
                   Réinitialiser
                 </Button>
@@ -195,7 +189,7 @@ export const ProjectFilters = ({ onSearch, onFilter, projects }: ProjectFiltersP
             </div>
           </PopoverContent>
         </Popover>
-        <Button className="bg-[#9C27B0] hover:bg-[#6B1B9A] text-white">
+        <Button className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white">
           Nouveau projet
         </Button>
       </div>
