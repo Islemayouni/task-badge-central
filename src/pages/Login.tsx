@@ -24,7 +24,7 @@ const Login = () => {
         description: "Bienvenue sur MyTasks4YOU!",
         variant: "default",
       });
-      navigate("/projects");
+      navigate("/dashboard");
     }, 1000);
   };
 

@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import Tasks from "./pages/Tasks";
 import NotFound from "./pages/NotFound";
 import Projects from "./pages/Projects";
+import Badges from "./pages/Badges";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,7 +32,7 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/tasks" element={<Tasks />} />
-          <Route path="/badges" element={<Dashboard />} />
+          <Route path="/badges" element={<Badges />} />
           <Route path="/calendar" element={<Dashboard />} />
           <Route path="/reports" element={<Dashboard />} />
           <Route path="/team" element={<Dashboard />} />
