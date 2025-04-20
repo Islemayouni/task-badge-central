@@ -15,7 +15,7 @@ import {
   Clock, 
   Award 
 } from "lucide-react";
-import { PerformanceChart } from "@/components/dashboard/PerformanceChart";
+import PerformanceChart from "@/components/dashboard/PerformanceChart";
 import StatCard from "@/components/dashboard/StatCard";
 
 interface ProjectDetailsProps {

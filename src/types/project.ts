@@ -1,3 +1,6 @@
+
+import { LucideIcon } from 'lucide-react';
+
 export interface Project {
   id: string;
   nom: string;
