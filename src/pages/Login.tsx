@@ -90,8 +90,8 @@ const Login = () => {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Votre email"
-                      className="pl-10 bg-[#1A1F2C]/60 border-purple-500/20 text-white placeholder:text-white/20"
+                      placeholder="nom@entreprise.com"
+                      className="pl-10 bg-[#1A1F2C]/60 border-purple-500/20 text-white placeholder:text-white/60"
                       required
                     />
                   </div>
