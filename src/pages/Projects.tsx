@@ -189,7 +189,7 @@ const Projects = () => {
                 <h1 className="text-2xl font-bold mb-2 text-white">Projets</h1>
                 <p className="text-gray-400">
                   {userIsManager 
-                    ? "Gérez et suivez tous les projets au même endroit" 
+                    ? "Gérez et suivez tous les projets" 
                     : "Consultez les projets auxquels vous êtes associé"}
                 </p>
               </div>
@@ -208,7 +208,7 @@ const Projects = () => {
             <ProjectFilters 
               onSearch={setSearchQuery} 
               onFilter={setFilters}
-              projects={projects}
+              projects={filteredProjectsByUser}
             />
             
             {filteredProjects.length > 0 ? (
