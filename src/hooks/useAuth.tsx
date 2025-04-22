@@ -30,7 +30,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       const user: User = {
-        id: '1',
+        id: role === 'employee' ? 'employee123' : '1', // Ajout d'un ID stable pour l'employé
         email,
         role,
         nom: role === 'n1' ? 'Durand' : role === 'n2' ? 'Martin' : 'Bernard',

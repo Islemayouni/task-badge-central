@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Search, Plus } from 'lucide-react';
 import Header from '@/components/layout/Header';
@@ -43,6 +44,13 @@ const Projects = () => {
           prenom: "Thomas",
           email: "thomas.durand@entreprise.com",
           role: "Chef de projet"
+        },
+        {
+          id: "employee123", // ID correspondant à un employé standard
+          nom: "Bernard",
+          prenom: "Julie",
+          email: "julie.bernard@entreprise.com",
+          role: "Développeur"
         }
       ],
       dateCreation: "2024-01-01",
@@ -83,6 +91,13 @@ const Projects = () => {
           prenom: "Sophie",
           email: "sophie.martin@entreprise.com",
           role: "Chef de projet"
+        },
+        {
+          id: "employee123", // ID correspondant à un employé standard
+          nom: "Bernard",
+          prenom: "Julie",
+          email: "julie.bernard@entreprise.com",
+          role: "Développeur"
         }
       ],
       dateCreation: "2023-11-15",
@@ -141,11 +156,15 @@ const Projects = () => {
   const { user } = useAuth();
   const userIsManager = user ? isManager(user.role) : false;
 
-  const filteredProjectsByUser = userIsManager
-    ? projects
-    : projects.filter(project => 
-        user && project.utilisateursAssocies.some(u => u.id === user.id)
-      );
+  // Filtrer les projets selon le rôle de l'utilisateur
+  const filteredProjectsByUser = projects.filter(project => {
+    if (userIsManager) {
+      return true; // Les managers voient tous les projets
+    } else {
+      // Les employés voient les projets auxquels ils sont associés
+      return user && project.utilisateursAssocies.some(u => u.email === user.email || u.id === user.id);
+    }
+  });
 
   const filteredProjects = filteredProjectsByUser.filter(project => {
     const matchesSearch = 
