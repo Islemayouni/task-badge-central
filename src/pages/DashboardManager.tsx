@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ChartContainer } from "@/components/ui/chart";
+import { CreateUserForm } from '@/components/users/CreateUserForm';
 
 const DashboardManager = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -129,6 +129,11 @@ const DashboardManager = () => {
     }
   ];
 
+  const handleOpenCreateUser = () => {
+    console.log("Opening create user form");
+    setIsCreateUserOpen(true);
+  };
+
   return (
     <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">
       <Header />
@@ -149,7 +154,7 @@ const DashboardManager = () => {
                 <Calendar size={16} />
                 <span>Exporter</span>
               </Button>
-              <Button className="gap-2" onClick={() => setIsCreateUserOpen(true)}>
+              <Button className="gap-2" onClick={handleOpenCreateUser}>
                 <UserPlus size={16} />
                 <span>Ajouter un utilisateur</span>
               </Button>
@@ -453,6 +458,16 @@ const DashboardManager = () => {
           </Tabs>
         </main>
       </div>
+
+      <CreateUserForm 
+        open={isCreateUserOpen}
+        onOpenChange={setIsCreateUserOpen}
+        onUserCreated={(user) => {
+          console.log("User created:", user);
+          // Here you would typically update the team members list
+          // with the newly created user
+        }}
+      />
     </div>
   );
 };

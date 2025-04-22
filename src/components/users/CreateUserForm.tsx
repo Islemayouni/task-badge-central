@@ -1,106 +1,133 @@
 
-import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import React from 'react';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useForm } from "react-hook-form";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { useForm } from "react-hook-form";
+import { useToast } from "@/hooks/use-toast";
 
-const formSchema = z.object({
+// Define form schema
+const userFormSchema = z.object({
   firstName: z.string().min(2, "Le prénom doit contenir au moins 2 caractères"),
   lastName: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
   email: z.string().email("Email invalide"),
-  role: z.enum(["n1", "n2", "employee"], {
-    required_error: "Veuillez sélectionner un rôle",
-  }),
-  status: z.enum(["actif", "inactif"], {
-    required_error: "Veuillez sélectionner un statut",
-  }),
+  role: z.string().min(1, "Veuillez sélectionner un rôle"),
+  status: z.string().default("actif"),
 });
 
-type CreateUserFormValues = z.infer<typeof formSchema>;
+type UserFormValues = z.infer<typeof userFormSchema>;
 
 interface CreateUserFormProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onUserCreated: (user: any) => void;
 }
 
-export function CreateUserForm({ open, onOpenChange }: CreateUserFormProps) {
-  const form = useForm<CreateUserFormValues>({
-    resolver: zodResolver(formSchema),
+export const CreateUserForm: React.FC<CreateUserFormProps> = ({
+  open,
+  onOpenChange,
+  onUserCreated
+}) => {
+  const { toast } = useToast();
+  
+  const form = useForm<UserFormValues>({
+    resolver: zodResolver(userFormSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
       email: "",
-      role: "employee",
+      role: "",
       status: "actif",
     },
   });
 
-  const onSubmit = async (values: CreateUserFormValues) => {
+  const onSubmit = async (values: UserFormValues) => {
     try {
-      const response = await fetch("/api/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...values,
-          tasksCompleted: 0,
-          badgesEarned: [],
-        }),
+      console.log("Creating user with values:", values);
+      
+      // Simulate API call to create user
+      // In a real app, you would make an API call to your Firebase backend
+      const newUser = {
+        id: `user-${Date.now()}`,
+        firstName: values.firstName,
+        lastName: values.lastName,
+        email: values.email,
+        role: values.role,
+        tasksCompleted: 0,
+        badgesEarned: [],
+        status: values.status,
+      };
+      
+      // Here you would call your API
+      // const response = await fetch('/api/users', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(newUser),
+      // });
+      // const data = await response.json();
+      
+      toast({
+        title: "Utilisateur créé",
+        description: `${values.firstName} ${values.lastName} a été ajouté avec succès.`,
       });
-
-      if (!response.ok) {
-        throw new Error("Erreur lors de la création de l'utilisateur");
-      }
-
-      onOpenChange(false);
+      
+      onUserCreated(newUser);
       form.reset();
+      onOpenChange(false);
     } catch (error) {
-      console.error("Erreur:", error);
+      console.error("Error creating user:", error);
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue lors de la création de l'utilisateur.",
+        variant: "destructive",
+      });
     }
   };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle>Ajouter un utilisateur</DialogTitle>
+          <DialogDescription>
+            Créez un nouvel utilisateur dans le système.
+          </DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <FormField
-              control={form.control}
-              name="firstName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Prénom</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Prénom" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="lastName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Nom</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Nom" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="grid grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="firstName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Prénom</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Prénom" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="lastName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Nom</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Nom" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
             <FormField
               control={form.control}
@@ -109,7 +136,7 @@ export function CreateUserForm({ open, onOpenChange }: CreateUserFormProps) {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="Email" {...field} />
+                    <Input type="email" placeholder="email@example.com" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -125,13 +152,13 @@ export function CreateUserForm({ open, onOpenChange }: CreateUserFormProps) {
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Sélectionnez un rôle" />
+                        <SelectValue placeholder="Sélectionner un rôle" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
+                      <SelectItem value="employee">Employé</SelectItem>
                       <SelectItem value="n1">Manager N1</SelectItem>
                       <SelectItem value="n2">Manager N2</SelectItem>
-                      <SelectItem value="employee">Employé</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -139,37 +166,19 @@ export function CreateUserForm({ open, onOpenChange }: CreateUserFormProps) {
               )}
             />
 
-            <FormField
-              control={form.control}
-              name="status"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Statut</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Sélectionnez un statut" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="actif">Actif</SelectItem>
-                      <SelectItem value="inactif">Inactif</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <div className="flex justify-end space-x-2">
-              <Button variant="outline" onClick={() => onOpenChange(false)}>
+            <DialogFooter className="pt-4">
+              <Button 
+                type="button" 
+                variant="outline" 
+                onClick={() => onOpenChange(false)}
+              >
                 Annuler
               </Button>
-              <Button type="submit">Créer</Button>
-            </div>
+              <Button type="submit">Créer l'utilisateur</Button>
+            </DialogFooter>
           </form>
         </Form>
       </DialogContent>
     </Dialog>
   );
-}
+};
