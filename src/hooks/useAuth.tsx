@@ -16,22 +16,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     isLoading: false
   });
 
-  // Au démarrage, vérifie s'il y a un utilisateur en session
+  // Vérification de session au démarrage
   useEffect(() => {
     const checkSession = () => {
+      console.log("Checking session...");
       const storedUser = localStorage.getItem('user');
       if (storedUser) {
         try {
           const user = JSON.parse(storedUser);
+          console.log("Found stored user:", user);
           setState({
             user,
             isAuthenticated: true,
             isLoading: false
           });
         } catch (e) {
-          // En cas d'erreur, réinitialiser
+          console.error("Error parsing stored user:", e);
           localStorage.removeItem('user');
         }
+      } else {
+        console.log("No stored user found");
       }
     };
     
@@ -65,7 +69,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         department: role === 'employee' ? 'Développement' : 'Management'
       };
       
-      // Stocker l'utilisateur dans localStorage pour maintenir la session
+      // Stocker l'utilisateur avec role explicitement défini
+      console.log("Storing user with role:", role);
       localStorage.setItem('user', JSON.stringify(user));
       
       setState({
@@ -82,6 +87,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const logout = () => {
+    console.log("Logging out, removing user from storage");
     localStorage.removeItem('user');
     setState({
       user: null,

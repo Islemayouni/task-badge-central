@@ -154,13 +154,15 @@ const Projects = () => {
   ]);
   const [isCreateProjectOpen, setIsCreateProjectOpen] = useState(false);
   const { user } = useAuth();
-  // Utilisation stricte de la fonction isManager
-  const userIsManager = user ? isManager(user.role) : false;
   
-  // Pour débogage
+  // Force boolean conversion for strictness
+  const userIsManager = user && isManager(user.role) ? true : false;
+  
+  // Enhanced debugging
   useEffect(() => {
     console.log("User info:", user);
-    console.log("Is manager:", userIsManager);
+    console.log("User role:", user?.role);
+    console.log("Is manager (strict check):", userIsManager);
   }, [user, userIsManager]);
 
   const filteredProjectsByUser = projects.filter(project => {
@@ -218,7 +220,7 @@ const Projects = () => {
                 </p>
               </div>
               
-              {/* Bouton visible uniquement pour les managers */}
+              {/* Bouton visible uniquement pour les managers - strict boolean check */}
               {userIsManager === true && (
                 <Button 
                   className="sopra-purple-gradient text-white"
@@ -263,7 +265,7 @@ const Projects = () => {
         </main>
       </div>
 
-      {/* Également masquer le formulaire pour les non-managers */}
+      {/* Formulaire de création strictement visible pour les managers */}
       {userIsManager === true && (
         <CreateProjectForm 
           open={isCreateProjectOpen}

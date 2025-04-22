@@ -25,4 +25,8 @@ export interface AuthState {
   isLoading: boolean;
 }
 
-export const isManager = (role: UserRole) => role === 'n1' || role === 'n2';
+// Fonction explicite pour vérifier si un rôle est un rôle de manager
+export const isManager = (role: UserRole): boolean => {
+  console.log("Checking if role is manager:", role);
+  return role === 'n1' || role === 'n2';
+};
