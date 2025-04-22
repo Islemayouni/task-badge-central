@@ -1,4 +1,5 @@
-import { useState } from 'react';
+
+import { useState, useEffect } from 'react';
 import { Search, Plus } from 'lucide-react';
 import Header from '@/components/layout/Header';
 import Sidebar from '@/components/layout/Sidebar';
@@ -153,7 +154,14 @@ const Projects = () => {
   ]);
   const [isCreateProjectOpen, setIsCreateProjectOpen] = useState(false);
   const { user } = useAuth();
+  // Utilisation stricte de la fonction isManager
   const userIsManager = user ? isManager(user.role) : false;
+  
+  // Pour débogage
+  useEffect(() => {
+    console.log("User info:", user);
+    console.log("Is manager:", userIsManager);
+  }, [user, userIsManager]);
 
   const filteredProjectsByUser = projects.filter(project => {
     if (userIsManager) {
@@ -210,7 +218,8 @@ const Projects = () => {
                 </p>
               </div>
               
-              {userIsManager && (
+              {/* Bouton visible uniquement pour les managers */}
+              {userIsManager === true && (
                 <Button 
                   className="sopra-purple-gradient text-white"
                   onClick={handleOpenCreateProject}
@@ -254,7 +263,8 @@ const Projects = () => {
         </main>
       </div>
 
-      {userIsManager && (
+      {/* Également masquer le formulaire pour les non-managers */}
+      {userIsManager === true && (
         <CreateProjectForm 
           open={isCreateProjectOpen}
           onOpenChange={setIsCreateProjectOpen}

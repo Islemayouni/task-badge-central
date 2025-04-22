@@ -1,5 +1,5 @@
 
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { User, AuthState, UserRole } from '@/types/user';
 
 interface AuthContextType extends AuthState {
@@ -16,6 +16,28 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     isLoading: false
   });
 
+  // Au démarrage, vérifie s'il y a un utilisateur en session
+  useEffect(() => {
+    const checkSession = () => {
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        try {
+          const user = JSON.parse(storedUser);
+          setState({
+            user,
+            isAuthenticated: true,
+            isLoading: false
+          });
+        } catch (e) {
+          // En cas d'erreur, réinitialiser
+          localStorage.removeItem('user');
+        }
+      }
+    };
+    
+    checkSession();
+  }, []);
+
   const login = async (email: string, password: string) => {
     setState(prev => ({ ...prev, isLoading: true }));
     try {
@@ -30,7 +52,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       const user: User = {
-        id: role === 'employee' ? 'employee123' : '1', // Ajout d'un ID stable pour l'employé
+        id: role === 'employee' ? 'employee123' : '1', 
         email,
         role,
         nom: role === 'n1' ? 'Durand' : role === 'n2' ? 'Martin' : 'Bernard',
@@ -43,11 +65,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         department: role === 'employee' ? 'Développement' : 'Management'
       };
       
+      // Stocker l'utilisateur dans localStorage pour maintenir la session
+      localStorage.setItem('user', JSON.stringify(user));
+      
       setState({
         user,
         isAuthenticated: true,
         isLoading: false
       });
+      
+      console.log("Utilisateur connecté:", user);
     } catch (error) {
       setState(prev => ({ ...prev, isLoading: false }));
       throw error;
@@ -55,6 +82,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const logout = () => {
+    localStorage.removeItem('user');
     setState({
       user: null,
       isAuthenticated: false,
