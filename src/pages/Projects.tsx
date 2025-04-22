@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Search, Plus } from 'lucide-react';
 import Header from '@/components/layout/Header';
@@ -46,7 +45,7 @@ const Projects = () => {
           role: "Chef de projet"
         },
         {
-          id: "employee123", // ID correspondant à un employé standard
+          id: "employee123",
           nom: "Bernard",
           prenom: "Julie",
           email: "julie.bernard@entreprise.com",
@@ -93,7 +92,7 @@ const Projects = () => {
           role: "Chef de projet"
         },
         {
-          id: "employee123", // ID correspondant à un employé standard
+          id: "employee123",
           nom: "Bernard",
           prenom: "Julie",
           email: "julie.bernard@entreprise.com",
@@ -156,12 +155,10 @@ const Projects = () => {
   const { user } = useAuth();
   const userIsManager = user ? isManager(user.role) : false;
 
-  // Filtrer les projets selon le rôle de l'utilisateur
   const filteredProjectsByUser = projects.filter(project => {
     if (userIsManager) {
-      return true; // Les managers voient tous les projets
+      return true;
     } else {
-      // Les employés voient les projets auxquels ils sont associés
       return user && project.utilisateursAssocies.some(u => u.email === user.email || u.id === user.id);
     }
   });
