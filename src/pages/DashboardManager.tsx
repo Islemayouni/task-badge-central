@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '@/components/layout/Header';
 import Sidebar from '@/components/layout/Sidebar';
@@ -16,6 +15,7 @@ import { ChartContainer } from "@/components/ui/chart";
 
 const DashboardManager = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [isCreateUserOpen, setIsCreateUserOpen] = useState(false);
 
   // Performance data with periods
   const performancePeriods = [
@@ -149,7 +149,7 @@ const DashboardManager = () => {
                 <Calendar size={16} />
                 <span>Exporter</span>
               </Button>
-              <Button className="gap-2">
+              <Button className="gap-2" onClick={() => setIsCreateUserOpen(true)}>
                 <UserPlus size={16} />
                 <span>Ajouter un utilisateur</span>
               </Button>
