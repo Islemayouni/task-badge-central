@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CreateUserForm } from '@/components/users/CreateUserForm';
+import { toast } from 'react-toastify';
 
 const DashboardManager = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -140,6 +141,30 @@ const DashboardManager = () => {
     };
     
     setTeamMembers(prev => [newTeamMember, ...prev]);
+  };
+
+  const handleBadgeAction = (memberId: string) => {
+    console.log("Badge action for member:", memberId);
+    toast({
+      title: "Gestion des badges",
+      description: "Fonctionnalité de gestion des badges en cours de développement",
+    });
+  };
+
+  const handleStatsAction = (memberId: string) => {
+    console.log("Stats action for member:", memberId);
+    toast({
+      title: "Statistiques",
+      description: "Visualisation des statistiques en cours de développement",
+    });
+  };
+
+  const handleSettingsAction = (memberId: string) => {
+    console.log("Settings action for member:", memberId);
+    toast({
+      title: "Paramètres",
+      description: "Configuration des paramètres en cours de développement",
+    });
   };
 
   const filteredTeamMembers = teamMembers.filter(member => 
@@ -328,13 +353,28 @@ const DashboardManager = () => {
                               </Badge>
                             </TableCell>
                             <TableCell className="text-right space-x-1">
-                              <Button variant="ghost" size="icon" className="h-8 w-8">
+                              <Button 
+                                variant="ghost" 
+                                size="icon" 
+                                className="h-8 w-8"
+                                onClick={() => handleBadgeAction(member.id)}
+                              >
                                 <Award className="h-4 w-4" />
                               </Button>
-                              <Button variant="ghost" size="icon" className="h-8 w-8">
+                              <Button 
+                                variant="ghost" 
+                                size="icon" 
+                                className="h-8 w-8"
+                                onClick={() => handleStatsAction(member.id)}
+                              >
                                 <BarChart2 className="h-4 w-4" />
                               </Button>
-                              <Button variant="ghost" size="icon" className="h-8 w-8">
+                              <Button 
+                                variant="ghost" 
+                                size="icon" 
+                                className="h-8 w-8"
+                                onClick={() => handleSettingsAction(member.id)}
+                              >
                                 <Settings className="h-4 w-4" />
                               </Button>
                             </TableCell>
