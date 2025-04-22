@@ -238,11 +238,13 @@ const Projects = () => {
         </main>
       </div>
 
-      <CreateProjectForm 
-        open={isCreateProjectOpen}
-        onOpenChange={setIsCreateProjectOpen}
-        onProjectCreated={handleProjectCreated}
-      />
+      {userIsManager && (
+        <CreateProjectForm 
+          open={isCreateProjectOpen}
+          onOpenChange={setIsCreateProjectOpen}
+          onProjectCreated={handleProjectCreated}
+        />
+      )}
     </div>
   );
 };
