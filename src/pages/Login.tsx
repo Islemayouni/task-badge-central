@@ -1,4 +1,3 @@
-
 import { AtSign, Lock, Users, Award, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -38,7 +37,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex h-screen w-full animate-fade-in">
+    <div className="flex min-h-screen w-full animate-fade-in">
       <div className="w-1/2 bg-black flex flex-col justify-center items-center text-center p-10">
         <div className="max-w-md text-center flex flex-col items-center space-y-6">
           <img 
@@ -166,4 +165,3 @@ const Login = () => {
 };
 
 export default Login;
-
