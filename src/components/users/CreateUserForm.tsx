@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -10,7 +9,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useToast } from "@/hooks/use-toast";
 
-// Define form schema
 const userFormSchema = z.object({
   firstName: z.string().min(2, "Le prénom doit contenir au moins 2 caractères"),
   lastName: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
@@ -49,8 +47,6 @@ export const CreateUserForm: React.FC<CreateUserFormProps> = ({
     try {
       console.log("Creating user with values:", values);
       
-      // Simulate API call to create user
-      // In a real app, you would make an API call to your Firebase backend
       const newUser = {
         id: `user-${Date.now()}`,
         firstName: values.firstName,
@@ -62,20 +58,13 @@ export const CreateUserForm: React.FC<CreateUserFormProps> = ({
         status: values.status,
       };
       
-      // Here you would call your API
-      // const response = await fetch('/api/users', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(newUser),
-      // });
-      // const data = await response.json();
+      onUserCreated(newUser);
       
       toast({
         title: "Utilisateur créé",
         description: `${values.firstName} ${values.lastName} a été ajouté avec succès.`,
       });
       
-      onUserCreated(newUser);
       form.reset();
       onOpenChange(false);
     } catch (error) {

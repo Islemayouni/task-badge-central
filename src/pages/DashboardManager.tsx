@@ -16,43 +16,7 @@ import { CreateUserForm } from '@/components/users/CreateUserForm';
 const DashboardManager = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isCreateUserOpen, setIsCreateUserOpen] = useState(false);
-
-  // Performance data with periods
-  const performancePeriods = [
-    { 
-      value: "week", 
-      label: "Cette semaine",
-      data: [
-        { name: 'Lun', completed: 8, inProgress: 5 },
-        { name: 'Mar', completed: 12, inProgress: 3 },
-        { name: 'Mer', completed: 7, inProgress: 6 },
-        { name: 'Jeu', completed: 15, inProgress: 4 },
-        { name: 'Ven', completed: 9, inProgress: 3 },
-      ]
-    },
-    { 
-      value: "month", 
-      label: "Ce mois",
-      data: [
-        { name: 'S1', completed: 45, inProgress: 20 },
-        { name: 'S2', completed: 52, inProgress: 18 },
-        { name: 'S3', completed: 38, inProgress: 25 },
-        { name: 'S4', completed: 65, inProgress: 15 },
-      ]
-    },
-    { 
-      value: "quarter", 
-      label: "Ce trimestre",
-      data: [
-        { name: 'Jan', completed: 120, inProgress: 45 },
-        { name: 'Fév', completed: 98, inProgress: 32 },
-        { name: 'Mar', completed: 142, inProgress: 38 },
-      ]
-    },
-  ];
-
-  // Team members data
-  const teamMembers = [
+  const [teamMembers, setTeamMembers] = useState([
     { 
       id: "1", 
       name: "Sophie Martin", 
@@ -93,15 +57,41 @@ const DashboardManager = () => {
       badges: 6,
       department: "Infra" 
     }
+  ]);
+
+  const performancePeriods = [
+    { 
+      value: "week", 
+      label: "Cette semaine",
+      data: [
+        { name: 'Lun', completed: 8, inProgress: 5 },
+        { name: 'Mar', completed: 12, inProgress: 3 },
+        { name: 'Mer', completed: 7, inProgress: 6 },
+        { name: 'Jeu', completed: 15, inProgress: 4 },
+        { name: 'Ven', completed: 9, inProgress: 3 },
+      ]
+    },
+    { 
+      value: "month", 
+      label: "Ce mois",
+      data: [
+        { name: 'S1', completed: 45, inProgress: 20 },
+        { name: 'S2', completed: 52, inProgress: 18 },
+        { name: 'S3', completed: 38, inProgress: 25 },
+        { name: 'S4', completed: 65, inProgress: 15 },
+      ]
+    },
+    { 
+      value: "quarter", 
+      label: "Ce trimestre",
+      data: [
+        { name: 'Jan', completed: 120, inProgress: 45 },
+        { name: 'Fév', completed: 98, inProgress: 32 },
+        { name: 'Mar', completed: 142, inProgress: 38 },
+      ]
+    },
   ];
 
-  const filteredTeamMembers = teamMembers.filter(member => 
-    member.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    member.role.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    member.department.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  // Badges configuration data
   const badgeTypes = [
     { 
       id: "1", 
@@ -133,6 +123,30 @@ const DashboardManager = () => {
     console.log("Opening create user form");
     setIsCreateUserOpen(true);
   };
+
+  const handleCreateUser = (user: any) => {
+    console.log("New user created:", user);
+    const newTeamMember = {
+      id: user.id,
+      name: `${user.firstName} ${user.lastName}`,
+      role: user.role === 'employee' ? 'Employé' : 
+            user.role === 'n1' ? 'Manager N1' : 'Manager N2',
+      avatar: "",
+      tasksCompleted: 0,
+      inProgress: 0,
+      badges: 0,
+      department: "Nouveau",
+      contact: { email: user.email, phone: "" }
+    };
+    
+    setTeamMembers(prev => [newTeamMember, ...prev]);
+  };
+
+  const filteredTeamMembers = teamMembers.filter(member => 
+    member.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    member.role.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    member.department.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">
@@ -462,11 +476,7 @@ const DashboardManager = () => {
       <CreateUserForm 
         open={isCreateUserOpen}
         onOpenChange={setIsCreateUserOpen}
-        onUserCreated={(user) => {
-          console.log("User created:", user);
-          // Here you would typically update the team members list
-          // with the newly created user
-        }}
+        onUserCreated={handleCreateUser}
       />
     </div>
   );
