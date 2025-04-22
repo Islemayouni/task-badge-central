@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '@/components/layout/Header';
 import Sidebar from '@/components/layout/Sidebar';
@@ -12,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CreateUserForm } from '@/components/users/CreateUserForm';
-import { toast } from 'react-toastify';
+import { toast } from "@/hooks/use-toast";
 
 const DashboardManager = () => {
   const [searchQuery, setSearchQuery] = useState("");
