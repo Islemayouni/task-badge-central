@@ -145,9 +145,14 @@ export const CreateUserForm: React.FC<CreateUserFormProps> = ({
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="employee">Employé</SelectItem>
-                      <SelectItem value="n1">Manager N1</SelectItem>
-                      <SelectItem value="n2">Manager N2</SelectItem>
+                      <SelectItem value="developpeur">Développeur</SelectItem>
+                      <SelectItem value="designer">Designer UI/UX</SelectItem>
+                      <SelectItem value="architecte">Architecte Solution</SelectItem>
+                      <SelectItem value="analyste">Analyste Business</SelectItem>
+                      <SelectItem value="testeur">Testeur QA</SelectItem>
+                      <SelectItem value="scrum_master">Scrum Master</SelectItem>
+                      <SelectItem value="product_owner">Product Owner</SelectItem>
+                      <SelectItem value="devops">DevOps</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
