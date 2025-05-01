@@ -92,7 +92,7 @@ const TaskCard: React.FC<TaskProps> = ({
           {renderStatusBadge()}
           <span className="flex items-center gap-1 text-xs text-jira-darkgray">
             {renderPriorityIcon()}
-            <span>{priority.charAt(0).toUpperCase() + priority.slice(1)}</span>
+            {/* <span>{priority.charAt(0).toUpperCase() + priority.slice(1)}</span> */}
           </span>
         </div>
         

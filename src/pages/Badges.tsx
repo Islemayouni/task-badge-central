@@ -1,5 +1,7 @@
 
-import React, { useState } from 'react';
+
+
+import React, { useState, useEffect } from 'react';
 import Header from '@/components/layout/Header';
 import Sidebar from '@/components/layout/Sidebar';
 import { 
@@ -21,78 +23,32 @@ import { Award, Search } from 'lucide-react';
 const Badges = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('all');
+  const [allBadges, setAllBadges] = useState<any[]>([]); // état pour les badges
   
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   // Données de démonstration pour les badges
-  const allBadges = [
-    { 
-      id: "1", 
-      name: "Débutant", 
-      description: "A complété ses 5 premières tâches", 
-      image: "/lovable-uploads/488db44b-e3e9-4505-afec-611b9123f2ba.png", 
-      level: 1, 
-      maxLevel: 3,
-      progress: 100,
-      isUnlocked: true,
-      category: "progression"
-    },
-    { 
-      id: "2", 
-      name: "Performant", 
-      description: "A complété 20 tâches en moins d'un mois", 
-      image: "/lovable-uploads/325a4c76-ff38-42fe-990e-6142bf6051bf.png", 
-      level: 2, 
-      maxLevel: 5,
-      progress: 65,
-      isUnlocked: true,
-      category: "performance"
-    },
-    { 
-      id: "3", 
-      name: "Expert", 
-      description: "A résolu des problèmes critiques", 
-      image: "/lovable-uploads/be4748c1-9a46-4e46-8375-eadde6ef67da.png", 
-      level: 1, 
-      maxLevel: 5,
-      progress: 20,
-      isUnlocked: false,
-      category: "expertise"
-    },
-    { 
-      id: "4", 
-      name: "Collaborateur", 
-      description: "A aidé 5 collègues sur leurs tâches", 
-      image: "/lovable-uploads/f8c95170-c1a8-4b8b-8fe7-0296afb53761.png", 
-      level: 1, 
-      maxLevel: 3,
-      progress: 0,
-      isUnlocked: false,
-      category: "collaboration"
-    },
-    { 
-      id: "5", 
-      name: "Ponctuel", 
-      description: "A terminé 10 tâches avant la date limite", 
-      image: "/lovable-uploads/caebebe7-bf7b-4c65-87b5-35ce5afd41e9.png", 
-      level: 1, 
-      maxLevel: 3,
-      progress: 80,
-      isUnlocked: true,
-      category: "performance"
-    },
-    { 
-      id: "6", 
-      name: "Innovation", 
-      description: "A proposé 3 nouvelles idées adoptées", 
-      image: "/lovable-uploads/c275d237-065d-4151-991f-58bc484d509b.png", 
-      level: 1, 
-      maxLevel: 4,
-      progress: 0,
-      isUnlocked: false,
-      category: "expertise"
-    }
-  ];
+  // Charger les badges depuis l'API
+  useEffect(() => {
+    const fetchBadges = async () => {
+      try {
+        const response = null;
+        console.log(response.data); // Affiche les données récupérées dans la console
+        setAllBadges(response.data); // Assigner les badges récupérés
+      } catch (err) {
+        setError('Erreur lors du chargement des badges.');
+        console.error(err); // Affiche l'erreur dans la console
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  // Filtrer les badges en fonction de la recherche et de l'onglet actif
+    fetchBadges();
+  }, []);
+  
+
+
+  // Filtrer les badges selon la recherche et le tab actif
   const filteredBadges = allBadges.filter(badge => {
     const matchesSearch = badge.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           badge.description.toLowerCase().includes(searchQuery.toLowerCase());
@@ -108,12 +64,20 @@ const Badges = () => {
     }
   });
 
-  // Obtenir les statistiques des badges
+  // Statistiques des badges
   const badgeStats = {
     total: allBadges.length,
     unlocked: allBadges.filter(b => b.isUnlocked).length,
     progress: Math.round((allBadges.filter(b => b.isUnlocked).length / allBadges.length) * 100)
   };
+
+  if (loading) {
+    return <div>Chargement...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className="flex flex-col h-screen bg-gray-50">
