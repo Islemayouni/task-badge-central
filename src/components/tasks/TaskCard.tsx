@@ -4,8 +4,8 @@ import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Clock, AlertCircle, CheckCircle, ArrowUpRight } from 'lucide-react';
 
-export type TaskStatus = 'to-do' | 'in-progress' | 'done';
-export type TaskPriority = 'low' | 'medium' | 'high';
+export type TaskStatus = 'À faire' | 'En cours' | 'Terminée';
+export type TaskPriority = 'Basse' | 'Moyenne' | 'Haute';
 export type TaskSource = 'jira' | 'internal';
 
 export interface TaskProps {
@@ -34,11 +34,11 @@ const TaskCard: React.FC<TaskProps> = ({
 }) => {
   const renderStatusBadge = () => {
     switch (status) {
-      case 'to-do':
+      case 'À faire':
         return <Badge className="bg-gray-200 text-gray-700 hover:bg-gray-200">À faire</Badge>;
-      case 'in-progress':
+      case 'En cours':
         return <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-100">En cours</Badge>;
-      case 'done':
+      case 'Terminée':
         return <Badge className="bg-green-100 text-green-700 hover:bg-green-100">Terminée</Badge>;
       default:
         return null;
@@ -47,11 +47,11 @@ const TaskCard: React.FC<TaskProps> = ({
   
   const renderPriorityIcon = () => {
     switch (priority) {
-      case 'high':
+      case 'Haute':
         return <AlertCircle size={14} className="text-jira-red" />;
-      case 'medium':
+      case 'Moyenne':
         return <AlertCircle size={14} className="text-jira-yellow" />;
-      case 'low':
+      case 'Basse':
         return <AlertCircle size={14} className="text-jira-green" />;
       default:
         return null;
@@ -76,7 +76,7 @@ const TaskCard: React.FC<TaskProps> = ({
           {renderSourceBadge()}
           <span className="text-xs text-jira-mediumgray">{id}</span>
         </div>
-        {status === 'done' && <CheckCircle size={16} className="text-jira-green" />}
+        {status === 'Terminée' && <CheckCircle size={16} className="text-jira-green" />}
       </div>
       
       <h3 className="font-medium mb-1.5 line-clamp-2">{title}</h3>

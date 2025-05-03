@@ -157,14 +157,9 @@ const Tasks = () => {
   );
 
   const sortedTasks = [...filteredTasks].sort((a, b) => {
-    if (sortBy === 'deadline') {
-      const dateA = new Date(a.dueDate || '9999-12-31');
-      const dateB = new Date(b.dueDate || '9999-12-31');
-      return dateA - dateB;
-    }
+    
     return 0;
   });
-
   const handleAddTaskClick = () => {
     setIsPopupOpen(true); // Open popup
   };
