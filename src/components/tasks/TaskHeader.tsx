@@ -28,10 +28,7 @@ const TaskHeader = ({ projectName = "Mes tâches", projectId, showBackButton = f
           </p>
         </div>
       </div>
-      <Button className="sopra-red-gradient text-white">
-        <Plus size={16} className="mr-2" />
-        Nouvelle tâche
-      </Button>
+      
     </div>
   );
 };
