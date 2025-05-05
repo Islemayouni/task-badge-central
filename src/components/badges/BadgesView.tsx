@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Badge as BadgeComponent } from '@/types/badge';
 import { Badge } from '@/components/ui/badge';
@@ -54,7 +53,7 @@ const badgesSample: BadgeComponent[] = [
     id: "badge5",
     name: "Innovateur",
     description: "A proposé 5 idées innovantes adoptées par l'équipe",
-    image: "/lovable-uploads/488db44b-e3e9-4505-afec-611b9123f2ba.png",
+    image: "/lovable-uploads/c275d237-065d-4151-991f-58bc484d509b.png",
     level: 1,
     maxLevel: 3,
     progress: 35,
@@ -64,7 +63,7 @@ const badgesSample: BadgeComponent[] = [
     id: "badge6",
     name: "Perfectionniste",
     description: "A maintenu un taux d'erreur inférieur à 1% sur 30 tâches",
-    image: "/lovable-uploads/930b5cde-c295-4f49-872b-0efc0d540584.png",
+    image: "/lovable-uploads/f8c95170-c1a8-4b8b-8fe7-0296afb53761.png",
     level: 2,
     maxLevel: 3,
     progress: 65,
@@ -74,7 +73,7 @@ const badgesSample: BadgeComponent[] = [
     id: "badge7",
     name: "Ultra Performance",
     description: "Badge verrouillé",
-    image: "/lovable-uploads/325a4c76-ff38-42fe-990e-6142bf6051bf.png",
+    image: "/lovable-uploads/20c9b8cf-e6ff-41dc-af0d-d2f48cacd49e.png",
     level: 0,
     maxLevel: 3,
     progress: 0,
@@ -84,7 +83,7 @@ const badgesSample: BadgeComponent[] = [
     id: "badge8",
     name: "Mentor",
     description: "Badge verrouillé",
-    image: "/lovable-uploads/be4748c1-9a46-4e46-8375-eadde6ef67da.png",
+    image: "/lovable-uploads/caebebe7-bf7b-4c65-87b5-35ce5afd41e9.png",
     level: 0,
     maxLevel: 2,
     progress: 0,
