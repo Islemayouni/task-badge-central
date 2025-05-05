@@ -20,12 +20,11 @@ export interface TaskProps {
   };
   dueDate?: string;
   source: TaskSource;
-  docId?: string;
+  docId?: string; // Ajout de docId comme propriété optionnelle
 }
-
 interface TaskCardProps extends TaskProps {
-  docId?: string;
-  onDelete?: (id: string) => void;
+  docId?: string; // Ajoutez docId comme prop 
+  onDelete?: (id: string) => void; // Nouvelle prop pour la suppression
 }
 
 const TaskCard: React.FC<TaskCardProps> = ({
@@ -56,11 +55,11 @@ const TaskCard: React.FC<TaskCardProps> = ({
   const renderPriorityIcon = () => {
     switch (priority) {
       case 'Haute':
-        return <AlertCircle size={14} className="text-red-500" />;
+        return <AlertCircle size={14} className="text-jira-red" />;
       case 'Moyenne':
-        return <AlertCircle size={14} className="text-amber-500" />;
+        return <AlertCircle size={14} className="text-jira-yellow" />;
       case 'Basse':
-        return <AlertCircle size={14} className="text-green-500" />;
+        return <AlertCircle size={14} className="text-jira-green" />;
       default:
         return null;
     }
@@ -69,26 +68,26 @@ const TaskCard: React.FC<TaskCardProps> = ({
   const renderSourceBadge = () => {
     switch (source) {
       case 'jira':
-        return <Badge className="bg-blue-100/10 text-blue-700 hover:bg-blue-100/10 text-xs">JIRA</Badge>;
+        return <Badge className="bg-jira-blue/10 text-jira-blue hover:bg-jira-blue/10 text-xs">JIRA</Badge>;
       case 'internal':
-        return <Badge className="bg-purple-100/10 text-purple-700 hover:bg-purple-100/10 text-xs">INTERNE</Badge>;
+        return <Badge className="bg-jira-purple/10 text-jira-purple hover:bg-jira-purple/10 text-xs">INTERNE</Badge>;
       default:
         return null;
     }
   };
 
   return (
-    <div className="bg-white border rounded-md p-4 shadow-sm hover:shadow-md transition-shadow">
+    <div className="jira-task bg-white border rounded-md p-4 shadow-sm">
       <div className="flex justify-between items-start mb-2">
         <div className="flex items-center gap-2">
           {renderSourceBadge()}
-          <span className="text-xs text-gray-500">{id}</span>
+          <span className="text-xs text-jira-mediumgray">{id}</span>
         </div>
         <div className="flex items-center gap-2">
           {status === 'Terminée' && <CheckCircle size={16} className="text-green-500" />}
-          {onDelete && docId && (
+          {onDelete && docId &&(
             <button
-              onClick={() => onDelete(docId)}
+              onClick={() => onDelete(docId)} // utiliser docId ici 
               className="text-red-500 hover:text-red-700"
               title="Supprimer la tâche"
             >
@@ -96,12 +95,13 @@ const TaskCard: React.FC<TaskCardProps> = ({
             </button>
           )}
         </div>  
+        
       </div>
     
       <h3 className="font-medium mb-1.5 line-clamp-2">{title}</h3>
       
       {description && (
-        <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+        <p className="text-sm text-jira-darkgray mb-3 line-clamp-2">
           {description}
         </p>
       )}
@@ -109,14 +109,15 @@ const TaskCard: React.FC<TaskCardProps> = ({
       <div className="flex justify-between items-center mt-4">
         <div className="flex items-center gap-2">
           {renderStatusBadge()}
-          <span className="flex items-center gap-1 text-xs text-gray-600">
+          <span className="flex items-center gap-1 text-xs text-jira-darkgray">
             {renderPriorityIcon()}
+            {/* <span>{priority.charAt(0).toUpperCase() + priority.slice(1)}</span> */}
           </span>
         </div>
         
         <div className="flex items-center gap-3">
           {dueDate && (
-            <span className="flex items-center gap-1 text-xs text-gray-500">
+            <span className="flex items-center gap-1 text-xs text-jira-mediumgray">
               <Clock size={12} />
               {new Date(dueDate).toLocaleDateString()}
             </span>
@@ -125,7 +126,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
           {assignee && (
             <Avatar className="h-6 w-6">
               <AvatarImage src={assignee.avatar} alt={assignee.name} />
-              <AvatarFallback className="text-[10px] bg-blue-500 text-white">
+              <AvatarFallback className="text-[10px] bg-jira-blue text-white">
                 {assignee.name.split(' ').map(n => n[0]).join('')}
               </AvatarFallback>
             </Avatar>
@@ -135,7 +136,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
       
       {source === 'jira' && (
         <div className="mt-3 pt-2 border-t flex justify-end">
-          <a href="#" className="flex items-center gap-1 text-xs text-blue-600 hover:underline">
+          <a href="#" className="flex items-center gap-1 text-xs text-jira-blue hover:underline">
             Voir dans Jira
             <ArrowUpRight size={12} />
           </a>
