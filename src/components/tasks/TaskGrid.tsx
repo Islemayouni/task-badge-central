@@ -3,96 +3,121 @@ import React from 'react';
 import { Plus } from 'lucide-react';
 import TaskCard, { TaskProps } from './TaskCard';
 
-// Static sample tasks data
+// Static sample tasks data with logical names and descriptions
 const sampleTasks: TaskProps[] = [
   {
-    id: '1WciQTC2IDk6i1dKr9To',
+    id: 'DEV-453',
     docId: '1WciQTC2IDk6i1dKr9To',
-    title: 'R34GG',
-    description: '3434V',
+    title: 'Implémenter l\'authentification OAuth',
+    description: 'Intégrer le système d\'authentification OAuth avec Google et Microsoft',
     status: 'À faire',
-    priority: 'Moyenne',
-    dueDate: '2025-05-07',
-    source: 'internal'
+    priority: 'Haute',
+    dueDate: '2025-05-15',
+    source: 'internal',
+    assignee: {
+      name: 'Marie Dubois'
+    }
   },
   {
-    id: '1t746268193184',
+    id: 'DEV-441',
     docId: '1t746268193184',
-    title: 'Nouvelle tâche',
-    description: 'Description de la nouvelle tâche',
-    status: 'À faire',
+    title: 'Corriger bug d\'affichage sur mobile',
+    description: 'Le tableau de bord ne s\'affiche pas correctement sur les appareils mobiles',
+    status: 'En cours',
     priority: 'Moyenne',
-    dueDate: '2025-05-01',
-    source: 'internal'
+    dueDate: '2025-05-10',
+    source: 'internal',
+    assignee: {
+      name: 'Thomas Martin'
+    }
   },
   {
-    id: '1t745856158022',
+    id: 'DEV-438',
     docId: '1t745856158022',
-    title: 'Nouvelle tâche',
-    description: 'Description de la nouvelle tâche',
-    status: 'À faire',
+    title: 'Optimiser les requêtes SQL',
+    description: 'Améliorer les performances des requêtes sur la page des rapports',
+    status: 'Terminée',
     priority: 'Moyenne',
-    dueDate: '2025-05-01',
-    source: 'internal'
+    dueDate: '2025-05-05',
+    source: 'internal',
+    assignee: {
+      name: 'Sophie Bernard'
+    }
   },
   {
-    id: 'KecZWiBOnCSI0ZNb7H1z',
+    id: 'DESIGN-127',
     docId: 'KecZWiBOnCSI0ZNb7H1z',
-    title: 'vqfb',
-    description: 'fbEFB',
+    title: 'Créer maquettes pour nouvelle landing page',
+    description: 'Concevoir les maquettes Figma pour la refonte de la page d\'accueil',
     status: 'À faire',
-    priority: 'Moyenne',
-    dueDate: '2025-04-30',
-    source: 'internal'
+    priority: 'Haute',
+    dueDate: '2025-05-12',
+    source: 'internal',
+    assignee: {
+      name: 'Julie Moreau'
+    }
   },
   {
-    id: 'O5eEy6W69WpMQGCU1Cv',
+    id: 'DEV-447',
     docId: 'O5eEy6W69WpMQGCU1Cv',
-    title: 'vqfb',
-    description: 'fbEFB',
+    title: 'Mettre à jour les dépendances npm',
+    description: 'Mettre à jour toutes les bibliothèques vers les dernières versions stables',
     status: 'À faire',
-    priority: 'Moyenne',
-    dueDate: '2025-04-30',
-    source: 'internal'
+    priority: 'Basse',
+    dueDate: '2025-05-20',
+    source: 'internal',
+    assignee: {
+      name: 'Alexandre Petit'
+    }
   },
   {
-    id: 'Zw6nMu4p0omtStJKC4zPK',
+    id: 'DOCS-052',
     docId: 'Zw6nMu4p0omtStJKC4zPK',
-    title: 'ayouni',
-    description: 'ecevczev',
-    status: 'À faire',
-    priority: 'Haute',
-    dueDate: '2025-05-01',
-    source: 'internal'
+    title: 'Rédiger documentation API',
+    description: 'Créer une documentation complète pour l\'API REST avec des exemples',
+    status: 'En cours',
+    priority: 'Moyenne',
+    dueDate: '2025-05-14',
+    source: 'internal',
+    assignee: {
+      name: 'Camille Legrand'
+    }
   },
   {
-    id: 't1',
+    id: 'TEST-118',
     docId: 't1',
-    title: 'Créer une interface',
-    description: 'Développer l\'interface utilisateur',
+    title: 'Écrire tests unitaires pour module paiement',
+    description: 'Développer une suite de tests pour le nouveau module de paiement',
     status: 'À faire',
     priority: 'Haute',
-    dueDate: '2025-05-01',
-    source: 'internal'
+    dueDate: '2025-05-08',
+    source: 'internal',
+    assignee: {
+      name: 'Lucas Roux'
+    }
   },
   {
-    id: 'custom',
+    id: 'DEV-450',
     docId: 'custom',
-    title: 'Créer une interfaceeee',
-    description: 'Développer l\'interface utilisateur',
+    title: 'Intégrer analytics sur le site web',
+    description: 'Ajouter Google Analytics et configurer les événements personnalisés',
     status: 'À faire',
     priority: 'Moyenne',
-    dueDate: '2025-05-01',
-    source: 'internal'
+    dueDate: '2025-05-18',
+    source: 'internal',
+    assignee: {
+      name: 'Emma Laurent'
+    }
   }
 ];
 
 interface TaskGridProps {
   tasks?: TaskProps[];
   onDelete?: (id: string) => void;
+  onEdit?: (id: string) => void;
 }
 
-const TaskGrid = ({ tasks = sampleTasks, onDelete }: TaskGridProps) => {
+const TaskGrid = ({ tasks = sampleTasks, onDelete, onEdit }: TaskGridProps) => {
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center mb-6">
@@ -131,7 +156,9 @@ const TaskGrid = ({ tasks = sampleTasks, onDelete }: TaskGridProps) => {
             priority={task.priority}
             dueDate={task.dueDate}
             source={task.source}
+            assignee={task.assignee}
             onDelete={() => onDelete && onDelete(task.docId || '')}
+            onEdit={() => onEdit && onEdit(task.docId || '')}
           />
         ))}
         
