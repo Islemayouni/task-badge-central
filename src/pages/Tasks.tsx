@@ -1,87 +1,3 @@
-// import React, { useState } from 'react';
-// import Header from '@/components/layout/Header';
-// import Sidebar from '@/components/layout/Sidebar';
-// import TaskHeader from '@/components/tasks/TaskHeader';
-// import TaskSearch from '@/components/tasks/TaskSearch';
-// import TaskGrid from '@/components/tasks/TaskGrid';
-// import TaskStats from '@/components/tasks/TaskStats';
-
-// const Tasks = () => {
-//   const [searchQuery, setSearchQuery] = useState('');
-//   const [sortBy, setSortBy] = useState('deadline');
-
-//   const tasks = [
-//     {
-//       id: 'TASK-001',
-//       title: 'Implémenter l\'authentification OAuth',
-//       description: 'Mettre en place l\'authentification OAuth avec Google et GitHub',
-//       status: 'to-do' as const,
-//       priority: 'high' as const,
-//       assignee: {
-//         name: 'Thomas Durand',
-//         avatar: 'https://github.com/shadcn.png'
-//       },
-//       dueDate: '2025-04-20',
-//       source: 'internal' as const
-//     },
-//     {
-//       id: 'TASK-002',
-//       title: 'Optimiser les performances',
-//       description: 'Analyser et améliorer les temps de chargement des pages',
-//       status: 'in-progress' as const,
-//       priority: 'medium' as const,
-//       assignee: {
-//         name: 'Marie Laurent'
-//       },
-//       dueDate: '2025-04-18',
-//       source: 'internal' as const
-//     },
-//     {
-//       id: 'TASK-003',
-//       title: 'Corriger le bug d\'affichage',
-//       status: 'done' as const,
-//       priority: 'low' as const,
-//       assignee: {
-//         name: 'Sophie Martin'
-//       },
-//       dueDate: '2025-04-15',
-//       source: 'internal' as const
-//     }
-//   ];
-
-//   const filteredTasks = tasks.filter(task =>
-//     task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-//     task.id.toLowerCase().includes(searchQuery.toLowerCase())
-//   );
-
-//   return (
-//     <div className="flex flex-col h-screen bg-gray-50">
-//       <Header />
-      
-//       <div className="flex flex-1 overflow-hidden">
-//         <Sidebar />
-        
-//         <main className="flex-1 overflow-y-auto p-6">
-//           <TaskHeader />
-//           <TaskSearch 
-//             searchQuery={searchQuery}
-//             setSearchQuery={setSearchQuery}
-//             sortBy={sortBy}
-//             setSortBy={setSortBy}
-//           />
-//           <TaskGrid tasks={filteredTasks} />
-//           <div className="mt-8">
-//             <TaskStats />
-//           </div>
-//         </main>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Tasks;
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '@/components/layout/Header';
@@ -90,6 +6,7 @@ import TaskHeader from '@/components/tasks/TaskHeader';
 import TaskSearch from '@/components/tasks/TaskSearch';
 import TaskGrid from '@/components/tasks/TaskGrid';
 import TaskStats from '@/components/tasks/TaskStats';
+import { useToast } from "@/hooks/use-toast";
 
 const Tasks = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -97,33 +14,20 @@ const Tasks = () => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [isPopupOpen, setIsPopupOpen] = useState(false); // Popup state
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [newTask, setNewTask] = useState({
     title: '',
     description: '',
-    assignedTo: 'user123', // Default user ID, adjust as needed
+    assignedTo: 'user123',
     dueDate: '',
     status: 'À faire',
     priority: 'Moyenne',
-    source: 'Interne',
+    source: 'internal',
   });
+  const { toast } = useToast();
 
-  const API_URL = 'http://localhost:8081/task'; // Adjust if backend uses a prefix
+  const API_URL = 'http://localhost:8081/task';
 
-  // const fetchTasks = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const response = await axios.get(`${API_URL}/tasks`);
-  //     console.log('Tasks fetched:', response.data);
-  //     setTasks(response.data);
-  //     setError(null);
-  //   } catch (err) {
-  //     setError(`Erreur: ${err.response?.status} - ${err.message}`);
-  //     console.error('Fetch error:', err.response || err);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
   const fetchTasks = async () => {
     setLoading(true);
     try {
@@ -143,12 +47,18 @@ const Tasks = () => {
       setLoading(false);
     }
   };
+
   const createTask = async (taskData) => {
     try {
       const response = await axios.post(`${API_URL}/task`, taskData);
+      console.log('Task created:', response.data);
+      toast({
+        title: "Tâche créée",
+        description: "La tâche a été créée avec succès.",
+      });
       setTasks((prevTasks) => [...prevTasks, response.data]);
       setError(null);
-      setIsPopupOpen(false); // Close popup on success
+      setIsPopupOpen(false);
       setNewTask({
         title: '',
         description: '',
@@ -156,23 +66,19 @@ const Tasks = () => {
         dueDate: '',
         status: 'À faire',
         priority: 'Moyenne',
-        source: 'Interne',
-      }); // Reset form
+        source: 'internal',
+      });
     } catch (err) {
+      console.error('Error creating task:', err);
       setError('Erreur lors de la création de la tâche');
-      console.error(err);
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: "Impossible de créer la tâche. Veuillez réessayer.",
+      });
     }
   };
 
-  // const deleteTask = async (taskId) => {
-  //   try {
-  //     await axios.delete(`${API_URL}/tasks/${taskId}`);
-  //     fetchTasks(); // Rafraîchir la liste après suppression
-  //   } catch (err) {
-  //     setError('Erreur lors de la suppression de la tâche');
-  //     console.error(err);
-  //   }
-  // };
   const deleteTask = async (taskId) => {
     console.log('Tentative de suppression avec ID Firebase:', taskId);
     try {
@@ -186,6 +92,18 @@ const Tasks = () => {
 
   useEffect(() => {
     fetchTasks();
+    
+    // Add event listener for opening the add task popup
+    const handleOpenAddTaskPopup = () => {
+      setIsPopupOpen(true);
+    };
+    
+    window.addEventListener('openAddTaskPopup', handleOpenAddTaskPopup);
+    
+    // Clean up event listener on component unmount
+    return () => {
+      window.removeEventListener('openAddTaskPopup', handleOpenAddTaskPopup);
+    };
   }, []);
 
   const filteredTasks = tasks.filter(
@@ -198,12 +116,13 @@ const Tasks = () => {
     
     return 0;
   });
+
   const handleAddTaskClick = () => {
-    setIsPopupOpen(true); // Open popup
+    setIsPopupOpen(true);
   };
 
   const handlePopupClose = () => {
-    setIsPopupOpen(false); // Close popup
+    setIsPopupOpen(false);
   };
 
   const handleInputChange = (e) => {
@@ -223,13 +142,6 @@ const Tasks = () => {
         <Sidebar />
         <main className="flex-1 overflow-y-auto p-6">
           <TaskHeader />
-          <button
-            onClick={handleAddTaskClick}
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-            style={{ backgroundColor: 'black', margin: '20px', borderRadius: '11px' }}
-          >
-            + Nouvelle tâche
-          </button>
           <TaskSearch
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
@@ -237,20 +149,19 @@ const Tasks = () => {
             setSortBy={setSortBy}
           />
           {loading && <p>Chargement des tâches...</p>}
-          {error && <p className="text-red-500">{error}</p>}
-          {!loading && !error && 
+          
           <TaskGrid 
-          tasks={sortedTasks}
-          onDelete={deleteTask} 
-          />}
+            tasks={sortedTasks}
+            onDelete={deleteTask} 
+          />
+          
           <div className="mt-8">
             <TaskStats />
           </div>
-         
 
           {/* Popup/Modal for Adding a Task */}
           {isPopupOpen && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
               <div className="bg-white p-6 rounded-lg shadow-lg w-96">
                 <h2 className="text-xl font-semibold mb-4">Nouvelle Tâche</h2>
                 <form onSubmit={handleSubmitTask}>
@@ -265,6 +176,7 @@ const Tasks = () => {
                       required
                     />
                   </div>
+                  
                   <div className="mb-4">
                     <label className="block text-sm font-medium">Description</label>
                     <textarea
@@ -348,5 +260,3 @@ const Tasks = () => {
 };
 
 export default Tasks;
-
-

@@ -78,7 +78,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
   };
 
   return (
-    <div className="bg-white border rounded-md p-4 shadow-sm">
+    <div className="bg-white border rounded-md p-4 shadow-sm hover:shadow-md transition-shadow">
       <div className="flex justify-between items-start mb-2">
         <div className="flex items-center gap-2">
           {renderSourceBadge()}
