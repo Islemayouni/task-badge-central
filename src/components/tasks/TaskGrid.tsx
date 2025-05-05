@@ -114,7 +114,7 @@ const sampleTasks: TaskProps[] = [
     dueDate: '2025-05-22',
     source: 'internal',
     assignee: {
-      name: 'Catherine Petit',
+      name: 'Julie Bernard',
       avatar: 'https://i.pravatar.cc/150?u=catherine'
     }
   }
@@ -123,10 +123,16 @@ const sampleTasks: TaskProps[] = [
 interface TaskGridProps {
   tasks?: TaskProps[];
   onDelete?: (id: string) => void;
+  currentUser?: string; // Nouvel attribut pour filtrer par utilisateur connecté
 }
 
-const TaskGrid = ({ tasks = sampleTasks, onDelete }: TaskGridProps) => {
+const TaskGrid = ({ tasks = sampleTasks, onDelete, currentUser }: TaskGridProps) => {
   const { toast } = useToast();
+
+  // Filtrer les tâches en fonction de l'utilisateur connecté
+  const filteredTasks = currentUser 
+    ? tasks.filter(task => task.assignee && task.assignee.name === currentUser)
+    : tasks;
 
   const handleEditTask = (id: string) => {
     toast({
@@ -154,10 +160,13 @@ const TaskGrid = ({ tasks = sampleTasks, onDelete }: TaskGridProps) => {
     });
   };
 
+  // Modifier le titre en fonction de si on filtre ou non
+  const pageTitle = currentUser ? "Mes tâches assignées" : "Toutes les tâches";
+
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Mes tâches</h1>
+        <h1 className="text-2xl font-bold">{pageTitle}</h1>
         <button 
           className="bg-black text-white rounded-full px-4 py-2 flex items-center gap-2"
           onClick={handleAddTask}
@@ -184,30 +193,44 @@ const TaskGrid = ({ tasks = sampleTasks, onDelete }: TaskGridProps) => {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {tasks.map(task => (
-          <TaskCard
-            key={task.docId}
-            docId={task.docId}
-            id={task.id}
-            title={task.title}
-            description={task.description}
-            status={task.status}
-            priority={task.priority}
-            dueDate={task.dueDate}
-            source={task.source}
-            assignee={task.assignee}
-            onDelete={handleDeleteTask}
-            onEdit={handleEditTask}
-          />
-        ))}
-        
-        <div 
-          className="border border-dashed rounded-lg p-6 flex flex-col items-center justify-center text-gray-500 hover:border-gray-400 transition-colors cursor-pointer bg-white"
-          onClick={handleAddTask}
-        >
-          <Plus size={24} className="mb-2" />
-          <span>Ajouter une nouvelle tâche</span>
-        </div>
+        {filteredTasks.length > 0 ? (
+          <>
+            {filteredTasks.map(task => (
+              <TaskCard
+                key={task.docId}
+                docId={task.docId}
+                id={task.id}
+                title={task.title}
+                description={task.description}
+                status={task.status}
+                priority={task.priority}
+                dueDate={task.dueDate}
+                source={task.source}
+                assignee={task.assignee}
+                onDelete={handleDeleteTask}
+                onEdit={handleEditTask}
+              />
+            ))}
+            
+            <div 
+              className="border border-dashed rounded-lg p-6 flex flex-col items-center justify-center text-gray-500 hover:border-gray-400 transition-colors cursor-pointer bg-white"
+              onClick={handleAddTask}
+            >
+              <Plus size={24} className="mb-2" />
+              <span>Ajouter une nouvelle tâche</span>
+            </div>
+          </>
+        ) : (
+          <div className="col-span-3 text-center py-10">
+            <p className="text-gray-500 mb-4">Vous n'avez aucune tâche assignée.</p>
+            <button 
+              className="bg-black text-white rounded-full px-4 py-2 flex items-center gap-2 mx-auto"
+              onClick={handleAddTask}
+            >
+              <Plus size={18} /> Créer une tâche
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
