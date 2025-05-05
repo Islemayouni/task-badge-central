@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Progress } from '@/components/ui/progress';
+import { BadgeCheck, Lock } from 'lucide-react';
 
 export interface BadgeProps {
   id: string;
@@ -29,14 +30,21 @@ const BadgeCard: React.FC<BadgeProps> = ({
         {isUnlocked ? (
           <img src={image} alt={name} className="w-10 h-10" />
         ) : (
-          <span className="text-3xl text-gray-400">?</span>
+          <Lock className="w-10 h-10 text-gray-400" />
         )}
       </div>
       
       <h3 className="font-medium text-center mb-1">{name}</h3>
       
-      <div className="text-xs text-gray-500 mb-2">
-        {isUnlocked ? `Niveau ${level}/${maxLevel}` : 'Non débloqué'}
+      <div className="text-xs text-gray-500 mb-2 flex items-center">
+        {isUnlocked ? (
+          <>
+            <BadgeCheck className="w-3 h-3 mr-1 text-primary" /> 
+            Niveau {level}/{maxLevel}
+          </>
+        ) : (
+          'Non débloqué'
+        )}
       </div>
       
       <p className="text-sm text-center text-gray-600 mb-3">
