@@ -2,175 +2,102 @@
 import React from 'react';  
 import { Plus } from 'lucide-react';
 import TaskCard, { TaskProps } from './TaskCard';
-import { useToast } from '@/components/ui/use-toast';
 
-// Static sample tasks data with logical names, descriptions, and assignees
+// Static sample tasks data
 const sampleTasks: TaskProps[] = [
   {
-    id: 'DEV-001',
-    docId: 'DEV-001',
-    title: 'Implémentation de l\'authentification',
-    description: 'Développer et intégrer un système d\'authentification sécurisé avec OAuth et JWT',
-    status: 'En cours',
-    priority: 'Haute',
-    dueDate: '2025-05-15',
-    source: 'internal',
-    assignee: {
-      name: 'Thomas Martin',
-      avatar: 'https://i.pravatar.cc/150?u=thomas'
-    }
-  },
-  {
-    id: 'DEV-002',
-    docId: 'DEV-002',
-    title: 'Optimisation des performances',
-    description: 'Analyser et améliorer les temps de chargement des pages principales du site',
+    id: '1WciQTC2IDk6i1dKr9To',
+    docId: '1WciQTC2IDk6i1dKr9To',
+    title: 'R34GG',
+    description: '3434V',
     status: 'À faire',
     priority: 'Moyenne',
-    dueDate: '2025-05-20',
-    source: 'internal',
-    assignee: {
-      name: 'Sophie Dubois',
-      avatar: 'https://i.pravatar.cc/150?u=sophie'
-    }
+    dueDate: '2025-05-07',
+    source: 'internal'
   },
   {
-    id: 'DEV-003',
-    docId: 'DEV-003',
-    title: 'Correction des bugs UI',
-    description: 'Résoudre les problèmes d\'affichage sur les appareils mobiles',
-    status: 'Terminée',
-    priority: 'Basse',
+    id: '1t746268193184',
+    docId: '1t746268193184',
+    title: 'Nouvelle tâche',
+    description: 'Description de la nouvelle tâche',
+    status: 'À faire',
+    priority: 'Moyenne',
     dueDate: '2025-05-01',
-    source: 'internal',
-    assignee: {
-      name: 'Pierre Durand',
-      avatar: 'https://i.pravatar.cc/150?u=pierre'
-    }
+    source: 'internal'
   },
   {
-    id: 'DEV-004',
-    docId: 'DEV-004',
-    title: 'Mise à jour des dépendances',
-    description: 'Mettre à jour toutes les bibliothèques à leurs dernières versions stables',
+    id: '1t745856158022',
+    docId: '1t745856158022',
+    title: 'Nouvelle tâche',
+    description: 'Description de la nouvelle tâche',
     status: 'À faire',
     priority: 'Moyenne',
-    dueDate: '2025-05-25',
-    source: 'internal',
-    assignee: {
-      name: 'Marie Lambert',
-      avatar: 'https://i.pravatar.cc/150?u=marie'
-    }
+    dueDate: '2025-05-01',
+    source: 'internal'
   },
   {
-    id: 'DEV-005',
-    docId: 'DEV-005',
-    title: 'Création de nouvelles pages',
-    description: 'Développer les pages "À propos" et "Contact" selon les maquettes',
-    status: 'En cours',
-    priority: 'Haute',
-    dueDate: '2025-05-18',
-    source: 'internal',
-    assignee: {
-      name: 'Jean Dupont',
-      avatar: 'https://i.pravatar.cc/150?u=jean'
-    }
-  },
-  {
-    id: 'DEV-006',
-    docId: 'DEV-006',
-    title: 'Tests unitaires',
-    description: 'Augmenter la couverture des tests unitaires à 80% minimum',
-    status: 'À faire',
-    priority: 'Haute',
-    dueDate: '2025-05-30',
-    source: 'internal',
-    assignee: {
-      name: 'Lucie Moreau',
-      avatar: 'https://i.pravatar.cc/150?u=lucie'
-    }
-  },
-  {
-    id: 'DEV-007',
-    docId: 'DEV-007',
-    title: 'Documentation API',
-    description: 'Rédiger la documentation complète des API avec Swagger',
+    id: 'KecZWiBOnCSI0ZNb7H1z',
+    docId: 'KecZWiBOnCSI0ZNb7H1z',
+    title: 'vqfb',
+    description: 'fbEFB',
     status: 'À faire',
     priority: 'Moyenne',
-    dueDate: '2025-06-05',
-    source: 'internal',
-    assignee: {
-      name: 'Marc Bernard',
-      avatar: 'https://i.pravatar.cc/150?u=marc'
-    }
+    dueDate: '2025-04-30',
+    source: 'internal'
   },
   {
-    id: 'DEV-008',
-    docId: 'DEV-008',
-    title: 'Intégration paiement Stripe',
-    description: 'Intégrer la passerelle de paiement Stripe pour les transactions',
-    status: 'En cours',
+    id: 'O5eEy6W69WpMQGCU1Cv',
+    docId: 'O5eEy6W69WpMQGCU1Cv',
+    title: 'vqfb',
+    description: 'fbEFB',
+    status: 'À faire',
+    priority: 'Moyenne',
+    dueDate: '2025-04-30',
+    source: 'internal'
+  },
+  {
+    id: 'Zw6nMu4p0omtStJKC4zPK',
+    docId: 'Zw6nMu4p0omtStJKC4zPK',
+    title: 'ayouni',
+    description: 'ecevczev',
+    status: 'À faire',
     priority: 'Haute',
-    dueDate: '2025-05-22',
-    source: 'internal',
-    assignee: {
-      name: 'Julie Bernard',
-      avatar: 'https://i.pravatar.cc/150?u=catherine'
-    }
+    dueDate: '2025-05-01',
+    source: 'internal'
+  },
+  {
+    id: 't1',
+    docId: 't1',
+    title: 'Créer une interface',
+    description: 'Développer l\'interface utilisateur',
+    status: 'À faire',
+    priority: 'Haute',
+    dueDate: '2025-05-01',
+    source: 'internal'
+  },
+  {
+    id: 'custom',
+    docId: 'custom',
+    title: 'Créer une interfaceeee',
+    description: 'Développer l\'interface utilisateur',
+    status: 'À faire',
+    priority: 'Moyenne',
+    dueDate: '2025-05-01',
+    source: 'internal'
   }
 ];
 
 interface TaskGridProps {
   tasks?: TaskProps[];
   onDelete?: (id: string) => void;
-  currentUser?: string; // Nouvel attribut pour filtrer par utilisateur connecté
 }
 
-const TaskGrid = ({ tasks = sampleTasks, onDelete, currentUser }: TaskGridProps) => {
-  const { toast } = useToast();
-
-  // Filtrer les tâches en fonction de l'utilisateur connecté
-  const filteredTasks = currentUser 
-    ? tasks.filter(task => task.assignee && task.assignee.name === currentUser)
-    : tasks;
-
-  const handleEditTask = (id: string) => {
-    toast({
-      title: "Modification de tâche",
-      description: `Édition de la tâche ${id}`,
-    });
-  };
-  
-  const handleDeleteTask = (id: string) => {
-    // If onDelete prop is provided, use it, otherwise just show a toast
-    if (onDelete) {
-      onDelete(id);
-    } else {
-      toast({
-        title: "Suppression de tâche",
-        description: `La tâche ${id} a été supprimée`,
-      });
-    }
-  };
-
-  const handleAddTask = () => {
-    toast({
-      title: "Nouvelle tâche",
-      description: "Ajout d'une nouvelle tâche",
-    });
-  };
-
-  // Modifier le titre en fonction de si on filtre ou non
-  const pageTitle = currentUser ? "Mes tâches assignées" : "Toutes les tâches";
-
+const TaskGrid = ({ tasks = sampleTasks, onDelete }: TaskGridProps) => {
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">{pageTitle}</h1>
-        <button 
-          className="bg-black text-white rounded-full px-4 py-2 flex items-center gap-2"
-          onClick={handleAddTask}
-        >
+        <h1 className="text-2xl font-bold">Mes tâches</h1>
+        <button className="bg-black text-white rounded-full px-4 py-2 flex items-center gap-2">
           <Plus size={18} /> Nouvelle tâche
         </button>
       </div>
@@ -193,44 +120,25 @@ const TaskGrid = ({ tasks = sampleTasks, onDelete, currentUser }: TaskGridProps)
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredTasks.length > 0 ? (
-          <>
-            {filteredTasks.map(task => (
-              <TaskCard
-                key={task.docId}
-                docId={task.docId}
-                id={task.id}
-                title={task.title}
-                description={task.description}
-                status={task.status}
-                priority={task.priority}
-                dueDate={task.dueDate}
-                source={task.source}
-                assignee={task.assignee}
-                onDelete={handleDeleteTask}
-                onEdit={handleEditTask}
-              />
-            ))}
-            
-            <div 
-              className="border border-dashed rounded-lg p-6 flex flex-col items-center justify-center text-gray-500 hover:border-gray-400 transition-colors cursor-pointer bg-white"
-              onClick={handleAddTask}
-            >
-              <Plus size={24} className="mb-2" />
-              <span>Ajouter une nouvelle tâche</span>
-            </div>
-          </>
-        ) : (
-          <div className="col-span-3 text-center py-10">
-            <p className="text-gray-500 mb-4">Vous n'avez aucune tâche assignée.</p>
-            <button 
-              className="bg-black text-white rounded-full px-4 py-2 flex items-center gap-2 mx-auto"
-              onClick={handleAddTask}
-            >
-              <Plus size={18} /> Créer une tâche
-            </button>
-          </div>
-        )}
+        {tasks.map(task => (
+          <TaskCard
+            key={task.docId}
+            docId={task.docId}
+            id={task.id}
+            title={task.title}
+            description={task.description}
+            status={task.status}
+            priority={task.priority}
+            dueDate={task.dueDate}
+            source={task.source}
+            onDelete={() => onDelete && onDelete(task.docId || '')}
+          />
+        ))}
+        
+        <div className="border border-dashed rounded-lg p-6 flex flex-col items-center justify-center text-gray-500 hover:border-gray-400 transition-colors cursor-pointer bg-white">
+          <Plus size={24} className="mb-2" />
+          <span>Ajouter une nouvelle tâche</span>
+        </div>
       </div>
     </div>
   );
