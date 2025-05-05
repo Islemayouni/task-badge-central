@@ -34,7 +34,6 @@ const TaskCard: React.FC<TaskCardProps> = ({
   description,
   status,
   dueDate,
-  assignee,
   onDelete,
   onEdit
 }) => {
@@ -75,13 +74,6 @@ const TaskCard: React.FC<TaskCardProps> = ({
         <p className="text-sm text-gray-600 mb-3">
           {description}
         </p>
-      )}
-      
-      {assignee && (
-        <div className="mb-3">
-          <span className="text-xs text-gray-500">Assigné à: </span>
-          <span className="text-sm font-medium">{assignee.name}</span>
-        </div>
       )}
       
       <div className="flex justify-between items-center mt-4">
