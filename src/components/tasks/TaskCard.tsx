@@ -2,7 +2,7 @@
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Clock, AlertCircle, CheckCircle, ArrowUpRight } from 'lucide-react';
+import { Clock, AlertCircle, CheckCircle, ArrowUpRight, Trash2 } from 'lucide-react';
 
 export type TaskStatus = 'À faire' | 'En cours' | 'Terminée';
 export type TaskPriority = 'Basse' | 'Moyenne' | 'Haute';
@@ -20,9 +20,15 @@ export interface TaskProps {
   };
   dueDate?: string;
   source: TaskSource;
+  docId?: string; // Ajout de docId comme propriété optionnelle
+}
+interface TaskCardProps extends TaskProps {
+  docId?: string; // Ajoutez docId comme prop 
+  onDelete?: (id: string) => void; // Nouvelle prop pour la suppression
 }
 
-const TaskCard: React.FC<TaskProps> = ({
+const TaskCard: React.FC<TaskCardProps> = ({
+  docId,  
   id,
   title,
   description,
@@ -30,7 +36,8 @@ const TaskCard: React.FC<TaskProps> = ({
   priority,
   assignee,
   dueDate,
-  source
+  source,
+  onDelete
 }) => {
   const renderStatusBadge = () => {
     switch (status) {
@@ -76,9 +83,21 @@ const TaskCard: React.FC<TaskProps> = ({
           {renderSourceBadge()}
           <span className="text-xs text-jira-mediumgray">{id}</span>
         </div>
-        {status === 'Terminée' && <CheckCircle size={16} className="text-jira-green" />}
+        <div className="flex items-center gap-2">
+          {status === 'Terminée' && <CheckCircle size={16} className="text-green-500" />}
+          {onDelete && docId &&(
+            <button
+              onClick={() => onDelete(docId)} // utiliser docId ici 
+              className="text-red-500 hover:text-red-700"
+              title="Supprimer la tâche"
+            >
+              <Trash2 size={16} />
+            </button>
+          )}
+        </div>  
+        
       </div>
-      
+    
       <h3 className="font-medium mb-1.5 line-clamp-2">{title}</h3>
       
       {description && (

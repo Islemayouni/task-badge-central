@@ -110,13 +110,32 @@ const Tasks = () => {
 
   const API_URL = 'http://localhost:8081/task'; // Adjust if backend uses a prefix
 
+  // const fetchTasks = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const response = await axios.get(`${API_URL}/tasks`);
+  //     console.log('Tasks fetched:', response.data);
+  //     setTasks(response.data);
+  //     setError(null);
+  //   } catch (err) {
+  //     setError(`Erreur: ${err.response?.status} - ${err.message}`);
+  //     console.error('Fetch error:', err.response || err);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
   const fetchTasks = async () => {
     setLoading(true);
     try {
       const response = await axios.get(`${API_URL}/tasks`);
-      console.log('Tasks fetched:', response.data);
-      setTasks(response.data);
-      setError(null);
+      console.log('Réponse brute de l\'API:', response.data); // Ajoutez ce log
+      const tasksWithDocIds = response.data.map(task => ({
+        ...task,
+        docId: task._id || task.id, // Utilisez l'ID Firebase (ajustez selon la réponse de l'API)
+      }));
+      console.log('Tâches récupérées avec docIds:', tasksWithDocIds);
+      setTasks(tasksWithDocIds);
+      setError(null);             
     } catch (err) {
       setError(`Erreur: ${err.response?.status} - ${err.message}`);
       console.error('Fetch error:', err.response || err);
@@ -124,7 +143,6 @@ const Tasks = () => {
       setLoading(false);
     }
   };
-
   const createTask = async (taskData) => {
     try {
       const response = await axios.post(`${API_URL}/task`, taskData);
@@ -144,6 +162,26 @@ const Tasks = () => {
       setError('Erreur lors de la création de la tâche');
       console.error(err);
     }
+  };
+
+  // const deleteTask = async (taskId) => {
+  //   try {
+  //     await axios.delete(`${API_URL}/tasks/${taskId}`);
+  //     fetchTasks(); // Rafraîchir la liste après suppression
+  //   } catch (err) {
+  //     setError('Erreur lors de la suppression de la tâche');
+  //     console.error(err);
+  //   }
+  // };
+  const deleteTask = async (taskId) => {
+    console.log('Tentative de suppression avec ID Firebase:', taskId);
+    try {
+      await axios.delete(`${API_URL}/tasks/${taskId}`);
+      fetchTasks();
+    } catch (err) {
+      setError('Erreur lors de la suppression de la tâche');
+      console.error('Erreur de suppression:', err.response ? err.response.data : err.message);
+    }   
   };
 
   useEffect(() => {
@@ -200,7 +238,11 @@ const Tasks = () => {
           />
           {loading && <p>Chargement des tâches...</p>}
           {error && <p className="text-red-500">{error}</p>}
-          {!loading && !error && <TaskGrid tasks={sortedTasks} />}
+          {!loading && !error && 
+          <TaskGrid 
+          tasks={sortedTasks}
+          onDelete={deleteTask} 
+          />}
           <div className="mt-8">
             <TaskStats />
           </div>
