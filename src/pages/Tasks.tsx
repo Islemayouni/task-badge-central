@@ -34,7 +34,7 @@ const Tasks = () => {
         
         <main className="flex-1 overflow-y-auto p-6">
           <div className="max-w-7xl mx-auto">
-            <Tabs defaultValue="tasks" className="space-y-6" onValueChange={setActiveTab}>
+            <Tabs defaultValue={activeTab} value={activeTab} className="space-y-6" onValueChange={setActiveTab}>
               <TabsList className="bg-white dark:bg-gray-800 p-1 rounded-xl">
                 <TabsTrigger value="tasks" className="rounded-lg">
                   Mes Tâches
@@ -44,11 +44,11 @@ const Tasks = () => {
                 </TabsTrigger>
               </TabsList>
               
-              <TabsContent value="tasks">
+              <TabsContent value="tasks" className="mt-6">
                 <TaskGrid onDelete={handleDelete} onEdit={handleEdit} />
               </TabsContent>
               
-              <TabsContent value="badges">
+              <TabsContent value="badges" className="mt-6">
                 <BadgesView />
               </TabsContent>
             </Tabs>

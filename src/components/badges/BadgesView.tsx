@@ -4,8 +4,9 @@ import { Badge as BadgeComponent } from '@/types/badge';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Progress } from '@/components/ui/progress';
-import { Search, Filter, Award } from 'lucide-react';
+import { Search, Award } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
+import BadgeCard from '@/components/badges/BadgeCard';
 
 // Données de badges statiques pour démonstration
 const badgesSample: BadgeComponent[] = [
@@ -163,35 +164,17 @@ const BadgesView = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {filteredBadges.map(badge => (
-          <div 
-            key={badge.id} 
-            className={`bg-white border rounded-md p-4 flex flex-col items-center ${!badge.isUnlocked ? 'opacity-60' : ''}`}
-          >
-            <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-3 ${badge.isUnlocked ? 'bg-primary/10' : 'bg-gray-200'}`}>
-              {badge.isUnlocked ? (
-                <img src={badge.image} alt={badge.name} className="w-10 h-10" />
-              ) : (
-                <span className="text-3xl text-gray-400">?</span>
-              )}
-            </div>
-            
-            <h3 className="font-medium text-center mb-1">{badge.name}</h3>
-            
-            <div className="text-xs text-gray-500 mb-2">
-              {badge.isUnlocked ? `Niveau ${badge.level}/${badge.maxLevel}` : 'Non débloqué'}
-            </div>
-            
-            <p className="text-sm text-center text-gray-600 mb-3">
-              {badge.isUnlocked ? badge.description : 'Badge verrouillé'}
-            </p>
-            
-            <div className="w-full mt-2">
-              <Progress value={badge.progress} className="h-1.5" />
-              <div className="text-xs text-gray-500 mt-1 text-center">
-                {badge.isUnlocked ? `${badge.progress}% vers le niveau suivant` : 'Complétez des tâches pour débloquer'}
-              </div>
-            </div>
-          </div>
+          <BadgeCard
+            key={badge.id}
+            id={badge.id}
+            name={badge.name}
+            description={badge.description}
+            image={badge.image}
+            level={badge.level}
+            maxLevel={badge.maxLevel}
+            progress={badge.progress}
+            isUnlocked={badge.isUnlocked}
+          />
         ))}
         
         {filteredBadges.length === 0 && (
