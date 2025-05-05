@@ -16,7 +16,7 @@ const Header = () => {
       <div className="flex items-center gap-4">
         <div className="flex items-center">
           <Link to="/dashboard">
-            <h1 className="text-xl font-bold jira-logo text-transparent bg-clip-text sopra-gradient">TakeIt</h1>
+            <h1 className="text-xl font-bold jira-logo text-transparent bg-clip-text sopra-gradient">MyTasks4YOU</h1>
           </Link>
         </div>
         <div className="flex items-center gap-1.5">
