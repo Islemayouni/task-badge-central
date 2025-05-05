@@ -1,84 +1,10 @@
 
-
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Header from '@/components/layout/Header';
 import Sidebar from '@/components/layout/Sidebar';
-import { 
-  Card, 
-  CardContent, 
-  CardDescription, 
-  CardFooter, 
-  CardHeader, 
-  CardTitle 
-} from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Progress } from "@/components/ui/progress";
-import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import BadgeCard from '@/components/badges/BadgeCard';
-import { Award, Search } from 'lucide-react';
+import BadgesView from '@/components/badges/BadgesView';
 
 const Badges = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [activeTab, setActiveTab] = useState('all');
-  const [allBadges, setAllBadges] = useState<any[]>([]); // état pour les badges
-  
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  // Données de démonstration pour les badges
-  // Charger les badges depuis l'API
-  useEffect(() => {
-    const fetchBadges = async () => {
-      try {
-        const response = null;
-        console.log(response.data); // Affiche les données récupérées dans la console
-        setAllBadges(response.data); // Assigner les badges récupérés
-      } catch (err) {
-        setError('Erreur lors du chargement des badges.');
-        console.error(err); // Affiche l'erreur dans la console
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBadges();
-  }, []);
-  
-
-
-  // Filtrer les badges selon la recherche et le tab actif
-  const filteredBadges = allBadges.filter(badge => {
-    const matchesSearch = badge.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          badge.description.toLowerCase().includes(searchQuery.toLowerCase());
-    
-    if (activeTab === 'all') {
-      return matchesSearch;
-    } else if (activeTab === 'unlocked') {
-      return matchesSearch && badge.isUnlocked;
-    } else if (activeTab === 'locked') {
-      return matchesSearch && !badge.isUnlocked;
-    } else {
-      return matchesSearch && badge.category === activeTab;
-    }
-  });
-
-  // Statistiques des badges
-  const badgeStats = {
-    total: allBadges.length,
-    unlocked: allBadges.filter(b => b.isUnlocked).length,
-    progress: Math.round((allBadges.filter(b => b.isUnlocked).length / allBadges.length) * 100)
-  };
-
-  if (loading) {
-    return <div>Chargement...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
   return (
     <div className="flex flex-col h-screen bg-gray-50">
       <Header />
@@ -87,88 +13,9 @@ const Badges = () => {
         <Sidebar />
         
         <main className="flex-1 overflow-y-auto p-6">
-          <div className="flex justify-between items-center mb-6">
-            <div>
-              <h1 className="text-2xl font-semibold mb-1">Mes Badges</h1>
-              <p className="text-gray-500">Suivez votre progression et débloquez de nouveaux badges</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <Badge variant="secondary" className="text-primary">
-                <Award size={14} className="mr-1" />
-                {badgeStats.unlocked} badges débloqués
-              </Badge>
-            </div>
+          <div className="max-w-7xl mx-auto">
+            <BadgesView />
           </div>
-
-          <Card className="mb-6">
-            <CardContent className="p-6">
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div className="flex-1">
-                  <h3 className="font-medium mb-1">Progression globale des badges</h3>
-                  <div className="flex items-center gap-2 mb-2">
-                    <Progress value={badgeStats.progress} className="h-2 flex-1" />
-                    <span className="text-sm text-gray-500 whitespace-nowrap">{badgeStats.progress}%</span>
-                  </div>
-                  <p className="text-sm text-gray-500">
-                    {badgeStats.unlocked} sur {badgeStats.total} badges débloqués
-                  </p>
-                </div>
-                
-                <div className="flex items-center gap-2 w-full md:w-auto">
-                  <div className="relative flex-1 md:w-64">
-                    <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
-                    <Input
-                      placeholder="Rechercher..."
-                      className="pl-9"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                  </div>
-                  <Button variant="outline">Filtrer</Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Tabs defaultValue="all" className="space-y-6" onValueChange={setActiveTab}>
-            <TabsList>
-              <TabsTrigger value="all">Tous les badges</TabsTrigger>
-              <TabsTrigger value="unlocked">Débloqués</TabsTrigger>
-              <TabsTrigger value="locked">À débloquer</TabsTrigger>
-              <TabsTrigger value="progression">Progression</TabsTrigger>
-              <TabsTrigger value="performance">Performance</TabsTrigger>
-              <TabsTrigger value="expertise">Expertise</TabsTrigger>
-              <TabsTrigger value="collaboration">Collaboration</TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value={activeTab}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {filteredBadges.map(badge => (
-                  <BadgeCard
-                    key={badge.id}
-                    id={badge.id}
-                    name={badge.name}
-                    description={badge.description}
-                    image={badge.image}
-                    level={badge.level}
-                    maxLevel={badge.maxLevel}
-                    progress={badge.progress}
-                    isUnlocked={badge.isUnlocked}
-                  />
-                ))}
-                
-                {filteredBadges.length === 0 && (
-                  <div className="col-span-full flex justify-center p-8 text-gray-500">
-                    <div className="text-center">
-                      <Award size={48} className="mx-auto mb-2 opacity-50" />
-                      <p className="text-lg font-medium">Aucun badge trouvé</p>
-                      <p className="text-sm">Essayez de modifier vos filtres ou votre recherche</p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </TabsContent>
-          </Tabs>
         </main>
       </div>
     </div>

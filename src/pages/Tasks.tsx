@@ -1,15 +1,12 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useToast } from "@/hooks/use-toast";
 import Header from '@/components/layout/Header';
 import Sidebar from '@/components/layout/Sidebar';
 import TaskGrid from '@/components/tasks/TaskGrid';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import BadgesView from '@/components/badges/BadgesView';
 
 const Tasks = () => {
   const { toast } = useToast();
-  const [activeTab, setActiveTab] = useState('tasks');
 
   const handleDelete = (id: string) => {
     toast({
@@ -34,24 +31,8 @@ const Tasks = () => {
         
         <main className="flex-1 overflow-y-auto p-6">
           <div className="max-w-7xl mx-auto">
-            <Tabs defaultValue={activeTab} value={activeTab} className="space-y-6" onValueChange={setActiveTab}>
-              <TabsList className="bg-white dark:bg-gray-800 p-1 rounded-xl">
-                <TabsTrigger value="tasks" className="rounded-lg">
-                  Mes Tâches
-                </TabsTrigger>
-                <TabsTrigger value="badges" className="rounded-lg">
-                  Mes Badges
-                </TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="tasks" className="mt-6">
-                <TaskGrid onDelete={handleDelete} onEdit={handleEdit} />
-              </TabsContent>
-              
-              <TabsContent value="badges" className="mt-6">
-                <BadgesView />
-              </TabsContent>
-            </Tabs>
+            <h1 className="text-2xl font-bold mb-6">Mes Tâches</h1>
+            <TaskGrid onDelete={handleDelete} onEdit={handleEdit} />
           </div>
         </main>
       </div>
