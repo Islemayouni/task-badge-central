@@ -1,3 +1,4 @@
+
 import { AtSign, Lock, Users, Award, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -79,12 +80,6 @@ const Login = () => {
             <div className="text-center space-y-3">
               <h2 className="text-3xl font-semibold tracking-wide">Connectez-vous</h2>
               <p className="text-white/75">Entrez vos identifiants pour accéder à votre compte</p>
-              <div className="text-xs text-white/60 mt-2 space-y-1">
-                <p>Pour tester les différents rôles :</p>
-                <p>N1 : n1@entreprise.com</p>
-                <p>N2 : n2@entreprise.com</p>
-                <p>Employé : employee@entreprise.com</p>
-              </div>
             </div>
             
             <form onSubmit={handleLogin} className="mt-8 space-y-6">
