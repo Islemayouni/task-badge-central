@@ -5,18 +5,32 @@ import TaskCard, { TaskProps } from './TaskCard';
 
 interface TaskGridProps {
   tasks: TaskProps[];
-  onDelete?: (id: string) => void;
+  onDelete?: (id: string) => void; //Nouvelle prop pour la suppression
 }
 
 const TaskGrid = ({ tasks, onDelete }: TaskGridProps) => {
   console.log('Tâches rendues:', tasks);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {tasks.map(task => (
-        <TaskCard
-          key={task.docId || task.id}
-          docId={task.docId}
+      {/* {tasks.map(task => (
+        <TaskCard 
+          key={task.id}
           id={task.id}
+          title={task.title}
+          description={task.description}
+          status={task.status}
+          priority={task.priority}
+          assignee={task.assignee}
+          dueDate={task.dueDate}
+          source={task.source}
+          onDelete={onDelete} // Passe la prop onDelete séparément
+        />
+      ))} */}
+       {tasks.map(task => (
+        <TaskCard
+          key={task.docId} // Utilisez docId comme clé unique
+          docId={task.docId} // Passez l'ID Firebase
+          id={task.id} // Gardez l'ID personnalisé si nécessaire
           title={task.title}
           description={task.description}
           status={task.status}
