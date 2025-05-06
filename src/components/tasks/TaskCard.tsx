@@ -34,6 +34,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
   description,
   status,
   dueDate,
+  source,
   onDelete,
   onEdit
 }) => {
@@ -47,7 +48,14 @@ const TaskCard: React.FC<TaskCardProps> = ({
   return (
     <div className="bg-white rounded-lg shadow p-4 relative">
       <div className="flex justify-between items-start mb-1">
-        <div className="text-xs text-gray-500">{id}</div>
+        <div className="flex items-center">
+          <div className="text-xs text-gray-500">{id}</div>
+          {source === 'jira' && (
+            <Badge className="ml-2 bg-blue-100 text-blue-800 hover:bg-blue-100 text-xs px-2 py-0.5">
+              Jira
+            </Badge>
+          )}
+        </div>
         <div className="flex space-x-2">
           {onEdit && (
             <button 
@@ -78,7 +86,11 @@ const TaskCard: React.FC<TaskCardProps> = ({
       
       <div className="flex justify-between items-center mt-4">
         <div>
-          <Badge className="bg-gray-100 text-gray-700 hover:bg-gray-100">
+          <Badge className={`
+            ${status === 'À faire' ? 'bg-gray-100 text-gray-700' : 
+              status === 'En cours' ? 'bg-blue-100 text-blue-700' : 
+              'bg-green-100 text-green-700'} hover:bg-opacity-90
+          `}>
             {status}
           </Badge>
         </div>

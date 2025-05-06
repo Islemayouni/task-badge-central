@@ -1,5 +1,5 @@
 
-import React from 'react';  
+import React, { useState } from 'react';  
 import { Plus } from 'lucide-react';
 import TaskCard, { TaskProps } from './TaskCard';
 
@@ -108,6 +108,46 @@ const sampleTasks: TaskProps[] = [
     assignee: {
       name: 'Emma Laurent'
     }
+  },
+  // Ajout de tâches provenant de Jira
+  {
+    id: 'JIRA-105',
+    docId: 'jira-105',
+    title: 'Intégration système de paiement Stripe',
+    description: 'Implémenter et configurer le système de paiement Stripe pour le site e-commerce',
+    status: 'En cours',
+    priority: 'Haute',
+    dueDate: '2025-05-25',
+    source: 'jira',
+    assignee: {
+      name: 'Nicolas Dupont'
+    }
+  },
+  {
+    id: 'JIRA-107',
+    docId: 'jira-107',
+    title: 'Mise en place CI/CD avec Jenkins',
+    description: 'Configurer le pipeline CI/CD pour automatiser le déploiement',
+    status: 'À faire',
+    priority: 'Moyenne',
+    dueDate: '2025-06-01',
+    source: 'jira',
+    assignee: {
+      name: 'Pierre Lefevre'
+    }
+  },
+  {
+    id: 'JIRA-112',
+    docId: 'jira-112',
+    title: 'Optimisation temps de chargement',
+    description: 'Améliorer les performances de l\'application en réduisant le temps de chargement initial',
+    status: 'À faire',
+    priority: 'Haute',
+    dueDate: '2025-05-30',
+    source: 'jira',
+    assignee: {
+      name: 'Jeanne Dubois'
+    }
   }
 ];
 
@@ -118,34 +158,59 @@ interface TaskGridProps {
 }
 
 const TaskGrid = ({ tasks = sampleTasks, onDelete, onEdit }: TaskGridProps) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState('deadline');
+
+  // Filtrer les tâches en fonction de la recherche
+  const filteredTasks = tasks.filter(task => 
+    task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    task.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    task.id.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // Trier les tâches en fonction du critère choisi
+  const sortedTasks = [...filteredTasks].sort((a, b) => {
+    switch (sortBy) {
+      case 'deadline':
+        return new Date(a.dueDate || '').getTime() - new Date(b.dueDate || '').getTime();
+      case 'priority':
+        const priorityOrder = { 'Haute': 0, 'Moyenne': 1, 'Basse': 2 };
+        return priorityOrder[a.priority as 'Haute' | 'Moyenne' | 'Basse'] - priorityOrder[b.priority as 'Haute' | 'Moyenne' | 'Basse'];
+      case 'status':
+        const statusOrder = { 'À faire': 0, 'En cours': 1, 'Terminée': 2 };
+        return statusOrder[a.status as 'À faire' | 'En cours' | 'Terminée'] - statusOrder[b.status as 'À faire' | 'En cours' | 'Terminée'];
+      default:
+        return 0;
+    }
+  });
+
   return (
     <div className="space-y-4">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Mes tâches</h1>
-        <button className="bg-black text-white rounded-full px-4 py-2 flex items-center gap-2">
-          <Plus size={18} /> Nouvelle tâche
-        </button>
-      </div>
-      
       <div className="flex mb-6">
         <div className="flex-1 relative">
           <input 
             type="text"
             placeholder="Rechercher une tâche..."
             className="w-full py-2 px-4 border rounded-lg"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
         <div className="ml-2">
-          <select className="py-2 px-4 border rounded-lg">
-            <option>Date limite</option>
-            <option>Priorité</option>
-            <option>Statut</option>
+          <select 
+            className="py-2 px-4 border rounded-lg"
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+          >
+            <option value="deadline">Date limite</option>
+            <option value="priority">Priorité</option>
+            <option value="status">Statut</option>
           </select>
         </div>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {tasks.map(task => (
+        {sortedTasks.map(task => (
           <TaskCard
             key={task.docId}
             docId={task.docId}
