@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 import React, { useState } from 'react';  
 import { Plus } from 'lucide-react';
 import TaskCard, { TaskProps } from './TaskCard';
@@ -214,11 +215,42 @@ const TaskGrid = ({ tasks = sampleTasks, onDelete, onEdit }: TaskGridProps) => {
           <TaskCard
             key={task.docId}
             docId={task.docId}
+=======
+  import React from 'react';  
+  import { Plus } from 'lucide-react';
+  import TaskCard from './TaskCard';
+
+  import { Task } from '../../types/task';
+
+  // interface TaskGridProps {
+  //   tasks: TaskProps[];
+  //   onDelete?: (id: string) => void; //Nouvelle prop pour la suppression
+  // }
+
+  // Modification de l'interface TaskGridProps pour utiliser Task
+interface TaskGridProps {
+  tasks: Task[];
+  onDelete?: (id: string) => void;
+  onAddTask?: () => void; // Ajout de la prop onAddTask
+  onEdit?: (task: Task) => void;
+  // Ajout de la prop onAction pour gérer les actions spécifiques (ex. marquer comme terminée)
+  onAction?: (taskId: string, action: string) => void;
+}
+
+  const TaskGrid = ({ tasks, onDelete, onAddTask, onEdit, onAction }: TaskGridProps) => {
+    console.log('Tâches rendues:', tasks);
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* {tasks.map(task => (
+          <TaskCard 
+            key={task.id}
+>>>>>>> f5572f5 (Mise à jour des composants + suppression badgeApi)
             id={task.id}
             title={task.title}
             description={task.description}
             status={task.status}
             priority={task.priority}
+<<<<<<< HEAD
             dueDate={task.dueDate}
             source={task.source}
             assignee={task.assignee}
@@ -228,12 +260,49 @@ const TaskGrid = ({ tasks = sampleTasks, onDelete, onEdit }: TaskGridProps) => {
         ))}
         
         <div className="border border-dashed rounded-lg p-6 flex flex-col items-center justify-center text-gray-500 hover:border-gray-400 transition-colors cursor-pointer bg-white">
+=======
+            assignee={task.assignee}
+            dueDate={task.dueDate}
+            source={task.source}
+            onDelete={onDelete} // Passe la prop onDelete séparément
+          />
+        ))} */}
+        {tasks.map(task => (
+          <TaskCard
+            key={task.docId} // Utilisez docId comme clé unique
+            docId={task.docId} // Passez l'ID Firebase
+            id={task.id} // Gardez l'ID personnalisé si nécessaire
+            title={task.title}
+            description={task.description}
+            status={task.status}
+            priority={task.priority}
+            assignee={task.assignee}
+            dueDate={task.dueDate}
+            source={task.source}
+            createdBy={task.createdBy} // Ajouté mais non utilisé
+            createdDate={task.createdDate} // Ajouté mais non utilisé
+            projectId={task.projectId} // Ajouté mais non utilisé
+            tags={task.tags} // Ajouté mais non utilisé
+            commentCount={task.commentCount} // Ajouté mais non utilisé
+            attachments={task.attachments} // Ajouté mais non utilisé
+            progressPercent={task.progressPercent} // Ajouté mais non utilisé
+            onDelete={onDelete}
+            onEdit={onEdit}
+            // Ajout de la prop onAction passée à TaskCard
+            onAction={onAction}
+          />
+        ))}
+        
+        <div 
+           className="border border-dashed rounded-lg p-6 flex flex-col items-center justify-center text-gray-500 hover:border-gray-400 transition-colors cursor-pointer"
+           onClick={onAddTask}
+           >
+>>>>>>> f5572f5 (Mise à jour des composants + suppression badgeApi)
           <Plus size={24} className="mb-2" />
           <span>Ajouter une nouvelle tâche</span>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
-export default TaskGrid;
+  export default TaskGrid;

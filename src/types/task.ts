@@ -1,10 +1,9 @@
-
 export interface Task {
   id: string;
   title: string;
   description?: string;
-  status: 'à faire' | 'en cours' | 'fini';
-  priority: 'low' | 'medium' | 'high';
+  status: 'À faire' | 'En cours' | 'Terminée'; // Aligner avec TaskCard.tsx et backend
+  priority: 'Basse' | 'Moyenne' | 'Haute'; // Aligner avec TaskCard.tsx et backend
   assignee?: {
     name: string;
     avatar?: string;
@@ -13,10 +12,11 @@ export interface Task {
   createdBy?: string;
   createdDate: string;
   dueDate?: string;
-  source: 'jira' | 'internal';
+  source: 'JIRA' | 'Interne'; // Aligner avec backend
   projectId: string;
   tags?: string[];
   commentCount?: number;
   attachments?: number;
   progressPercent?: number;
-}
+  docId?: string; // Ajout pour la suppression
+}               
